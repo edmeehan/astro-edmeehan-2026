@@ -1,0 +1,37 @@
+{
+  "name": "skele",
+  "private": true,
+  "workspaces": [
+    "packages/components",
+    "packages/styles",
+    "packages/site",
+    "packages/library"
+  ],
+  "scripts": {
+    "dev:site": "npm --workspace packages/site run dev",
+    "dev:library": "npm --workspace packages/library run dev",
+    "build:site": "npm --workspace packages/site run build",
+    "build:library": "npm --workspace packages/library run build",
+    "dev": "concurrently \"npm run dev:site\" \"npm run dev:library\"",
+    "build": "npm run build:site && npm run build:library"
+  },
+  "devDependencies": {
+    "astro": "^5.8.0",
+    "concurrently": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "astro-icon": "^1.1.5",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "glob": "^11.0.2",
+    "postcss": "^8.5.3",
+    "postcss-custom-media": "^11.0.6",
+    "postcss-each": "^1.1.0",
+    "postcss-import": "^16.1.0",
+    "postcss-nested": "^7.0.2",
+    "zod": "^3.25.36"
+  }
+}

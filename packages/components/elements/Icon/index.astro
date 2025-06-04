@@ -1,0 +1,33 @@
+---
+import { Icon as AstroIcon } from "astro-icon/components";
+import { iconSchema } from "./schema";
+import clsx from "clsx";
+
+const baseProps = iconSchema.parse(Astro.props);
+const { buttonIcon = false } = Astro.props;
+const { name, size, className, flipRtl, label, customStyle } = baseProps;
+
+const classString = clsx(
+  "icon",
+  buttonIcon && "button-icon",
+  `size-${size}`,
+  className,
+  flipRtl && "flipRtl",
+);
+---
+
+<style is:global>
+  @import "./theme.light.css";
+  @import "./theme.dark.css";
+</style>
+
+<style>
+  @import "./styles.css";
+</style>
+
+<AstroIcon
+  name={name}
+  class={classString}
+  style={customStyle}
+  aria-label={label}
+/>

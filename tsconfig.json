@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@skele/components/*": ["packages/components/*"],
+      "@skele/styles/*": ["packages/styles/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "packages/components/types"
+    ]
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.d.ts",
+    "packages/**/*.astro"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules",
+    "**/dist"
+  ]
+}

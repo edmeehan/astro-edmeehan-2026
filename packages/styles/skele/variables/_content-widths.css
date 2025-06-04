@@ -1,0 +1,9 @@
+:where(:root) {
+  --content-width-xs: 320px;
+  --content-width-sm: 480px;
+  --content-width-md: 640px;
+  --content-width-lg: 768px;
+  --content-width-xl: 1024px;
+  --content-width-2xl: 1200px;
+  --content-width-3xl: 1536px;
+}

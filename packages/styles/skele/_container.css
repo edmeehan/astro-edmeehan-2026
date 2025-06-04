@@ -1,0 +1,22 @@
+.nav-wrapper {
+  z-index: var(--layer-3);
+  position: relative;
+
+  &--desktop {
+    display: block;
+  }
+
+  &--mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 850px) {
+  .nav-wrapper--desktop {
+    display: none;
+  }
+
+  .nav-wrapper--mobile {
+    display: block;
+  }
+}

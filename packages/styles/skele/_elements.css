@@ -1,0 +1,94 @@
+@import "elements/_forms.css";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  color: var(--element-body-fontColor);
+  background-color: var(--element-body-backgroundColor);
+}
+
+a {
+  color: var(--element-link-fontColor);
+
+  &:hover {
+    color: var(--element-link-hover-fontColor);
+  }
+}
+
+main {
+  width: 100%;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  font-size: var(--font-size-0);
+  border-radius: var(--radius-2);
+}
+
+p,
+ul,
+ol {
+  code {
+    background: var(--element-code-backgroundColor);
+    border-radius: 0.25rem;
+    padding: 0.1rem 0.2rem;
+  }
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+  table-layout: auto;
+
+  thead th {
+    background: var(--element-table-head-backgroundColor);
+    text-align: left;
+    border: 1px solid var(--element-table-row-borderColor);
+    border-bottom-width: 0;
+    border-right-width: 0;
+    padding: 0.5rem;
+
+    &:first-child {
+      border-top-left-radius: var(--radius-2);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--radius-2);
+      border-right-width: 1px;
+    }
+  }
+
+  tbody tr {
+    td {
+      border: 1px solid var(--element-table-row-borderColor);
+      border-bottom-width: 0;
+      border-right-width: 0;
+      padding: 0.5rem;
+      vertical-align: top;
+
+      &:last-child {
+        border-right-width: 1px;
+      }
+    }
+
+    &:last-child {
+      td {
+        border-bottom-width: 1px;
+      }
+
+      td:first-child {
+        border-bottom-left-radius: var(--radius-2);
+      }
+
+      td:last-child {
+        border-bottom-right-radius: var(--radius-2);
+      }
+    }
+  }
+}

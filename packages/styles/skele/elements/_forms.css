@@ -1,0 +1,9 @@
+fieldset {
+  border: 1px solid var(--element-fieldset-borderColor);
+  margin-bottom: 1rem;
+  border-radius: var(--radius-2);
+}
+
+legend {
+  color: var(--element-legend-fontColor);
+}
