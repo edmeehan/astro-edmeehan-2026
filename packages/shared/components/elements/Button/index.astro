@@ -1,0 +1,66 @@
+---
+import clsx from "clsx";
+import Icon from "../Icon/index.astro";
+import { buttonSchema } from "./schema";
+const props = buttonSchema.parse(Astro.props);
+
+const iconOnly = props.iconDisplay === "icon_only";
+const hasIcon = Boolean(props.iconName);
+
+const classAttr = clsx(
+  "button",
+  props.className,
+  iconOnly && "icon",
+  props.type,
+  `size-${props.size}`,
+  props.layout,
+  props.outline && "outline"
+);
+
+const commonProps = {
+  class: classAttr,
+  ...(props.customStyle ? { style: props.customStyle } : {}),
+  ...(props.id ? { id: props.id } : {}),
+  ...(props.ariaLabel ? { "aria-label": props.ariaLabel } : {}),
+  ...(props.ariaDescribedby ? { "aria-describedby": props.ariaDescribedby } : {}),
+  ...(props.ariaControls ? { "aria-controls": props.ariaControls } : {}),
+  ...(props.ariaExpanded !== undefined ? { "aria-expanded": props.ariaExpanded } : {}),
+  ...(props.disabled ? { disabled: props.disabled } : {}),
+};
+---
+
+<style is:global>
+  @import "./theme.light.pcss";
+  @import "./theme.dark.pcss";
+</style>
+
+<style>
+  @import "./styles.pcss";
+</style>
+
+{
+  () => {
+    const contents = (
+      <>
+        {hasIcon && props.iconPosition === "before" && (
+          <Icon name={props.iconName} buttonIcon={true} size="none" />
+        )}
+        {iconOnly && props.label && <span class="sr-only">{props.label}</span>}
+        {!iconOnly && props.label && <span>{props.label}</span>}
+        {hasIcon && props.iconPosition === "after" && (
+          <Icon name={props.iconName} buttonIcon={true} size="none" />
+        )}
+      </>
+    );
+
+    return props.link ? (
+      <a href={props.link} role="button" {...commonProps}>
+        {contents}
+      </a>
+    ) : (
+      <button type="button" {...commonProps}>
+        {contents}
+      </button>
+    );
+  }
+}

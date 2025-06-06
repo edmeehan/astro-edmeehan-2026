@@ -3,21 +3,20 @@
   "type": "module",
   "private": true,
   "workspaces": [
-    "packages/components",
-    "packages/styles",
     "packages/site",
-    "packages/library"
+    "packages/library",
+    "packages/shared"
   ],
   "scripts": {
-    "dev:site": "npm --workspace packages/site run dev",
-    "dev:library": "npm --workspace packages/library run dev",
-    "build:site": "npm --workspace packages/site run build",
-    "build:library": "npm --workspace packages/library run build",
-    "dev": "concurrently \"npm run dev:site\" \"npm run dev:library\"",
-    "build": "npm run build:site && npm run build:library",
-    "lint": "npm run lint:js && npm run lint:css",
+    "dev:site": "pnpm --filter site dev",
+    "dev:library": "pnpm --filter library dev",
+    "build:site": "pnpm --filter site build",
+    "build:library": "pnpm --filter library build",
+    "dev": "concurrently \"pnpm dev:site\" \"pnpm dev:library\"",
+    "build": "pnpm build:site && pnpm build:library",
+    "lint": "pnpm lint:js && pnpm lint:css",
     "lint:js": "eslint .",
-    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
+    "lint:fix": "pnpm lint:js:fix && pnpm lint:css:fix",
     "lint:js:fix": "eslint . --fix",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:css:fix": "stylelint \"**/*.css\" --fix",
@@ -25,6 +24,7 @@
     "format:fix": "prettier --write ."
   },
   "devDependencies": {
+    "@csstools/postcss-global-data": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
     "astro": "^5.8.0",
@@ -44,6 +44,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "astro-eslint-parser": "^1.2.2",
     "astro-icon": "^1.1.5",
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",

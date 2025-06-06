@@ -1,5 +1,18 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+
+    "paths": {
+      "@skele/components/*": ["../shared/components/*"],
+      "@skele/styles/*": ["../shared/styles/*"],
+      "@skele/plugins/*": ["../shared/plugins/*"]
+    },
+
+    "types": ["astro/astro-jsx"]
+  },
+
+  "include": [".astro/types.d.ts", "**/*", "../shared"],
+
   "exclude": ["dist"]
 }

@@ -1,6 +1,6 @@
+import icon from "astro-icon";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import icon from "astro-icon";
 // @ts-check
 import { defineConfig } from "astro/config";
 import { cssWatcher } from "../../packages/shared/plugins/css-watcher.js";
@@ -20,9 +20,9 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        "@skele/components": path.resolve(__dirname, "../../packages/components"),
-        "@skele/styles": path.resolve(__dirname, "../../packages/styles"),
-        "@skele/plugins": path.resolve(__dirname, "../../packages/shared/plugins"),
+        "@skele/components": path.resolve(__dirname, "../shared/components"),
+        "@skele/styles": path.resolve(__dirname, "../shared/styles"),
+        "@skele/plugins": path.resolve(__dirname, "../shared/plugins"),
       },
     },
     plugins: [cssWatcher()],

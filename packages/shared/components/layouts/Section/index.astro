@@ -1,0 +1,144 @@
+---
+import clsx from "clsx";
+import { sectionSchema } from "./schema";
+
+const props = sectionSchema.parse(Astro.props);
+
+const mainSectionClasses = clsx(
+  "section",
+  props.className,
+  props.shape?.type && `shape-${props.shape.type}`,
+  props.shape?.reverse && "reverse",
+  props.alignment?.vertical && `spacing-${props.alignment.vertical}`,
+  props.margin?.top && `margin-top-${props.margin.top}`,
+  props.margin?.bottom && `margin-bottom-${props.margin.bottom}`,
+  props.alignment?.text && `text-${props.alignment.text}`
+);
+
+const backgroundDivClasses = clsx(
+  "background",
+  props.border?.width && `border-${props.border.width}`,
+  props.border?.type && `border-${props.border.type}`,
+  props.border?.color && `border-${props.border.color}`,
+  (props.border?.width || props.border?.type || props.border?.color) && "border",
+  props.background?.color && `bg-${props.background.color}`,
+  props.background?.shadow && `shadow-${props.background.shadow}`
+);
+
+const contentSectionClasses = clsx(
+  "section-content",
+  props.padding?.vertical && `pad-y-${props.padding.vertical}`,
+  props.padding?.horizontal && `pad-x-${props.padding.horizontal}`,
+  props.alignment?.horizontal === "start" && "margin-inline-end",
+  props.alignment?.horizontal === "center" && "margin-inline-auto",
+  props.alignment?.horizontal === "end" && "margin-inline-start",
+  props.maxContentWidth && `max-width-${props.maxContentWidth}`
+);
+
+// --- Calculate styles ---
+let mainSectionStyleAttribute: string | undefined = undefined;
+
+if (props.customStyle) {
+  mainSectionStyleAttribute = props.customStyle.endsWith(";")
+    ? props.customStyle
+    : `${props.customStyle};`;
+}
+
+const backgroundDivStyles: string[] = [];
+
+if (props.background?.imageSrc && props.background?.imageRepeat) {
+  backgroundDivStyles.push(`background-image: url('${props.background.imageSrc}');`);
+  if (props.background?.imageFixed) {
+    backgroundDivStyles.push("background-attachment: fixed;");
+  }
+}
+
+const transformOperations: string[] = [];
+
+if (props.background?.transformScale)
+  transformOperations.push(`scale(${props.background.transformScale})`);
+if (props.background?.transformTranslateX)
+  transformOperations.push(`translateX(${props.background.transformTranslateX}px)`);
+if (props.background?.transformTranslateY)
+  transformOperations.push(`translateY(${props.background.transformTranslateY}px)`);
+
+if (transformOperations.length > 0) {
+  backgroundDivStyles.push(`transform: \${transformOperations.join(' ')}`);
+}
+
+if (props.background?.transformBlur) {
+  backgroundDivStyles.push(`filter: blur(${props.background.transformBlur}px);`);
+}
+if (props.background?.transformOpacity) {
+  backgroundDivStyles.push(`opacity: ${props.background.transformOpacity};`);
+}
+const backgroundDivStyleAttribute = backgroundDivStyles.join(" ").trim() || undefined;
+
+let dataThemeAttribute: null | string = null;
+
+if (props.background?.scheme) {
+  dataThemeAttribute = props.background.scheme;
+}
+
+const shouldRenderImageAsElement = !!(props.background?.imageSrc && !props.background?.imageRepeat);
+const imageProps =
+  shouldRenderImageAsElement && props.background
+    ? {
+        src: props.background.imageSrc,
+        alt: props.background.imageAlt,
+        opacity: props.background.imageOpacity,
+        rounded: props.background.imageRounded,
+        fit: props.background.imageFit,
+      }
+    : undefined;
+
+const renderBackgroundDiv = !!(
+  backgroundDivClasses.replace("background", "").trim() || backgroundDivStyleAttribute
+);
+---
+
+<style>
+  @import "./styles.pcss";
+</style>
+
+<section
+  id={props.id}
+  class:list={mainSectionClasses}
+  style={mainSectionStyleAttribute}
+  data-theme={dataThemeAttribute}
+  aria-label={props.ariaLabel}
+>
+  {
+    shouldRenderImageAsElement && !props.background?.imageAboveBackground && imageProps && (
+      <ImageComponent {...imageProps} />
+    )
+  }
+
+  {
+    renderBackgroundDiv && (
+      <div class:list={backgroundDivClasses} style={backgroundDivStyleAttribute} />
+    )
+  }
+
+  {
+    shouldRenderImageAsElement && props.background?.imageAboveBackground && imageProps && (
+      <ImageComponent {...imageProps} />
+    )
+  }
+
+  <div class="section-outer-content">
+    <div class:list={contentSectionClasses}>
+      <slot />
+    </div>
+  </div>
+
+  {
+    props.link && (
+      <a
+        href={props.link}
+        class="section-background-link"
+        aria-label={props.label || "Go to page"}
+      />
+    )
+  }
+</section>

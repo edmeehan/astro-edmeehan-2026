@@ -1,0 +1,114 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  background-repeat: repeat;
+  z-index: var(--layer-2);
+
+  :where(&:has(.image-fixed)) {
+    clip-path: inset(0);
+  }
+}
+
+.background-link {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  display: block;
+  z-index: var(--layer-3);
+}
+
+.section:has(> .background-link) {
+  &:hover {
+    transition: transform 0.3s ease;
+    transform: scale(1.05);
+  }
+}
+
+.outer-content {
+  height: 100%;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+}
+
+.content {
+  z-index: var(--layer-1);
+  position: relative;
+  height: 100%;
+}
+
+.spacing-between > .outer-content > .content {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.spacing-center > .outer-content > .content {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.spacing-top > .outer-content > .content {
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.spacing-bottom > .outer-content > .content {
+  justify-content: end;
+  display: flex;
+  flex-direction: column;
+}
+
+.shape-diagonal-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - min(5vw, 50px)), 0 100%);
+
+  .outer-content {
+    padding-bottom: 5vw;
+  }
+
+  &.reverse {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - min(5vw, 50px)));
+  }
+}
+
+.shape-diagonal-top {
+  clip-path: polygon(0 calc(min(5vw, 50px)), 100% 0, 100% 100%, 0 100%);
+
+  .outer-content {
+    padding-top: 5vw;
+  }
+
+  &.reverse {
+    clip-path: polygon(0 0, 100% calc(min(5vw, 50px)), 100% 100%, 0 100%);
+  }
+}
+
+.shape-diagonal {
+  clip-path: polygon(0 calc(min(5vw, 50px)), 100% 0, 100% calc(100% - min(5vw, 50px)), 0 100%);
+
+  .outer-content {
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+  }
+
+  &.reverse {
+    clip-path: polygon(0 0, 100% calc(min(5vw, 50px)), 100% 100%, 0 calc(100% - min(5vw, 50px)));
+  }
+}
+
+.shape-wedge {
+  clip-path: polygon(0 0, 100% calc(min(5vw, 50px)), 100% calc(100% - min(5vw, 50px)), 0 100%);
+
+  .outer-content {
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+  }
+
+  &.reverse {
+    clip-path: polygon(0 calc(min(5vw, 50px)), 0 calc(100% - min(5vw, 50px)), 100% 100%, 100% 0);
+  }
+}

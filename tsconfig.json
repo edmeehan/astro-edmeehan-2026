@@ -13,23 +13,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@skele/components/*": ["packages/components/*"],
+      "@skele/components/*": ["packages/shared/components/*"],
       "@skele/styles/*": ["packages/styles/*"]
     },
-    "typeRoots": [
-      "node_modules/@types",
-      "packages/components/types"
-    ]
+    "typeRoots": ["node_modules/@types", "packages/shared/components/types"]
   },
-  "include": [
-    "packages/**/*.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.d.ts",
-    "packages/**/*.astro"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/node_modules",
-    "**/dist"
-  ]
+  "include": ["packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.astro"],
+  "exclude": ["node_modules", "**/node_modules", "**/dist"]
 }
