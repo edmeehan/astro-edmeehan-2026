@@ -27,6 +27,7 @@ const backgroundDivClasses = clsx(
 
 const contentSectionClasses = clsx(
   "section-content",
+  props.contentClassName,
   props.padding?.vertical && `pad-y-${props.padding.vertical}`,
   props.padding?.horizontal && `pad-x-${props.padding.horizontal}`,
   props.alignment?.horizontal === "start" && "margin-inline-end",

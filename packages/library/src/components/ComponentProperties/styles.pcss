@@ -1,0 +1,56 @@
+/* ComponentProperties specific styles for the library */
+.properties {
+  .property {
+    border-top: 1px solid var(--border-subtle-borderColor);
+    margin-block: var(--spacing-md);
+
+    h3 {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-md);
+
+      .property-type {
+        font-family: var(--font-primary);
+        font-weight: 400;
+        font-size: var(--font-size-sm);
+      }
+    }
+
+    .enum-values {
+      strong {
+        display: block;
+        font-size: var(--font-size-sm);
+        color: var(--text-subtle-textColor);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+      }
+
+      li {
+        code {
+          background: var(--background-subtle-backgroundColor);
+          padding: 0;
+          font-size: var(--font-size-sm);
+        }
+      }
+    }
+  }
+}
+
+.nested-property-list {
+  border: 1px solid var(--border-subtle-borderColor);
+  padding-inline: var(--spacing-md);
+  border-radius: var(--radius-xs);
+  margin-top: var(--spacing-md);
+
+  .property:first-child {
+    border-top: none;
+  }
+}

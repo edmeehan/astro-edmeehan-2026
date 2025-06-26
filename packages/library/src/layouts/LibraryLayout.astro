@@ -1,15 +1,13 @@
 ---
 import "@skele/styles/skele.pcss";
 import { z } from "zod/v4";
+import "../styles/library.pcss";
 const libraryLayoutSchema = z.object({
   title: z.string().default("Skele Library"),
 });
 
 import Section from "@skele/components/layouts/Section/index.astro";
-import Nav from "@skele/components/navigation/Nav/index.astro";
-import NavItem from "@skele/components/navigation/NavItem/index.astro";
-import NavList from "@skele/components/navigation/NavList/index.astro";
-
+import NavLayout from "./NavLayout.astro";
 const props = libraryLayoutSchema.parse(Astro.props);
 ---
 
@@ -24,40 +22,15 @@ const props = libraryLayoutSchema.parse(Astro.props);
     <slot name="head" />
   </head>
   <body>
-    <Section maxContentWidth="2xl" padding={{ horizontal: "md", vertical: "sm" }}>
-      <Nav layout="sidebar">
-        <img
-          src="/assets/images/skele-light.svg"
-          alt="Logo"
-          height="32"
-          width="110"
-          slot="brand"
-          style="margin-bottom: var(--spacing-md); margin-inline-start: var(--spacing-lg);"
-        />
-        <NavList slot="menu">
-          <NavItem href="/" label="Home" />
-          <NavItem label="Features">
-            <NavList>
-              <NavItem href="/features/one" label="Feature One" />
-              <NavItem href="/features/two" label="Feature Two" />
-
-              <NavItem label="Features">
-                <NavList>
-                  <NavItem href="/features/one" label="Feature One" />
-                  <NavItem href="/features/two" label="Feature Two" />
-                  <NavItem label="Features">
-                    <NavList>
-                      <NavItem href="/features/one" label="Feature One" />
-                      <NavItem href="/features/two" label="Feature Two" />
-                    </NavList>
-                  </NavItem>
-                </NavList>
-              </NavItem>
-            </NavList>
-          </NavItem>
-        </NavList>
-      </Nav>
-      <slot />
+    <Section
+      maxContentWidth="2xl"
+      padding={{ horizontal: "md", vertical: "sm" }}
+      contentClassName="flex"
+    >
+      <NavLayout />
+      <main>
+        <slot />
+      </main>
     </Section>
   </body>
 </html>

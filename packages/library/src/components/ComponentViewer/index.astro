@@ -1,0 +1,280 @@
+---
+import "@skele/styles/skele.pcss";
+const { component_examples = [], title = "" } = Astro.props;
+
+function getBodyPadding(spacing: string): string {
+  switch (spacing) {
+    case "all":
+      return "padding: 1rem;";
+    case "top":
+      return "padding-top: 1rem;";
+    case "sides":
+      return "padding-left: 1rem; padding-right: 1rem;";
+    default:
+      return "";
+  }
+}
+---
+
+<div class="component-viewer">
+  <div class="component-viewer__previews">
+    {
+      component_examples.map(async (example: any, idx: number) => {
+        const body_padding = getBodyPadding(example.data.spacing || "");
+        const exampleName = example.data.title || `Example ${idx + 1}`;
+        const exampleId = `component-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`;
+        const iframeId = `iframe-${exampleId}`;
+
+        const { Content } = await example.render();
+
+        // Create the HTML content for the iframe
+        const iframeContent = `<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${exampleName}</title>
+  <link rel="stylesheet" href="/api/styles.css">
+  <style>
+    body { 
+      margin: 0; 
+      ${body_padding}
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="content"></div>
+</body>
+</html>`;
+
+        return (
+          <>
+            <div
+              id={exampleId}
+              class:list={`component-viewer__preview${idx === 0 ? " component-viewer__preview--active" : ""}`}
+              style="margin-bottom: 1rem;"
+            >
+              <div
+                class="component-viewer__iframe-container"
+                style="border: 1px solid #e5e7eb; border-radius: 0.5rem; background: white; overflow: hidden; position: relative;"
+              >
+                <iframe
+                  id={iframeId}
+                  srcdoc={iframeContent}
+                  style="width: 100%; min-height: 100px; border: none;"
+                  title={exampleName}
+                  sandbox="allow-scripts allow-same-origin"
+                />
+              </div>
+
+              {/* Hidden div to render the component */}
+              <div id={`render-${exampleId}`} style="display: none;" data-iframe-id={iframeId}>
+                <Content />
+              </div>
+            </div>
+
+            <div
+              class="component-viewer__code"
+              id={`component-code-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`}
+              style="display: none;"
+            >
+              <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+                <code class="language-yaml">
+                  ---
+                  {example.data
+                    ? Object.entries(example.data)
+                        .map(([key, val]) => `${key}: ${val}`)
+                        .join("\n")
+                    : "No frontmatter data"}
+                  ---
+                  {example.body || "No content"}
+                </code>
+              </pre>
+            </div>
+          </>
+        );
+      })
+    }
+
+    {
+      component_examples.length > 0 && (
+        <div class="component-viewer__footer" style="margin-top: 1rem;">
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            {component_examples.length > 1 && (
+              <>
+                <label for={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}>
+                  Examples:
+                </label>
+                <select
+                  class="component-viewer__select"
+                  id={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}
+                  style="padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;"
+                >
+                  {component_examples.map((example: any, idx: number) => {
+                    const exampleName = example.data.title || `Example ${idx + 1}`;
+
+                    return (
+                      <option
+                        value={`component-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`}
+                      >
+                        {exampleName}
+                      </option>
+                    );
+                  })}
+                </select>
+              </>
+            )}
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button
+              class="view-code-btn"
+              title="View Code"
+              style="padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background: white; cursor: pointer;"
+            >
+              View Code
+            </button>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Copy rendered content to iframes
+    const renderDivs = document.querySelectorAll('[id^="render-"]');
+    renderDivs.forEach((renderDiv) => {
+      const iframeId = renderDiv.getAttribute("data-iframe-id");
+      if (!iframeId) return;
+
+      const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
+      if (!iframe) return;
+
+      // Function to copy content to iframe
+      const copyContentToIframe = () => {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (iframeDoc && iframeDoc.readyState === "complete") {
+            const contentDiv = iframeDoc.getElementById("content");
+            if (contentDiv && renderDiv.innerHTML.trim()) {
+              contentDiv.innerHTML = renderDiv.innerHTML;
+              console.log("Content copied to iframe:", iframeId);
+            }
+          }
+        } catch (e) {
+          console.error("Error copying content to iframe:", e);
+        }
+      };
+
+      // Try to copy content immediately if iframe is already loaded
+      if (iframe.contentDocument && iframe.contentDocument.readyState === "complete") {
+        copyContentToIframe();
+      }
+
+      // Also listen for load event
+      iframe.addEventListener("load", copyContentToIframe);
+
+      // Fallback: try copying after a short delay
+      setTimeout(copyContentToIframe, 100);
+    });
+
+    // Handle example switching
+    const selects = document.querySelectorAll(".component-viewer__select");
+    selects.forEach((select) => {
+      select.addEventListener("change", function (this: HTMLSelectElement) {
+        const selectedValue = this.value;
+        const container = this.closest(".component-viewer");
+        if (!container) return;
+
+        // Hide all previews and codes
+        container
+          .querySelectorAll(".component-viewer__preview, .component-viewer__code")
+          .forEach((el) => {
+            (el as HTMLElement).style.display = "none";
+          });
+
+        // Show selected preview
+        const selectedPreview = container.querySelector(`#${selectedValue}`);
+        if (selectedPreview) {
+          (selectedPreview as HTMLElement).style.display = "block";
+        }
+      });
+    });
+
+    // Handle view code buttons
+    const viewCodeBtns = document.querySelectorAll(".view-code-btn");
+    viewCodeBtns.forEach((btn) => {
+      btn.addEventListener("click", function (this: HTMLButtonElement) {
+        const container = this.closest(".component-viewer");
+        if (!container) return;
+
+        const previews = container.querySelectorAll(".component-viewer__preview");
+        const codes = container.querySelectorAll(".component-viewer__code");
+        const isShowingCode = codes[0] && (codes[0] as HTMLElement).style.display !== "none";
+
+        if (isShowingCode) {
+          // Show previews, hide codes
+          previews.forEach((preview: Element) => {
+            (preview as HTMLElement).style.display = "block";
+          });
+          codes.forEach((code: Element) => {
+            (code as HTMLElement).style.display = "none";
+          });
+          this.textContent = "View Code";
+        } else {
+          // Show codes, hide previews
+          previews.forEach((preview: Element) => {
+            (preview as HTMLElement).style.display = "none";
+          });
+          codes.forEach((code: Element) => {
+            (code as HTMLElement).style.display = "block";
+          });
+          this.textContent = "View Preview";
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .component-viewer {
+    margin: 2rem 0;
+  }
+
+  .component-viewer__preview {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .component-viewer__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .component-viewer__select {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+  }
+
+  .view-code-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+
+  .view-code-btn:hover {
+    background: #f9fafb;
+  }
+</style>

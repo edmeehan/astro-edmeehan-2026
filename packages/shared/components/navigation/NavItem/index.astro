@@ -27,14 +27,15 @@ import "./global.pcss";
           type="checkbox"
           id={dropdownId}
           class="nav-item-toggle"
-          aria-expanded="false"
+          aria-expanded={props.defaultOpen ? "true" : "false"}
           aria-controls={contentId}
+          checked={props.defaultOpen}
         />
         <label
           for={dropdownId}
           class="nav-item-trigger"
           role="button"
-          aria-expanded="false"
+          aria-expanded={props.defaultOpen ? "true" : "false"}
           aria-controls={contentId}
           tabindex="0"
         >

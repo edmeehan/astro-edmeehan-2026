@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 // @ts-check
 import { defineConfig } from "astro/config";
+
 import { cssWatcher } from "../../packages/shared/plugins/css-watcher.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

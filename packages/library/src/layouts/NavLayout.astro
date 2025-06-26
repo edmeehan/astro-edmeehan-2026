@@ -1,0 +1,83 @@
+---
+import Nav from "@skele/components/navigation/Nav/index.astro";
+import NavItem from "@skele/components/navigation/NavItem/index.astro";
+import NavList from "@skele/components/navigation/NavList/index.astro";
+import { getCollection } from "astro:content";
+import navData from "../data/nav.json";
+
+const allComponents = await getCollection("components");
+
+const componentsByCategory: Record<string, Array<{ name: string; path: string }>> = {};
+
+allComponents.forEach((component) => {
+  const slug = component.slug.replace(/^components\//, "").replace(/\/index$/, "");
+  const parts = slug.split("/").filter(Boolean);
+
+  // Skip example files (they contain "examples" in the path)
+  if (slug.includes("/examples/")) {
+    return;
+  }
+
+  if (parts.length >= 2) {
+    const category = parts[0];
+    const componentName = parts[1];
+
+    if (!componentsByCategory[category]) {
+      componentsByCategory[category] = [];
+    }
+
+    componentsByCategory[category].push({
+      name: component.data.title || componentName,
+      path: `/components/${category}/${componentName}`,
+    });
+  }
+});
+
+// Populate nav.json structure with component collection data
+const populatedNavData = navData.map((section) => {
+  if (section.group) {
+    const category = section.group.toLowerCase();
+    const items = componentsByCategory[category] || [];
+
+    // Check if any child item is the current page
+    const currentPath = Astro.url.pathname;
+    const hasActiveChild = items.some((item) => item.path === currentPath);
+
+    return {
+      ...section,
+      items,
+      defaultOpen: hasActiveChild,
+    };
+  }
+
+  return section;
+});
+---
+
+<Nav layout="sidebar">
+  <img
+    src="/assets/images/skele-light.svg"
+    alt="Logo"
+    height="32"
+    width="110"
+    slot="brand"
+    style="margin-bottom: var(--spacing-md); margin-inline-start: var(--spacing-lg);"
+  />
+  <NavList slot="menu">
+    {
+      populatedNavData.map((section) =>
+        section.items ? (
+          <NavItem label={section.group} defaultOpen={(section as any).defaultOpen || false}>
+            <NavList>
+              {section.items.map((item) => (
+                <NavItem href={item.path} label={item.name} />
+              ))}
+            </NavList>
+          </NavItem>
+        ) : (
+          <NavItem href={section.path} label={section.name} />
+        )
+      )
+    }
+  </NavList>
+</Nav>

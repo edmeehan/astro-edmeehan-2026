@@ -9,6 +9,7 @@ const navItemBase = z.object({
   className: z.string().optional(),
   customStyle: z.string().optional(),
   id: z.string().optional(),
+  defaultOpen: z.boolean().optional(),
 });
 
 const navListBase = z.object({

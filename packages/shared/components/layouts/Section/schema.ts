@@ -191,6 +191,12 @@ export const sectionSchema = z
         description: "Additional CSS classes to add to the section element.",
       })
       .optional(),
+    contentClassName: z
+      .string()
+      .meta({
+        description: "Additional CSS classes to add to the content area of the section.",
+      })
+      .optional(),
     customStyle: z
       .string()
       .meta({ description: "Inline CSS styles to apply to the section element." })
