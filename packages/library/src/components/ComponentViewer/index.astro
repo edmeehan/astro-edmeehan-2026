@@ -1,5 +1,4 @@
 ---
-import "@skele/styles/skele.pcss";
 const { component_examples = [], title = "" } = Astro.props;
 
 function getBodyPadding(spacing: string): string {
@@ -14,6 +13,41 @@ function getBodyPadding(spacing: string): string {
       return "";
   }
 }
+
+// Dynamic component discovery and loading
+const componentModules = import.meta.glob("../../../../shared/components/**/index.astro", {
+  eager: true,
+});
+
+// Create component map from discovered modules
+const componentMap: Record<string, any> = {};
+
+Object.entries(componentModules).forEach(([filePath, module]) => {
+  const pathParts = filePath.split("/");
+  const componentName = pathParts[pathParts.length - 2]; // Get the directory name before index.astro
+
+  if (componentName && componentName !== "components") {
+    componentMap[componentName] = module;
+  }
+});
+
+async function loadComponent(componentName: string) {
+  try {
+    const module = componentMap[componentName];
+
+    if (!module) {
+      console.warn(
+        `Component ${componentName} not found. Available components: ${Object.keys(componentMap).join(", ")}`
+      );
+      return null;
+    }
+
+    return module.default;
+  } catch (error) {
+    console.error(`Failed to load component ${componentName}:`, error);
+    return null;
+  }
+}
 ---
 
 <div class="component-viewer">
@@ -23,30 +57,12 @@ function getBodyPadding(spacing: string): string {
         const body_padding = getBodyPadding(example.data.spacing || "");
         const exampleName = example.data.title || `Example ${idx + 1}`;
         const exampleId = `component-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`;
-        const iframeId = `iframe-${exampleId}`;
 
-        const { Content } = await example.render();
-
-        // Create the HTML content for the iframe
-        const iframeContent = `<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${exampleName}</title>
-  <link rel="stylesheet" href="/api/styles.css">
-  <style>
-    body { 
-      margin: 0; 
-      ${body_padding}
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-  </style>
-</head>
-<body>
-  <div id="content"></div>
-</body>
-</html>`;
+        // Load component dynamically
+        const Component = example.data.component
+          ? await loadComponent(example.data.component)
+          : null;
+        const props = example.data.props || {};
 
         return (
           <>
@@ -56,21 +72,10 @@ function getBodyPadding(spacing: string): string {
               style="margin-bottom: 1rem;"
             >
               <div
-                class="component-viewer__iframe-container"
-                style="border: 1px solid #e5e7eb; border-radius: 0.5rem; background: white; overflow: hidden; position: relative;"
+                class="component-viewer__preview-container"
+                style={`border: 1px solid #e5e7eb; border-radius: 0.5rem; background: white; overflow: hidden; position: relative; ${body_padding}`}
               >
-                <iframe
-                  id={iframeId}
-                  srcdoc={iframeContent}
-                  style="width: 100%; min-height: 100px; border: none;"
-                  title={exampleName}
-                  sandbox="allow-scripts allow-same-origin"
-                />
-              </div>
-
-              {/* Hidden div to render the component */}
-              <div id={`render-${exampleId}`} style="display: none;" data-iframe-id={iframeId}>
-                <Content />
+                {Component && <Component {...props} />}
               </div>
             </div>
 
@@ -81,14 +86,13 @@ function getBodyPadding(spacing: string): string {
             >
               <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
                 <code class="language-yaml">
-                  ---
-                  {example.data
-                    ? Object.entries(example.data)
-                        .map(([key, val]) => `${key}: ${val}`)
-                        .join("\n")
-                    : "No frontmatter data"}
-                  ---
-                  {example.body || "No content"}
+                  component: {example.data.component}
+                  props:
+                  {example.data.props
+                    ? Object.entries(example.data.props)
+                        .map(([key, val]) => `  ${key}: ${val}`)
+                        .join("\n    ")
+                    : "No props"}
                 </code>
               </pre>
             </div>
@@ -143,43 +147,6 @@ function getBodyPadding(spacing: string): string {
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Copy rendered content to iframes
-    const renderDivs = document.querySelectorAll('[id^="render-"]');
-    renderDivs.forEach((renderDiv) => {
-      const iframeId = renderDiv.getAttribute("data-iframe-id");
-      if (!iframeId) return;
-
-      const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
-      if (!iframe) return;
-
-      // Function to copy content to iframe
-      const copyContentToIframe = () => {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-          if (iframeDoc && iframeDoc.readyState === "complete") {
-            const contentDiv = iframeDoc.getElementById("content");
-            if (contentDiv && renderDiv.innerHTML.trim()) {
-              contentDiv.innerHTML = renderDiv.innerHTML;
-              console.log("Content copied to iframe:", iframeId);
-            }
-          }
-        } catch (e) {
-          console.error("Error copying content to iframe:", e);
-        }
-      };
-
-      // Try to copy content immediately if iframe is already loaded
-      if (iframe.contentDocument && iframe.contentDocument.readyState === "complete") {
-        copyContentToIframe();
-      }
-
-      // Also listen for load event
-      iframe.addEventListener("load", copyContentToIframe);
-
-      // Fallback: try copying after a short delay
-      setTimeout(copyContentToIframe, 100);
-    });
-
     // Handle example switching
     const selects = document.querySelectorAll(".component-viewer__select");
     selects.forEach((select) => {
@@ -224,7 +191,7 @@ function getBodyPadding(spacing: string): string {
           });
           this.textContent = "View Code";
         } else {
-          // Show codes, hide previews
+          // Hide previews, show codes
           previews.forEach((preview: Element) => {
             (preview as HTMLElement).style.display = "none";
           });

@@ -14,6 +14,8 @@ export const collections = {
       description: z.string().optional(),
       name: z.string().optional(),
       spacing: z.string().optional(),
+      component: z.string().optional(),
+      props: z.record(z.any()).optional(),
     }),
   }),
 };
