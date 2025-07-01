@@ -1,0 +1,29 @@
+.component-viewer {
+  border: 1px solid var(--border-subtle-borderColor);
+  border-radius: var(--radius-xs);
+}
+
+.preview {
+  display: none;
+}
+
+.preview.active {
+  display: block;
+}
+
+.code {
+  display: none;
+}
+
+.controls {
+  background: var(--color-faint-backgroundColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm);
+  border-top: 1px solid var(--border-subtle-borderColor);
+
+  > * {
+    line-height: 0;
+  }
+}

@@ -1,30 +1,42 @@
 ---
 const { component_examples = [], title = "" } = Astro.props;
 
+import Button from "@skele/shared/components/elements/Button/index.astro";
+
 function getBodyPadding(spacing: string): string {
   switch (spacing) {
     case "all":
-      return "padding: 1rem;";
+      return "padding: var(--space-md";
     case "top":
-      return "padding-top: 1rem;";
+      return "padding-top: var(--space-md)";
     case "sides":
-      return "padding-left: 1rem; padding-right: 1rem;";
+      return "padding-left: var(--space-md); padding-right: var(--space-md);";
     default:
       return "";
   }
 }
 
-// Dynamic component discovery and loading
+function formatPropsYaml(props: Record<string, any>): string {
+  if (props && Object.keys(props).length > 0) {
+    const yaml = Object.entries(props)
+      .map(([key, val]) => `  ${key}: ${val}`)
+      .join("\n");
+
+    return `\nprops:\n${yaml}`;
+  } else {
+    return "";
+  }
+}
+
 const componentModules = import.meta.glob("../../../../shared/components/**/index.astro", {
   eager: true,
 });
 
-// Create component map from discovered modules
 const componentMap: Record<string, any> = {};
 
 Object.entries(componentModules).forEach(([filePath, module]) => {
   const pathParts = filePath.split("/");
-  const componentName = pathParts[pathParts.length - 2]; // Get the directory name before index.astro
+  const componentName = pathParts[pathParts.length - 2];
 
   if (componentName && componentName !== "components") {
     componentMap[componentName] = module;
@@ -50,15 +62,18 @@ async function loadComponent(componentName: string) {
 }
 ---
 
+<style>
+  @import "styles.pcss";
+</style>
+
 <div class="component-viewer">
-  <div class="component-viewer__previews">
+  <div class="previews">
     {
       component_examples.map(async (example: any, idx: number) => {
-        const body_padding = getBodyPadding(example.data.spacing || "");
-        const exampleName = example.data.title || `Example ${idx + 1}`;
-        const exampleId = `component-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`;
+        const bodyPadding = getBodyPadding(example.data.spacing);
+        const exampleName = example.data.title;
+        const exampleId = `component-${exampleName.toLowerCase().replace(/\s+/g, "-")}-${idx}`;
 
-        // Load component dynamically
         const Component = example.data.component
           ? await loadComponent(example.data.component)
           : null;
@@ -66,34 +81,15 @@ async function loadComponent(componentName: string) {
 
         return (
           <>
-            <div
-              id={exampleId}
-              class:list={`component-viewer__preview${idx === 0 ? " component-viewer__preview--active" : ""}`}
-              style="margin-bottom: 1rem;"
-            >
-              <div
-                class="component-viewer__preview-container"
-                style={`border: 1px solid #e5e7eb; border-radius: 0.5rem; background: white; overflow: hidden; position: relative; ${body_padding}`}
-              >
+            <div id={exampleId} class:list={[`preview`, `${idx === 0 ? "active" : ""}`]}>
+              <div class="container" style={bodyPadding}>
                 {Component && <Component {...props} />}
               </div>
             </div>
 
-            <div
-              class="component-viewer__code"
-              id={`component-code-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`}
-              style="display: none;"
-            >
-              <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
-                <code class="language-yaml">
-                  component: {example.data.component}
-                  props:
-                  {example.data.props
-                    ? Object.entries(example.data.props)
-                        .map(([key, val]) => `  ${key}: ${val}`)
-                        .join("\n    ")
-                    : "No props"}
-                </code>
+            <div class="code" id={`code-${exampleId}`}>
+              <pre>
+                <code class="language-yaml">{formatPropsYaml(example.data.props)}</code>
               </pre>
             </div>
           </>
@@ -103,145 +99,34 @@ async function loadComponent(componentName: string) {
 
     {
       component_examples.length > 0 && (
-        <div class="component-viewer__footer" style="margin-top: 1rem;">
-          <div style="display: flex; gap: 1rem; align-items: center;">
+        <nav class="controls">
+          <div>
             {component_examples.length > 1 && (
               <>
-                <label for={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}>
+                <label for={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`} class="sr-only">
                   Examples:
                 </label>
-                <select
-                  class="component-viewer__select"
-                  id={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}
-                  style="padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;"
-                >
+                <select class="select" id={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}>
                   {component_examples.map((example: any, idx: number) => {
-                    const exampleName = example.data.title || `Example ${idx + 1}`;
+                    const exampleName = example.data.title;
+                    const exampleId = `component-${exampleName.toLowerCase().replace(/\s+/g, "-")}-${idx}`;
 
-                    return (
-                      <option
-                        value={`component-${title.toLowerCase().replace(/\s+/g, "-")}-${exampleName.toLowerCase().replace(/\s+/g, "-")}`}
-                      >
-                        {exampleName}
-                      </option>
-                    );
+                    return <option value={exampleId}>{exampleName}</option>;
                   })}
                 </select>
               </>
             )}
           </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button
-              class="view-code-btn"
-              title="View Code"
-              style="padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background: white; cursor: pointer;"
-            >
-              View Code
-            </button>
+          <div>
+            <Button
+              type="ghost"
+              label="View Code"
+              size="sm"
+              icon={{ name: "hero/code-bracket", display: "icon_only" }}
+            />
           </div>
-        </div>
+        </nav>
       )
     }
   </div>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Handle example switching
-    const selects = document.querySelectorAll(".component-viewer__select");
-    selects.forEach((select) => {
-      select.addEventListener("change", function (this: HTMLSelectElement) {
-        const selectedValue = this.value;
-        const container = this.closest(".component-viewer");
-        if (!container) return;
-
-        // Hide all previews and codes
-        container
-          .querySelectorAll(".component-viewer__preview, .component-viewer__code")
-          .forEach((el) => {
-            (el as HTMLElement).style.display = "none";
-          });
-
-        // Show selected preview
-        const selectedPreview = container.querySelector(`#${selectedValue}`);
-        if (selectedPreview) {
-          (selectedPreview as HTMLElement).style.display = "block";
-        }
-      });
-    });
-
-    // Handle view code buttons
-    const viewCodeBtns = document.querySelectorAll(".view-code-btn");
-    viewCodeBtns.forEach((btn) => {
-      btn.addEventListener("click", function (this: HTMLButtonElement) {
-        const container = this.closest(".component-viewer");
-        if (!container) return;
-
-        const previews = container.querySelectorAll(".component-viewer__preview");
-        const codes = container.querySelectorAll(".component-viewer__code");
-        const isShowingCode = codes[0] && (codes[0] as HTMLElement).style.display !== "none";
-
-        if (isShowingCode) {
-          // Show previews, hide codes
-          previews.forEach((preview: Element) => {
-            (preview as HTMLElement).style.display = "block";
-          });
-          codes.forEach((code: Element) => {
-            (code as HTMLElement).style.display = "none";
-          });
-          this.textContent = "View Code";
-        } else {
-          // Hide previews, show codes
-          previews.forEach((preview: Element) => {
-            (preview as HTMLElement).style.display = "none";
-          });
-          codes.forEach((code: Element) => {
-            (code as HTMLElement).style.display = "block";
-          });
-          this.textContent = "View Preview";
-        }
-      });
-    });
-  });
-</script>
-
-<style>
-  .component-viewer {
-    margin: 2rem 0;
-  }
-
-  .component-viewer__preview {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .component-viewer__footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-  }
-
-  .component-viewer__select {
-    padding: 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    background: white;
-  }
-
-  .view-code-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    background: white;
-    cursor: pointer;
-    font-size: 0.875rem;
-  }
-
-  .view-code-btn:hover {
-    background: #f9fafb;
-  }
-</style>

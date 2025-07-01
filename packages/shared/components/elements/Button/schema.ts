@@ -38,9 +38,9 @@ export const buttonSchema = z
 
     size: z.enum(["sm", "md", "lg"]).meta({ description: "The size of the button." }).default("md"),
     layout: z
-      .enum(["full", "skinny"])
+      .enum(["full", "skinny", "normal"])
       .meta({ description: "The layout of the button." })
-      .default("full"),
+      .default("normal"),
 
     id: z.string().meta({ description: "The ID attribute for the button element." }).optional(),
     className: z

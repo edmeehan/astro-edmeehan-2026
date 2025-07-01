@@ -4,9 +4,8 @@ description: "A primary button example"
 spacing: "all"
 component: "Button"
 props:
+  _bookshop_name: "elements/button"
   type: "primary"
   size: "md"
   label: "Click me"
 ---
-
-This is a primary button example. The button component should render with proper styling when this content is processed.
