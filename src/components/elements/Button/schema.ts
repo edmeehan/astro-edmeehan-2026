@@ -1,4 +1,9 @@
+import type { HTMLAttributes } from "astro/types";
 import { z } from "zod/v4";
+
+// Create types for both button and anchor HTML attributes
+type ButtonHTMLAttributes = HTMLAttributes<"button">;
+type AnchorHTMLAttributes = HTMLAttributes<"a">;
 
 export const buttonSchema = z
   .object({
@@ -28,12 +33,7 @@ export const buttonSchema = z
 
     size: z.enum(["sm", "md", "lg"]).meta({ description: "The size of the button." }).default("md"),
 
-    className: z
-      .string()
-      .meta({
-        description: "Additional CSS classes to add to the button element.",
-      })
-      .optional(),
+    // Remove className from schema since it'll come from HTMLAttributes
   })
   .meta({
     title: "Button",
@@ -41,4 +41,7 @@ export const buttonSchema = z
       "A clickable element that navigates to another page or triggers an action within the current page.",
   });
 
-export type ButtonProps = z.infer<typeof buttonSchema>;
+// Export a combined type that includes both our custom props and HTML attributes
+// The component can be either a button or anchor, so we need to handle both
+export type ButtonProps = z.infer<typeof buttonSchema> &
+  (ButtonHTMLAttributes | AnchorHTMLAttributes);

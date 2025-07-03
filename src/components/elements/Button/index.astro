@@ -1,31 +1,143 @@
 ---
 import clsx from "clsx";
-import { getRestProps } from "../../utils";
 import Icon from "../Icon/index.astro";
-import { buttonSchema } from "./schema";
+import type { ButtonProps } from "./schema";
 
-const props = buttonSchema.parse(Astro.props);
-const restProps = getRestProps(Astro.props, buttonSchema);
+const { label, link, iconName, iconPosition, hideText, variant, size, ...htmlAttributes } =
+  Astro.props as ButtonProps;
 
-const Tag = props.link ? "a" : "button";
+const Tag = link ? "a" : "button";
 
 const classNames = clsx(
   "button",
-  `size-${props.size}`,
-  `variant-${props.variant}`,
-  props.hideText && "icon-only",
-  props.className
+  `size-${size}`,
+  `variant-${variant}`,
+  hideText && "icon-only",
+  iconPosition === "after" && "icon-after",
+  htmlAttributes.class
 );
 
-const actions = props.link ? { href: props.link, role: "button" } : { type: "button" };
+const elementProps = link
+  ? { href: link, role: "button", ...htmlAttributes }
+  : { type: "button", ...htmlAttributes };
 ---
 
-<style>
-  @import "./styles.pcss";
-</style>
+<Tag {...elementProps} class:list={classNames}>
+  {iconName && <Icon name={iconName} buttonIcon size="none" class="button-icon" />}
 
-<Tag {...actions} {...restProps} data-icon-position={props.iconPosition} class:list={classNames}>
-  {props.iconName && <Icon name={props.iconName} buttonIcon size="none" class="button-icon" />}
-
-  {props.label && <span class:list={props.hideText ? "sr-only" : "label"}>{props.label}</span>}
+  {label && <span class:list={hideText ? "sr-only" : "label"}>{label}</span>}
 </Tag>
+
+<style>
+  @import "./theme.pcss";
+
+  .button {
+    padding-inline: var(--space-em-sm);
+    padding-block: var(--space-em-sm);
+    font-weight: var(--font-weight-medium);
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: var(--button-borderRadius);
+    text-decoration: none;
+    text-align: center;
+    transition-property: background-color, color, border-color;
+    transition-duration: var(--flinch);
+    transition-timing-function: ease-in-out;
+    border: 1px solid var(--button-ghost-borderColor);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--button-ghost-fontColor);
+    background-color: var(--button-ghost-backgroundColor);
+    gap: 0.15em;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--radius-xs);
+
+    &:hover,
+    &:focus {
+      outline-color: var(--color-focus-ring);
+      background-color: var(--button-ghost-hover-backgroundColor);
+      border-color: var(--button-ghost-hover-borderColor);
+      color: var(--button-ghost-hover-fontColor);
+      outline-offset: 4px;
+      cursor: pointer;
+    }
+
+    &.icon-only {
+      padding: var(--space-em-xs);
+    }
+
+    &.icon-after .label {
+      order: -1;
+    }
+  }
+
+  .variant {
+    &-primary {
+      background-color: var(--button-primary-bg);
+      color: var(--button-primary-text);
+      border-color: var(--button-primary-border);
+
+      &:hover,
+      &:focus {
+        background-color: var(--button-primary-hover-bg);
+        color: var(--button-primary-hover-text);
+        border-color: var(--button-primary-hover-border);
+      }
+    }
+
+    &-secondary {
+      background-color: var(--button-secondary-bg);
+      color: var(--button-secondary-text);
+      border-color: var(--button-secondary-border);
+
+      &:hover,
+      &:focus {
+        background-color: var(--button-secondary-hover-bg);
+        color: var(--button-secondary-hover-text);
+        border-color: var(--button-secondary-hover-border);
+      }
+    }
+
+    &-tertiary {
+      background-color: var(--button-tertiary-bg);
+      color: var(--button-tertiary-text);
+      border-color: var(--button-tertiary-border);
+
+      &:hover,
+      &:focus {
+        background-color: var(--button-tertiary-hover-bg);
+        color: var(--button-tertiary-hover-text);
+        border-color: var(--button-tertiary-hover-border);
+      }
+    }
+
+    &-ghost {
+      background-color: var(--button-ghost-bg);
+      color: var(--button-ghost-text);
+      border-color: var(--button-ghost-border);
+
+      &:hover,
+      &:focus {
+        background-color: var(--button-ghost-hover-bg);
+        color: var(--button-ghost-hover-text);
+        border-color: var(--button-ghost-hover-border);
+      }
+    }
+  }
+
+  .size {
+    &-sm {
+      font-size: var(--font-size-xs);
+    }
+
+    &-md {
+      font-size: var(--font-size-md);
+    }
+
+    &-lg {
+      font-size: var(--font-size-xl);
+    }
+  }
+</style>

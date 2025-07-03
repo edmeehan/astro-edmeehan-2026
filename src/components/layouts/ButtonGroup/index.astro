@@ -1,0 +1,28 @@
+---
+import clsx from "clsx";
+import type { ButtonGroupProps } from "./schema";
+
+const { direction, align, gap, margin, ...htmlAttributes } = Astro.props as ButtonGroupProps;
+
+const alignClass =
+  {
+    start: "align-start",
+    center: "align-center",
+    end: "align-end",
+  }[align] ?? "align-start";
+
+const classNames = clsx(
+  "button-group",
+  direction === "column" ? "column" : "row",
+  alignClass,
+  htmlAttributes.class
+);
+---
+
+<div {...htmlAttributes} class:list={classNames}>
+  <slot />
+</div>
+
+<style>
+  @import "./styles.pcss";
+</style>
