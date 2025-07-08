@@ -12,7 +12,7 @@ const libraryLayoutSchema = z.object({
     .optional(),
 });
 
-import Section from "@skele/components/layouts/Section/index.astro";
+import Section from "@skele/components/layouts/section/section.astro";
 import NavLayout from "./NavLayout.astro";
 const props = libraryLayoutSchema.parse(Astro.props);
 const pageTitle = props.frontmatter?.title || "Skele Library";
