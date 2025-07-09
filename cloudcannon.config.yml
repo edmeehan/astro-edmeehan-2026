@@ -1,34 +1,33 @@
-_schema: _schema
-paths:
-  uploads: public/uploads
-  static: public
 collections_config:
   pages:
     path: src/content/pages
-    name: Pages
-    icon: wysiwyg
-    description: ''
+    glob:
+      - '**/*.md'
+    url: '/[full_slug]/'
+    icon: laptop_mac
     _enabled_editors:
-    disable_add: false
-    disable_add_folder: false
-    disable_file_actions: false
-timezone: Pacific/Auckland
-markdown:
-  engine: commonmark
-  options:
-    xhtml: false
-    breaks: false
-    linkify: false
-    typographer: false
-    spaced_lists: false
-    sentence_per_line: false
-    gfm: true
-    code_block_fences: '```'
-    escape_snippets_in_code_blocks: false
-    treat_indentation_as_code: false
-    table: false
-    strikethrough: false
-    subscript: false
-    superscript: false
-    heading_ids: false
-    attributes: false
+      - visual
+    add_options:
+      - name: Add New Page
+        schema: default
+        icon: pages
+    schemas:
+      default:
+        name: New Page
+        path: '.cloudcannon/schemas/page.md'
+        remove_extra_inputs: false
+    create:
+      path: '[relative_base_path]/{filename|slugify|lowercase}.md'
+    new_preview_url: /
+    _inputs:
+      title:
+        type: text
+        comment: Controls the metadata title for the page.
+
+collection_groups:
+  - heading: Pages
+    collections:
+      - pages
+  - heading: Data
+    collections:
+      - data
