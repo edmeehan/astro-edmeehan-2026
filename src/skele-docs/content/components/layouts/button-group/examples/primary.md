@@ -1,6 +1,5 @@
 ---
 title: Primary Button Group
-description: Basic ButtonGroup examples to get you started with Skele
 spacing: "all"
 blocks:
   _bookshop_name: "layouts/button-group"

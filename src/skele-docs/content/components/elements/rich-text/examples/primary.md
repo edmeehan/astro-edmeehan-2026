@@ -8,7 +8,8 @@ blocks:
 
     Including this paragraph with **bold** and *italic* text.
 
-    * And 
-    * Lists
+    * And
+    * This
+    * List
     * Too!
 ---

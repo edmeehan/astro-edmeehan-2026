@@ -2,20 +2,14 @@
 title: Heading
 primary_size: sm
 examples:
-  - title: Levels
-    slugs:
+  - slugs:
       - levels
     size: lg
-  - title: Sizes
-    slugs:
+  - slugs:
       - sizes
     size: lg
-  - title: Alignment
-    slugs:
+  - slugs:
       - align
-    size: md
-  - title: Icon
-    slugs:
+  - slugs:
       - icons
-    size: md
 ---

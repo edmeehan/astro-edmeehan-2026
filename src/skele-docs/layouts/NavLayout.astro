@@ -44,13 +44,15 @@ const populatedNavData = navData.map((section) => {
     const category = section.group.toLowerCase();
     const items = componentsByCategory[category] || [];
 
+    const sortedItems = items.sort((a, b) => a.name.localeCompare(b.name));
+
     // Check if any child item is the current page
     const currentPath = Astro.url.pathname;
-    const hasActiveChild = items.some((item) => item.path === currentPath);
+    const hasActiveChild = sortedItems.some((item) => item.path === currentPath);
 
     return {
       ...section,
-      items,
+      items: sortedItems,
       defaultOpen: hasActiveChild,
     };
   }

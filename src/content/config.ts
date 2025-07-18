@@ -23,7 +23,7 @@ const docsComponentSchema = z.object({
     .union([
       z.array(
         z.object({
-          title: z.string(),
+          title: z.string().optional(),
           slugs: z.array(z.string()),
           size: z.string().optional(),
         })
@@ -31,7 +31,19 @@ const docsComponentSchema = z.object({
       z.null(),
     ])
     .optional()
-    .transform((val: any) => val || []),
+    .transform((val: any) => {
+      if (!val) return [];
+
+      return val.map((example: any) => ({
+        title:
+          example.title ||
+          (example.slugs?.[0]
+            ? example.slugs[0].charAt(0).toUpperCase() + example.slugs[0].slice(1)
+            : "Example"),
+        slugs: example.slugs,
+        size: example.size ?? "md",
+      }));
+    }),
 });
 
 const pagesCollection = defineCollection({

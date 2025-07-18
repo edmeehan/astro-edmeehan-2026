@@ -2,16 +2,13 @@
 title: Button
 primary_size: sm
 examples:
-  - title: Sizes
-    slugs:
+  - slugs:
       - sizes
     size: sm
-  - title: Variants
-    slugs:
+  - slugs:
       - variants
     size: sm
-  - title: Icons
-    slugs:
+  - slugs:
       - icons
     size: sm
 ---
