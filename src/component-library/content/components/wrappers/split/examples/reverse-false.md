@@ -12,7 +12,6 @@ blocks:
             ## Side A
 
             This is content for the side A
-  firstColumnMinWidth: null
   secondColumnContentBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
@@ -22,7 +21,6 @@ blocks:
             ## Side B
 
             This is content for the side B
-  secondColumnMinWidth: null
   distributionMode: "third-two-thirds"
   fixedWidth: null
   verticalAlignment: "top"

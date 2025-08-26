@@ -2,7 +2,7 @@
 import Icon from "@components/primitives/icon/icon.astro";
 
 const {
-  label,
+  text,
   iconName,
   iconPosition = "before",
   hideText = false,
@@ -19,7 +19,7 @@ const htmlAttributes = Object.fromEntries(
 );
 
 if (hideText && !htmlAttributes["aria-label"]) {
-  htmlAttributes["aria-label"] = label;
+  htmlAttributes["aria-label"] = text;
 }
 
 const Tag = element as any;
@@ -40,6 +40,6 @@ const tagProps = Tag === "a" && link ? { href: link } : Tag === "button" ? { typ
   {...htmlAttributes}
 >
   {iconName && iconPosition !== "after" && <Icon name={iconName} size="none" />}
-  {!hideText && label && <span>{label}</span>}
+  {!hideText && text && <span>{text}</span>}
   {iconName && iconPosition === "after" && <Icon name={iconName} size="none" />}
 </Tag>

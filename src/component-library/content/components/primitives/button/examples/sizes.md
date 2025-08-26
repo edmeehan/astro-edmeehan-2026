@@ -5,16 +5,16 @@ blocks:
   - _bookshop_name: "primitives/button"
     variant: primary
     size: sm
-    label: "Small"
+    text: "Small"
     style: "margin-inline-end: var(--spacing-sm);"
   - _bookshop_name: "primitives/button"
     variant: primary
     size: md
-    label: "Medium"
+    text: "Medium"
     style: "margin-inline-end: var(--spacing-sm);"
   - _bookshop_name: "primitives/button"
     variant: primary
     size: lg
-    label: "Large"
+    text: "Large"
     style: "margin-inline-end: var(--spacing-sm);"
 ---

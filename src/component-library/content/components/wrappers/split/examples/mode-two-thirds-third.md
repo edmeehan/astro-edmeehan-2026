@@ -12,7 +12,6 @@ blocks:
             ## Two Thirds Column
 
             This column takes up 66% of the available space.
-  firstColumnMinWidth: null
   secondColumnContentBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
@@ -22,7 +21,6 @@ blocks:
             ## Third Column
 
             This column takes up 33% of the available space.
-  secondColumnMinWidth: null
   distributionMode: "two-thirds-third"
   fixedWidth: null
   verticalAlignment: "top"

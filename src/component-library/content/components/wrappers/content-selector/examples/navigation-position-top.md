@@ -48,7 +48,7 @@ blocks:
           align: start
           size: md
         - _bookshop_name: primitives/button
-          label: Start a return
+          text: Start a return
           link: #
           variant: secondary
           size: md

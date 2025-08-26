@@ -16,7 +16,6 @@ blocks:
             Here's even more text to help illustrate the point we're trying to make with this demonstration.
 
             And even more to really drive the point home.
-  firstColumnMinWidth: null
   secondColumnContentBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
@@ -26,7 +25,6 @@ blocks:
             ## Side B
 
             This is content for the side B
-  secondColumnMinWidth: null
   distributionMode: "half"
   fixedWidth: null
   verticalAlignment: "stretch"

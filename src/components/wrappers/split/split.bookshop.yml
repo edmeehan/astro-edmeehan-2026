@@ -8,9 +8,7 @@ spec:
 
 blueprint:
   firstColumnContentBlocks: []
-  firstColumnMinWidth: null
   secondColumnContentBlocks: []
-  secondColumnMinWidth: null
   distributionMode: "half"
   fixedWidth: null
   verticalAlignment: "top"
@@ -27,15 +25,9 @@ _inputs:
   firstColumnContentBlocks:
     comment: Array of content blocks to render in the first column.
     type: array
-  firstColumnMinWidth:
-    comment: Minimum width in pixels for the first column.
-    type: number
   secondColumnContentBlocks:
     comment: Array of content blocks to render in the second column.
     type: array
-  secondColumnMinWidth:
-    comment: Minimum width in pixels for the second column.
-    type: number
   distributionMode:
     comment: Predefined distribution mode for both columns.
     type: select
@@ -49,7 +41,7 @@ _inputs:
         - fixed-flexible
         - flexible-fixed
   fixedWidth:
-    comment: Fixed width in pixels (used when distribution mode includes 'fixed').
+    comment: Fixed width in pixels for the fixed column (used when distribution mode includes 'fixed').
     type: number
   verticalAlignment:
     comment: Vertical alignment of the columns.

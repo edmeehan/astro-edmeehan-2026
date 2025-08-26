@@ -18,10 +18,6 @@ examples:
       - vertical-alignment-center
       - vertical-alignment-bottom
       - vertical-alignment-stretch
-  - title: Minimum Width
-    size: lg
-    slugs:
-      - min-width
   - title: Reverse
     size: lg
     slugs:

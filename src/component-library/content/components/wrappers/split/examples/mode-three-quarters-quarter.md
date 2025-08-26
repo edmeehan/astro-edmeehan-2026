@@ -12,7 +12,6 @@ blocks:
             ## Three Quarters Column
 
             This column takes up 75% of the available space.
-  firstColumnMinWidth: null
   secondColumnContentBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
@@ -22,7 +21,6 @@ blocks:
             ## Quarter Column
 
             This column takes up 25% of the available space.
-  secondColumnMinWidth: null
   distributionMode: "three-quarters-quarter"
   fixedWidth: null
   verticalAlignment: "top"

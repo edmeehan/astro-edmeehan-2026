@@ -4,8 +4,6 @@ import Component from "@components/utils/renderBlock.astro";
 const {
   firstColumnContentBlocks = [],
   secondColumnContentBlocks = [],
-  firstColumnMinWidth,
-  secondColumnMinWidth,
   distributionMode = "half",
   verticalAlignment = "top",
   reverse = false,
@@ -18,93 +16,39 @@ const htmlAttributes = Object.fromEntries(
   Object.entries(rest).filter(([key]) => !key.startsWith("_"))
 );
 
-// Distribution mode configurations
-const distributionModes = {
-  half: { first: "half", last: "half" },
-  "third-two-thirds": { first: "third", last: "two-thirds" },
-  "two-thirds-third": { first: "two-thirds", last: "third" },
-  "quarter-three-quarters": { first: "quarter", last: "three-quarters" },
-  "three-quarters-quarter": { first: "three-quarters", last: "quarter" },
-  "fixed-flexible": { first: "fixed", last: "flexible" },
-  "flexible-fixed": { first: "flexible", last: "fixed" },
-} as const;
-
-// Percentage-based distribution modes
-const percentages = {
-  half: 50,
-  third: 33.333,
-  "two-thirds": 66.667,
-  quarter: 25,
-  "three-quarters": 75,
-} as const;
-
-function calculateDistributionStyles(
-  mode: string,
-  isFirst: boolean,
-  fixedWidth?: number,
-  minWidth?: number
-): string {
-  if (mode === "flexible") {
-    return `flex: 1 1 auto; max-width: 100%; min-width: calc(min(100%, ${minWidth || 0}px));`;
-  }
-
-  if (mode === "fixed" && fixedWidth) {
-    return `flex: 0 1 ${fixedWidth}px; min-width: calc(min(100%, ${fixedWidth}px)); max-width: ${fixedWidth}px;`;
-  }
-
-  if (percentages[mode]) {
-    const percentage = percentages[mode];
-    const basis = `(${percentage}% - var(--gap-size))`;
-
-    if (minWidth) {
-      return `flex: 1 0 calc(${basis}); min-width: calc(min(100%, ${minWidth}px));`;
-    } else {
-      return `flex: 1 1 calc(${basis});`;
-    }
-  }
-
-  // Flexible mode
-  const minWidthStyle = minWidth ? `${minWidth}px` : "";
-
-  return `flex: 1 1 auto; max-width: 100%; min-width: calc(min(100%, ${minWidthStyle}));`;
-}
-
-// Get the distribution configuration for each column
-const distribution =
-  distributionModes[distributionMode as keyof typeof distributionModes] ||
-  distributionModes["half"];
-
-if (
-  (distributionMode === "fixed-flexible" || distributionMode === "flexible-fixed") &&
-  !fixedWidth
-) {
-  console.warn(
-    `Split component: fixedWidth is required when using distributionMode "${distributionMode}"`
-  );
-}
-let firstMode = distribution.first;
-let lastMode = distribution.last;
-
-// Reverse the distribution modes if reverse is true
-if (reverse) {
-  [firstMode, lastMode] = [lastMode, firstMode];
-}
-
-// Get content blocks and minWidth based on reverse setting
+// Get content blocks based on reverse setting
 const firstContentBlocks = reverse ? secondColumnContentBlocks : firstColumnContentBlocks;
 const secondContentBlocks = reverse ? firstColumnContentBlocks : secondColumnContentBlocks;
-const firstMinWidth = reverse ? secondColumnMinWidth : firstColumnMinWidth;
-const secondMinWidth = reverse ? firstColumnMinWidth : secondColumnMinWidth;
 
-const firstStyles = calculateDistributionStyles(firstMode, true, fixedWidth, firstMinWidth);
-const secondStyles = calculateDistributionStyles(lastMode, false, fixedWidth, secondMinWidth);
+const getReversedDistributionMode = (mode: string) => {
+  const reverseMap = {
+    "third-two-thirds": "two-thirds-third",
+    "two-thirds-third": "third-two-thirds",
+    "quarter-three-quarters": "three-quarters-quarter",
+    "three-quarters-quarter": "quarter-three-quarters",
+    "fixed-flexible": "flexible-fixed",
+    "flexible-fixed": "fixed-flexible",
+    half: "half",
+  };
+  return reverseMap[mode as keyof typeof reverseMap] || mode;
+};
+
+const finalDistributionMode = reverse
+  ? getReversedDistributionMode(distributionMode)
+  : distributionMode;
 ---
 
-<section class:list={["split", `align-${verticalAlignment}`, className]} {...htmlAttributes}>
-  <div class="pane first" style={firstStyles}>
+<section
+  class:list={["split", `align-${verticalAlignment}`, finalDistributionMode, className]}
+  style={fixedWidth ? `--split-fixed-width: ${fixedWidth}px;` : ""}
+  {...htmlAttributes}
+>
+  <div class="pane first">
     <Component contentBlocks={firstContentBlocks} />
+    {reverse ? <slot name="second" /> : <slot name="first" />}
   </div>
-  <div class="pane second" style={secondStyles}>
+  <div class="pane second">
     <Component contentBlocks={secondContentBlocks} />
+    {reverse ? <slot name="first" /> : <slot name="second" />}
   </div>
 </section>

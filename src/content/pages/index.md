@@ -5,7 +5,7 @@ content_blocks:
   - _bookshop_name: wrappers/button-group
     button_blocks:
       - _bookshop_name: primitives/button
-        label: View Components
+        text: View Components
         link: /component-library/
         hideText: false
         variant: secondary

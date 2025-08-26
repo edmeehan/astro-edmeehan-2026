@@ -4,18 +4,18 @@ spacing: "all"
 blocks:
   - _bookshop_name: "primitives/button"
     variant: primary
-    label: Primary
+    text: Primary
     style: "margin-inline-end: var(--spacing-sm);"
   - _bookshop_name: "primitives/button"
     variant: secondary
-    label: Secondary
+    text: Secondary
     style: "margin-inline-end: var(--spacing-sm);"
   - _bookshop_name: "primitives/button"
     variant: tertiary
-    label: Tertiary
+    text: Tertiary
     style: "margin-inline-end: var(--spacing-sm);"
   - _bookshop_name: "primitives/button"
     variant: ghost
-    label: Ghost
+    text: Ghost
     style: "margin-inline-end: var(--spacing-sm);"
 ---

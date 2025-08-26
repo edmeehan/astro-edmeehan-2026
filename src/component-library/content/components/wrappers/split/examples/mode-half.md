@@ -12,7 +12,6 @@ blocks:
             ## Half Column
 
             This column takes up 50% of the available space.
-  firstColumnMinWidth: null
   secondColumnContentBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
@@ -22,7 +21,6 @@ blocks:
             ## Half Column
 
             This column also takes up 50% of the available space.
-  secondColumnMinWidth: null
   distributionMode: "half"
   fixedWidth: null
   verticalAlignment: "top"

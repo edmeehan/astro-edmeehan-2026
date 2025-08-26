@@ -1,5 +1,5 @@
 ---
-title: Fixed-Flexible
+title: Fixed Flexible Mode
 spacing:
 blocks:
   _bookshop_name: "wrappers/split"
@@ -9,10 +9,9 @@ blocks:
       content_blocks:
         - _bookshop_name: "primitives/rich-text"
           text: |-
-            ## Fixed Width Column
+            ## Fixed Column
 
-            This column has a fixed width of 300px.
-  firstColumnMinWidth: null
+            This column has a fixed width.
   secondColumnContentBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
@@ -22,9 +21,8 @@ blocks:
             ## Flexible Column
 
             This column takes up the remaining space.
-  secondColumnMinWidth: null
   distributionMode: "fixed-flexible"
-  fixedWidth: 300
+  fixedWidth: null
   verticalAlignment: "top"
   reverse: false
 ---
