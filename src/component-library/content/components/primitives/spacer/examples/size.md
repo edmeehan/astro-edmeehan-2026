@@ -5,29 +5,29 @@ blocks:
   - _bookshop_name: "primitives/rich-text"
     text: "xs spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: xs
+    size: xs
   - _bookshop_name: "primitives/rich-text"
     text: "sm spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: sm
+    size: sm
   - _bookshop_name: "primitives/rich-text"
     text: "md spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: md
+    size: md
   - _bookshop_name: "primitives/rich-text"
     text: "lg spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: lg
+    size: lg
   - _bookshop_name: "primitives/rich-text"
     text: "xl spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: xl
+    size: xl
   - _bookshop_name: "primitives/rich-text"
     text: "2xl spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: 2xl
+    size: 2xl
   - _bookshop_name: "primitives/rich-text"
     text: "3xl spacer below"
   - _bookshop_name: "primitives/spacer"
-    height: 3xl
+    size: 3xl
 ---

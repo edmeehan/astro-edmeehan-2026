@@ -5,7 +5,7 @@ blocks:
   _bookshop_name: "wrappers/button-group"
   direction: row
   align: center
-  button_blocks:
+  buttonBlocks:
     - _bookshop_name: "primitives/button"
       text: "Button A"
       variant: secondary

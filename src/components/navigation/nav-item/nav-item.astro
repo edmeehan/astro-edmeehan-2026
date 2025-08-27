@@ -2,7 +2,7 @@
 import Icon from "@components/primitives/icon/icon.astro";
 import RenderBlock from "@components/utils/renderBlock.astro";
 
-const { href, label, class: className, defaultOpen = false, navBlocks = [], ...rest } = Astro.props;
+const { href, text, class: className, defaultOpen = false, navBlocks = [], ...rest } = Astro.props;
 
 const htmlAttributes = Object.fromEntries(
   Object.entries(rest).filter(([key]) => !key.startsWith("_"))
@@ -35,21 +35,21 @@ const isCurrentPage = href === Astro.url.pathname;
           aria-controls={contentId}
           tabindex="0"
         >
-          {label}
-          <slot name="label" />
+          {text}
+          <slot name="text" />
           <span class="nav-item-icon">
             <Icon name="chevron-right" size="none" aria-hidden="true" />
           </span>
         </label>
-        <div id={contentId} class="nav-item-content" role="region" aria-label={`${label} submenu`}>
+        <div id={contentId} class="nav-item-content" role="region" aria-label={`${text} submenu`}>
           <slot />
           <RenderBlock contentBlocks={navBlocks} />
         </div>
       </>
     ) : (
       <a href={href} aria-current={isCurrentPage ? "page" : undefined}>
-        {label}
-        <slot name="label" />
+        {text}
+        <slot name="text" />
       </a>
     )
   }

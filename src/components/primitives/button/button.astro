@@ -39,7 +39,6 @@ const tagProps = Tag === "a" && link ? { href: link } : Tag === "button" ? { typ
   {...tagProps}
   {...htmlAttributes}
 >
-  {iconName && iconPosition !== "after" && <Icon name={iconName} size="none" />}
+  {iconName && <Icon name={iconName} size="none" />}
   {!hideText && text && <span>{text}</span>}
-  {iconName && iconPosition === "after" && <Icon name={iconName} size="none" />}
 </Tag>

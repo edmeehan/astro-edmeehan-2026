@@ -1,6 +1,6 @@
 spec:
   structures:
-    - button_blocks
+    - buttonBlocks
   label: Button
   description: "A clickable element that navigates to another page or triggers an action within the current page."
   icon: rectangle

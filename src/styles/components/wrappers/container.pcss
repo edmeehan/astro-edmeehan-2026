@@ -1,6 +1,6 @@
 .container {
-  position: relative;
   isolation: isolate;
+  position: relative;
 
   > .outer-content {
     height: 100%;
@@ -8,9 +8,17 @@
 
   > .outer-content > .content {
     height: 100%;
+    margin-inline: auto;
     position: relative;
     z-index: var(--layer-1);
-    margin-inline: auto;
+
+    *:first-child {
+      margin-top: 0;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
+    }
 
     &.pad-x-xs {
       padding-inline: var(--spacing-xs);
@@ -128,13 +136,13 @@
 
   > .background-image {
     inset: 0;
-    position: absolute;
 
     object-position: center;
+    position: absolute;
 
     > img {
-      object-fit: cover;
       height: 100%;
+      object-fit: cover;
       width: 100%;
     }
 
@@ -173,6 +181,10 @@
     &.bottom-right > img {
       object-position: bottom right;
     }
+  }
+
+  > .bg-base {
+    background-color: var(--color-bg);
   }
 
   > .bg-surface {

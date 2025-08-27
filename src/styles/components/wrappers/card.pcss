@@ -3,11 +3,11 @@ a.card:hover {
 }
 
 .card {
-  position: relative;
-  display: block;
-  text-decoration: none;
   color: inherit;
+  display: block;
   overflow: hidden;
+  position: relative;
+  text-decoration: none;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -28,6 +28,14 @@ a.card:hover {
     height: 100%;
     position: relative;
     z-index: var(--layer-1);
+
+    *:first-child {
+      margin-top: 0;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
+    }
 
     &.pad-x-xs {
       padding-inline: var(--spacing-xs);
@@ -85,13 +93,13 @@ a.card:hover {
 
   > .background-image {
     inset: 0;
-    position: absolute;
 
     object-position: center;
+    position: absolute;
 
     > img {
-      object-fit: cover;
       height: 100%;
+      object-fit: cover;
       width: 100%;
     }
 
@@ -130,6 +138,10 @@ a.card:hover {
     &.bottom-right > img {
       object-position: bottom right;
     }
+  }
+
+  > .bg-base {
+    background-color: var(--color-bg);
   }
 
   > .bg-surface {

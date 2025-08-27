@@ -7,14 +7,14 @@ blocks:
     - _bookshop_name: "navigation/nav-list"
       navBlocks:
         - _bookshop_name: "navigation/nav-item"
-          label: "Resources"
+          text: "Resources"
           navBlocks:
             - _bookshop_name: "navigation/nav-list"
               navBlocks:
                 - _bookshop_name: "navigation/nav-item"
                   href: "#"
-                  label: "Blog"
+                  text: "Blog"
                 - _bookshop_name: "navigation/nav-item"
                   href: "#"
-                  label: "Docs"
+                  text: "Docs"
 ---

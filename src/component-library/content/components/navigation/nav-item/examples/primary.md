@@ -7,5 +7,5 @@ blocks:
       navBlocks:
         - _bookshop_name: "navigation/nav-item"
           href: "/"
-          label: "Home"
+          text: "Home"
 ---

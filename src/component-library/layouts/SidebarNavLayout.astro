@@ -74,10 +74,10 @@ const populatedNavData = navData.map((section) => {
           .map((section, index) => {
             if (section.group && section.items && Array.isArray(section.items)) {
               return (
-                <NavItem label={section.group} defaultOpen={(section as any).defaultOpen || false}>
+                <NavItem text={section.group} defaultOpen={(section as any).defaultOpen || false}>
                   <NavList>
                     {section.items.map((item, itemIndex) => {
-                      return <NavItem href={item.path} label={item.name} />;
+                      return <NavItem href={item.path} text={item.name} />;
                     })}
                   </NavList>
                 </NavItem>
@@ -85,7 +85,7 @@ const populatedNavData = navData.map((section) => {
             }
 
             if (section.path) {
-              return <NavItem href={section.path} label={section.name} />;
+              return <NavItem href={section.path} text={section.name} />;
             }
 
             return null;
