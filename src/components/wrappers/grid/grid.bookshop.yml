@@ -55,4 +55,3 @@ _inputs:
     _inputs:
       contentBlocks:
         comment: Content blocks to render within this grid item.
-        type: array

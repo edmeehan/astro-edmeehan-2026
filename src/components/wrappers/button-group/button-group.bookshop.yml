@@ -20,7 +20,6 @@ preview:
 _inputs:
   buttonBlocks:
     comment: Array of button components to render within the group.
-    type: array
   direction:
     comment: Direction of button layout.
     type: select

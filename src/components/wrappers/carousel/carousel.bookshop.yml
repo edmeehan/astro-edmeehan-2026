@@ -30,7 +30,6 @@ _inputs:
     _inputs:
       contentBlocks:
         comment: The content blocks to display in this slide.
-        type: array
   autoPlay:
     comment: Enable auto-play functionality.
     type: boolean

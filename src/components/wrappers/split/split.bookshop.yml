@@ -26,10 +26,8 @@ _inputs:
     type: text
   firstColumnContentBlocks:
     comment: Array of content blocks to render in the first column.
-    type: array
   secondColumnContentBlocks:
     comment: Array of content blocks to render in the second column.
-    type: array
   distributionMode:
     comment: Predefined distribution mode for both columns.
     type: select
