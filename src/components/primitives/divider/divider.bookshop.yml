@@ -22,19 +22,18 @@ _inputs:
     options:
       values:
         - name: None
-          value: none
+          id: none
         - name: Extra Small
-          value: xs
+          id: xs
         - name: Small
-          value: sm
+          id: sm
         - name: Medium
-          value: md
+          id: md
         - name: Large
-          value: lg
+          id: lg
         - name: Extra Large
-          value: xl
+          id: xl
         - name: 2xl
-          value: 2xl
+          id: 2xl
         - name: 3xl
-          value: 3xl
-      value_key: value
+          id: 3xl
