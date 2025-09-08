@@ -69,7 +69,6 @@ const navId = `nav-${crypto.randomUUID()}`;
   document.addEventListener("change", function (e) {
     const toggle = e.target;
 
-    // Only handle nav-toggle checkboxes
     if (!toggle || !toggle.classList.contains("nav-toggle")) {
       return;
     }
