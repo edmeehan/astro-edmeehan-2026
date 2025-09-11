@@ -14,10 +14,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Item 1"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This is a grid item with sample content."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -25,10 +25,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Item 2"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This is a grid item with sample content."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -36,9 +36,9 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Item 3"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This is a grid item with sample content."
 ---

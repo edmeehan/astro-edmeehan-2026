@@ -8,9 +8,9 @@ blocks:
   backgroundColor: accent
   link: "#"
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: "Clickable Card"
       level: h3
-    - _bookshop_name: "primitives/simple-text"
+    - _bookshop_name: "typography/simple-text"
       text: "This entire card is clickable! Perfect for navigation cards or feature highlights."
 ---

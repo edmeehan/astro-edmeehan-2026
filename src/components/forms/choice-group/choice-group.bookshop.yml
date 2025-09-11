@@ -1,0 +1,51 @@
+spec:
+  structures:
+    - formBlocks
+  label: Choice Group
+  description: "A group of checkboxes or radio buttons with labels."
+  icon: rectangle
+  tags: []
+
+blueprint:
+  type: checkbox
+  name:
+  options:
+    - value: newsletter
+      label: Subscribe to newsletter
+      checked: false
+    - value: updates
+      label: Get product updates
+      checked: false
+  title:
+  orientation: vertical
+  required: false
+
+preview:
+
+_inputs:
+  type:
+    type: select
+    options:
+      values:
+        - checkbox
+        - radio
+    comment: The type of input - checkbox for multiple selections, radio for single selection.
+  name:
+    type: text
+    comment: The name attribute for the input group.
+  options:
+    type: blocks
+    comment: Array of choice options with value, label, and checked state.
+  title:
+    type: text
+    comment: Optional title text for the fieldset.
+  orientation:
+    type: select
+    options:
+      values:
+        - vertical
+        - horizontal
+    comment: The layout orientation - vertical for stacked layout, horizontal for grid layout.
+  required:
+    type: switch
+    comment: Whether the field is required.

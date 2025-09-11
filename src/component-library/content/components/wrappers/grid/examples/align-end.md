@@ -14,10 +14,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Short Item"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This is a short grid item."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -25,10 +25,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Taller Item"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This grid item has more content and will be taller than the others. It demonstrates how items align to the bottom when using end alignment."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -36,9 +36,9 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Medium Item"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This item has medium height content."
 ---

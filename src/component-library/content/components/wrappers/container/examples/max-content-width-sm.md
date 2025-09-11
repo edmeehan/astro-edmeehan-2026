@@ -6,7 +6,7 @@ blocks:
   backgroundColor: "surface"
   maxContentWidth: sm
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: sm max content width
       level: h2
       align: center

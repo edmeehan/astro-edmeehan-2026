@@ -7,7 +7,7 @@ blocks:
   paddingHorizontal: xs
   paddingVertical: xs
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: xs padding
       level: h2
 ---

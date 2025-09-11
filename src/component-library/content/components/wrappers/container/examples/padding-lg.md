@@ -7,7 +7,7 @@ blocks:
   paddingHorizontal: lg
   paddingVertical: lg
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: lg padding
       level: h2
 ---

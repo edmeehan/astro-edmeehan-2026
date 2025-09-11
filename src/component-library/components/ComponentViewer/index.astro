@@ -1,8 +1,8 @@
 ---
-const { component_examples = [], title = "", size = "md" } = Astro.props;
+const { component_examples = [], title = "", size = "md", componentKey = "" } = Astro.props;
 
 import { Code } from "astro:components";
-import Button from "@components/primitives/button/button.astro";
+import Button from "@components/elements/button/button.astro";
 // @ts-ignore
 import yaml from "js-yaml";
 
@@ -53,6 +53,7 @@ Object.entries(componentImports).forEach(([path, obj]) => {
   const relativePath = path.replace("../../../components/", "").replace(/\.astro$/, "");
   const parts = relativePath.split("/");
 
+  // Remove duplicate directory names (e.g., rich-text/rich-text -> rich-text)
   if (parts.length > 1 && parts[parts.length - 1] === parts[parts.length - 2]) {
     parts.pop();
   }
@@ -129,7 +130,10 @@ Object.entries(componentImports).forEach(([path, obj]) => {
               <label for={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`} class="sr-only">
                 Examples:
               </label>
-              <select class="select" id={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}>
+              <select
+                class="example-select"
+                id={`${title.toLowerCase().replace(/\s+/g, "-")}-examples`}
+              >
                 {component_examples.map((example: any, idx: number) => {
                   const exampleName = example.data.title;
                   const exampleId = `component-${exampleName.toLowerCase().replace(/\s+/g, "-")}-${idx}`;
@@ -175,7 +179,7 @@ Object.entries(componentImports).forEach(([path, obj]) => {
       const viewComponentBtn = viewer.querySelector('[data-action="view-component"]');
       const previews = viewer.querySelectorAll(".preview");
       const codeBlocks = viewer.querySelectorAll(".code");
-      const exampleSelect = viewer.querySelector("select");
+      const exampleSelect = viewer.querySelector(".example-select");
 
       const switchToExample = (exampleId) => {
         previews.forEach((preview) => {
@@ -271,8 +275,7 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 
 <!-- Separate script for copy button functionality -->
 <script is:inline>
-  // Global copy button handler
-  // Handles copying YAML code to clipboard and shows visual feedback
+  // Global copy button handler - runs once per page load
   document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", async (event) => {
       const button = event.target.closest('[data-action="copy-code"]');
@@ -355,17 +358,17 @@ Object.entries(componentImports).forEach(([path, obj]) => {
     display: none;
     height: 100%;
     position: relative;
+
+    > pre {
+      overflow-y: scroll;
+    }
   }
 
   .code-header {
     position: absolute;
     right: var(--spacing-lg);
-    top: var(--spacing-md);
+    top: var(--spacing-sm);
     z-index: 10;
-  }
-
-  .code-header .button {
-    position: relative;
   }
 
   .viewer-size {
@@ -390,29 +393,8 @@ Object.entries(componentImports).forEach(([path, obj]) => {
     justify-content: space-between;
     padding: var(--spacing-sm);
 
-    .select {
+    .example-select {
       line-height: 0;
     }
-  }
-
-  .button.copied::after {
-    animation: grow-out-centered var(--animation-normal) ease-in-out;
-    background: var(--color-bg-inverse);
-    border-radius: var(--radius-sm);
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    color: var(--color-text-inverse);
-    content: "Copied!";
-    font-size: 0.875rem;
-    font-weight: 500;
-    left: 50%;
-    margin-top: var(--spacing-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    pointer-events: none;
-    position: absolute;
-    top: 100%;
-    transform: translateX(-50%);
-    z-index: 10;
   }
 </style>

@@ -8,11 +8,19 @@
     "items": []
   },
   {
-    "group": "Primitives",
+    "group": "Typography",
+    "items": []
+  },
+  {
+    "group": "Elements",
     "items": []
   },
   {
     "group": "Wrappers",
+    "items": []
+  },
+  {
+    "group": "Forms",
     "items": []
   },
   {

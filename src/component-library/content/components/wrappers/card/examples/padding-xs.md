@@ -7,9 +7,9 @@ blocks:
   paddingVertical: xs
   backgroundColor: surface
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: "xs padding"
       level: h3
-    - _bookshop_name: "primitives/simple-text"
+    - _bookshop_name: "typography/simple-text"
       text: "This card uses xs padding for a very compact appearance."
 ---

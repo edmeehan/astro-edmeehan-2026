@@ -7,9 +7,9 @@ blocks:
   paddingHorizontal: sm
   paddingVertical: sm
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: "Base Card"
       level: h3
-    - _bookshop_name: "primitives/simple-text"
+    - _bookshop_name: "typography/simple-text"
       text: "This card uses the base background color (page background color)"
 ---

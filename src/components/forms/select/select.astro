@@ -1,0 +1,56 @@
+---
+const {
+  label,
+  name,
+  options = [],
+  placeholder,
+  required = false,
+  value,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const htmlAttributes = Object.fromEntries(
+  Object.entries(rest).filter(([key]) => !key.startsWith("_"))
+);
+
+const fieldId = htmlAttributes.id || `select-${crypto.randomUUID()}`;
+---
+
+<div class:list={["select", className]}>
+  {
+    label && (
+      <label for={fieldId} class="label">
+        {label}
+        {required && (
+          <span class="required" aria-label="required">
+            *
+          </span>
+        )}
+      </label>
+    )
+  }
+  <select
+    name={name}
+    id={fieldId}
+    required={required}
+    aria-required={required}
+    class="field"
+    {...htmlAttributes}
+  >
+    {
+      placeholder && (
+        <option value="" disabled>
+          {placeholder}
+        </option>
+      )
+    }
+    {
+      options.map((option) => (
+        <option value={option.value} selected={option.value === value}>
+          {option.label}
+        </option>
+      ))
+    }
+  </select>
+</div>

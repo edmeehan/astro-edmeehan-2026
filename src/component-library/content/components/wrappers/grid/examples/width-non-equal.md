@@ -11,10 +11,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Short"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "Short content."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -22,10 +22,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Medium Length Content"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This item has medium length content that determines its natural width."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -33,10 +33,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Longer Content Title"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This item has significantly more content and will be wider."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -44,9 +44,9 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Tiny"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "Small."
 ---

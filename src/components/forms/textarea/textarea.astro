@@ -1,0 +1,41 @@
+---
+const {
+  label,
+  name,
+  placeholder,
+  required = false,
+  value,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const htmlAttributes = Object.fromEntries(
+  Object.entries(rest).filter(([key]) => !key.startsWith("_"))
+);
+
+const fieldId = htmlAttributes.id || `textarea-${crypto.randomUUID()}`;
+---
+
+<div class:list={["textarea", className]}>
+  {
+    label && (
+      <label for={fieldId} class="label">
+        {label}
+        {required && (
+          <span class="required" aria-label="required">
+            *
+          </span>
+        )}
+      </label>
+    )
+  }
+  <textarea
+    name={name}
+    id={fieldId}
+    placeholder={placeholder}
+    required={required}
+    aria-required={required}
+    class="field"
+    {...htmlAttributes}>{value}</textarea
+  >
+</div>

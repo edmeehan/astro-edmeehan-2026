@@ -6,13 +6,13 @@ blocks:
   direction: row
   align: start
   buttonBlocks:
-    - _bookshop_name: "primitives/button"
+    - _bookshop_name: "elements/button"
       text: "Button A"
       variant: secondary
-    - _bookshop_name: "primitives/button"
+    - _bookshop_name: "elements/button"
       text: "Button B"
       variant: secondary
-    - _bookshop_name: "primitives/button"
+    - _bookshop_name: "elements/button"
       text: "Button C"
       variant: secondary
 ---

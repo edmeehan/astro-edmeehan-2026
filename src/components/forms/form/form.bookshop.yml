@@ -1,0 +1,23 @@
+spec:
+  structures:
+    - contentBlocks
+    - firstContentBlocks
+    - secondContentBlocks
+  label: Form
+  description: "A form element that groups related form controls and handles form submission."
+  icon: rectangle
+  tags: []
+
+blueprint:
+  action:
+  formBlocks:
+
+preview:
+
+_inputs:
+  action:
+    type: url
+    comment: The URL that processes the form submission.
+  formBlocks:
+    type: blocks
+    comment: The form blocks to render inside the form.

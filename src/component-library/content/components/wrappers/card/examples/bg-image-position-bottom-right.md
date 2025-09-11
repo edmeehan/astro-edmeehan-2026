@@ -12,9 +12,9 @@ blocks:
     positionHorizontal: right
   colorScheme: contrast
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: "Bottom Right Position"
       level: h3
-    - _bookshop_name: "primitives/simple-text"
+    - _bookshop_name: "typography/simple-text"
       text: "This card's background image is positioned at the bottom-right corner."
 ---

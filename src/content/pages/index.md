@@ -7,12 +7,12 @@ pageBlocks:
     paddingVertical: lg
     maxContentWidth: 2xl
     contentBlocks:
-      - _bookshop_name: primitives/heading
+      - _bookshop_name: typography/heading
         text: Welcome to your CloudCannon Starter Component site
         level: h1
       - _bookshop_name: wrappers/button-group
         buttonBlocks:
-          - _bookshop_name: primitives/button
+          - _bookshop_name: elements/button
             text: View Components
             link: /component-library/
             hideText: false

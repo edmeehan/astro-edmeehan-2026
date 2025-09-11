@@ -1,0 +1,33 @@
+spec:
+  structures:
+    - formBlocks
+  label: File Upload
+  description: "A file input field with an optional label."
+  icon: rectangle
+  tags: []
+
+blueprint:
+  label:
+  name:
+  required: false
+  accept:
+  multiple: false
+
+preview:
+
+_inputs:
+  label:
+    type: text
+    comment: The label text for the file upload field.
+  name:
+    type: text
+    comment: The name attribute for the file upload field.
+  required:
+    type: switch
+    comment: Whether the field is required.
+  accept:
+    type: text
+    comment: Comma-separated list of accepted file types (e.g., .jpg,.png,.pdf).
+  multiple:
+    type: switch
+    comment: Whether multiple files can be selected.

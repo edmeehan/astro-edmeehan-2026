@@ -14,10 +14,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Short Item"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This is a short grid item that will stretch to match the height of the tallest item."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -25,10 +25,10 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Taller Item"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This grid item has more content and will be taller than the others. All items will stretch to match this height."
     - contentBlocks:
         - _bookshop_name: "wrappers/card"
@@ -36,9 +36,9 @@ blocks:
           paddingHorizontal: md
           paddingVertical: md
           contentBlocks:
-            - _bookshop_name: "primitives/heading"
+            - _bookshop_name: "typography/heading"
               text: "Medium Item"
               level: h3
-            - _bookshop_name: "primitives/simple-text"
+            - _bookshop_name: "typography/simple-text"
               text: "This item has medium height content but will stretch to match the tallest item."
 ---

@@ -7,7 +7,7 @@ blocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "accent"
       contentBlocks:
-        - _bookshop_name: "primitives/rich-text"
+        - _bookshop_name: "typography/rich-text"
           text: |-
             ## Third Column
 
@@ -16,7 +16,7 @@ blocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
       contentBlocks:
-        - _bookshop_name: "primitives/rich-text"
+        - _bookshop_name: "typography/rich-text"
           text: |-
             ## Two Thirds Column
 

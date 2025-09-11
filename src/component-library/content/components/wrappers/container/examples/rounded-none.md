@@ -8,9 +8,9 @@ blocks:
   paddingHorizontal: md
   paddingVertical: md
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: "Square Container"
       level: h3
-    - _bookshop_name: "primitives/simple-text"
+    - _bookshop_name: "typography/simple-text"
       text: "This container has square corners (rounded disabled)."
 ---

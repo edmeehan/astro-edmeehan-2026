@@ -9,11 +9,11 @@ blocks:
       sub_text: Common questions
       icon_name: question-mark-circle
       contentBlocks:
-        - _bookshop_name: primitives/heading
+        - _bookshop_name: typography/heading
           text: "Frequently asked questions"
           level: h2
           align: start
-        - _bookshop_name: primitives/rich-text
+        - _bookshop_name: typography/rich-text
           text: |
             **Do you offer support?** Yes — email us anytime.
 
@@ -24,13 +24,13 @@ blocks:
       sub_text: How we deliver
       icon_name: truck
       contentBlocks:
-        - _bookshop_name: primitives/simple-text
+        - _bookshop_name: typography/simple-text
           text: |
             We ship worldwide. Orders leave within 2 business days.
             Delivery times vary by region.
           align: start
           size: md
-        - _bookshop_name: primitives/list
+        - _bookshop_name: typography/list
           items:
             - text: "NZ & AU: 2–5 days"
               icon: clock
@@ -43,11 +43,11 @@ blocks:
       sub_text: Easy and fair
       icon_name: arrow-path
       contentBlocks:
-        - _bookshop_name: primitives/simple-text
+        - _bookshop_name: typography/simple-text
           text: "30‑day returns. Unused items only. Full refund once received."
           align: start
           size: md
-        - _bookshop_name: primitives/button
+        - _bookshop_name: elements/button
           text: Start a return
           link: #
           variant: secondary

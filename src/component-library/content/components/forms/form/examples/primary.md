@@ -1,0 +1,41 @@
+---
+title: "Primary Contact Form"
+spacing: "all"
+blocks:
+  _bookshop_name: "forms/form"
+  action: "/contact"
+  formBlocks:
+    - _bookshop_name: "forms/input"
+      label: "Full Name"
+      name: "name"
+      type: "text"
+      placeholder: "Enter your full name"
+      required: true
+    - _bookshop_name: "forms/select"
+      label: "City"
+      name: "city"
+      options:
+        - value: "auckland"
+          label: "Auckland"
+        - value: "wellington"
+          label: "Wellington"
+        - value: "christchurch"
+          label: "Christchurch"
+        - value: "hamilton"
+          label: "Hamilton"
+        - value: "dunedin"
+          label: "Dunedin"
+        - value: "tauranga"
+          label: "Tauranga"
+    - _bookshop_name: "forms/textarea"
+      label: "Message"
+      name: "message"
+      placeholder: "Tell us about your project..."
+      required: true
+    - _bookshop_name: "forms/hidden"
+      name: "form-source"
+      value: "contact-page"
+    - _bookshop_name: "forms/submit"
+      text: "Send Message"
+      variant: "primary"
+---

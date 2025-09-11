@@ -7,7 +7,7 @@ blocks:
   paddingVertical: "lg"
   paddingHorizontal: "lg"
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: Highlight background color
       level: h2
 ---

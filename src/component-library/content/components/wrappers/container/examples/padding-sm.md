@@ -7,7 +7,7 @@ blocks:
   paddingHorizontal: sm
   paddingVertical: sm
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       text: sm padding
       level: h2
 ---

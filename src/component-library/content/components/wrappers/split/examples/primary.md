@@ -4,13 +4,13 @@ spacing:
 blocks:
   _bookshop_name: "wrappers/split"
   firstColumnContentBlocks:
-    - _bookshop_name: "primitives/rich-text"
+    - _bookshop_name: "typography/rich-text"
       text: |-
         ## Side A
 
         This is content for the side A
   secondColumnContentBlocks:
-    - _bookshop_name: "primitives/rich-text"
+    - _bookshop_name: "typography/rich-text"
       text: |-
         ## Side B
 

@@ -1,0 +1,26 @@
+.choice-group {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  .required {
+    color: red;
+    margin-inline-end: var(--spacing-em-xs);
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &.orientation-horizontal .options {
+    display: grid;
+    gap: var(--spacing-sm);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}

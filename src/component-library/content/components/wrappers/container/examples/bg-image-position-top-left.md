@@ -11,7 +11,7 @@ blocks:
     positionVertical: top
     positionHorizontal: left
   contentBlocks:
-    - _bookshop_name: "primitives/heading"
+    - _bookshop_name: "typography/heading"
       align: end
       text: Build bold. Launch fast.
 ---
