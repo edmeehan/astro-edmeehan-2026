@@ -115,8 +115,64 @@ pageBlocks:
         title:
       - _bookshop_name: wrappers/accordion
         items:
+          - title: An item
+            contentBlocks:
+              - _bookshop_name: primitives/counter
+                number: 100
+                prefix: $
+                suffix: USD
+                horizontalAlignment: center
+          - title: Another item
+            contentBlocks:
+              - _bookshop_name: primitives/list
+                items:
+                  - text: Hiiiii
+                    icon: arrow-down-circle
+                  - text: Hiiiii
+                    icon: arrow-down-circle
+                direction: vertical
+                horizontalAlignment: start
+                size: md
         openFirst: false
-        singleOpen: false
+        singleOpen: true
+      - _bookshop_name: wrappers/button-group
+        buttonBlocks:
+          - _bookshop_name: primitives/button
+            text: A button
+            link: >-
+              https://cloudcannon.com/documentation/articles/configure-your-card-previews/#template-strings-in-previews
+            iconName: calendar-date-range
+            iconPosition: before
+            hideText: false
+            variant: primary
+            size: lg
+          - _bookshop_name: primitives/button
+            text: Some text
+            link:
+            iconName: archive-box
+            iconPosition: before
+            hideText: false
+            variant: tertiary
+            size: lg
+        direction: row
+        align: center
+      - _bookshop_name: wrappers/card
+        label: A lonely card
+        contentBlocks: []
+        headerContentBlocks: []
+        footerContentBlocks: []
+        paddingHorizontal: sm
+        paddingVertical: sm
+        colorScheme: default
+        backgroundColor:
+        backgroundImage:
+          source: ''
+          alt: ''
+          positionVertical: top
+          positionHorizontal: center
+        link: ''
+        rounded: false
+        border: false
     maxContentWidth: 2xl
     paddingHorizontal: lg
     paddingVertical: lg
