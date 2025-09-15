@@ -3,6 +3,7 @@ const { component_examples = [], title = "", size = "md", componentKey = "" } = 
 
 import { Code } from "astro:components";
 import Button from "@components/elements/button/button.astro";
+import Segments from "@components/forms/segments/segments.astro";
 // @ts-ignore
 import yaml from "js-yaml";
 
@@ -64,8 +65,8 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 });
 ---
 
-<div class:list={["component-viewer", size && `viewer-size-${size}`]}>
-  <div class="previews">
+<div class="component-viewer" data-viewer-id={title.toLowerCase().replace(/\s+/g, "-")}>
+  <div class:list={["previews", size && `viewer-size-${size}`]}>
     {
       component_examples.map(async (example: any, idx: number) => {
         const bodyPadding = getBodyPadding(example.data.spacing);
@@ -144,25 +145,94 @@ Object.entries(componentImports).forEach(([path, obj]) => {
             </>
           )}
         </div>
-        <div>
-          <Button
-            variant="ghost"
-            label="View Code"
-            size="lg"
-            iconName="code-bracket"
-            hideText={true}
-            data-action="view-code"
-            element="button"
-          />
-          <Button
-            variant="ghost"
-            label="View Component"
-            size="lg"
-            iconName="computer-desktop"
-            hideText={true}
-            data-action="view-component"
-            class="hide"
-            element="button"
+        <div class="end-segments">
+          <div class="hidden-segments">
+            <Segments
+              name={`device-size-${title.toLowerCase().replace(/\s+/g, "-")}`}
+              options={[
+                {
+                  value: "desktop",
+                  label: "Desktop",
+                  icon: "computer-desktop",
+                  checked: true,
+                },
+                {
+                  value: "tablet",
+                  label: "Tablet",
+                  icon: "device-tablet",
+                  checked: false,
+                },
+                {
+                  value: "mobile",
+                  label: "Mobile",
+                  icon: "device-phone-mobile",
+                  checked: false,
+                },
+              ]}
+              iconOnly={true}
+              class="device-size-segments"
+              data-action="device-size-toggle"
+            />
+            <Segments
+              name={`direction-mode-${title.toLowerCase().replace(/\s+/g, "-")}`}
+              options={[
+                {
+                  value: "ltr",
+                  label: "Left to Right",
+                  icon: "ltr",
+                  checked: true,
+                },
+                {
+                  value: "rtl",
+                  label: "Right to Left",
+                  icon: "rtl",
+                  checked: false,
+                },
+              ]}
+              iconOnly={true}
+              class="direction-segments"
+              data-action="direction-toggle"
+            />
+            <Segments
+              name={`theme-mode-${title.toLowerCase().replace(/\s+/g, "-")}`}
+              options={[
+                {
+                  value: "default",
+                  label: "Default Mode",
+                  icon: "sun",
+                  checked: true,
+                },
+                {
+                  value: "contrast",
+                  label: "Contrast Mode",
+                  icon: "moon",
+                  checked: false,
+                },
+              ]}
+              iconOnly={true}
+              class="theme-segments"
+              data-action="theme-toggle"
+            />
+          </div>
+          <Segments
+            name={`view-mode-${title.toLowerCase().replace(/\s+/g, "-")}`}
+            options={[
+              {
+                value: "component",
+                label: "View Preview",
+                icon: "computer-desktop",
+                checked: true,
+              },
+              {
+                value: "code",
+                label: "View Code",
+                icon: "code-bracket",
+                checked: false,
+              },
+            ]}
+            iconOnly={true}
+            class="view-segments"
+            data-action="view-toggle"
           />
         </div>
       </nav>
@@ -175,107 +245,82 @@ Object.entries(componentImports).forEach(([path, obj]) => {
     const componentViewers = document.querySelectorAll(".component-viewer");
 
     componentViewers.forEach((viewer) => {
-      const viewCodeBtn = viewer.querySelector('[data-action="view-code"]');
-      const viewComponentBtn = viewer.querySelector('[data-action="view-component"]');
+      const segments = {
+        deviceSize: viewer.querySelector('[data-action="device-size-toggle"]'),
+        direction: viewer.querySelector('[data-action="direction-toggle"]'),
+        theme: viewer.querySelector('[data-action="theme-toggle"]'),
+        view: viewer.querySelector('[data-action="view-toggle"]'),
+      };
       const previews = viewer.querySelectorAll(".preview");
       const codeBlocks = viewer.querySelectorAll(".code");
       const exampleSelect = viewer.querySelector(".example-select");
+      const previewsContainer = viewer.querySelector(".previews");
+      const viewerId = viewer.getAttribute("data-viewer-id");
 
       const switchToExample = (exampleId) => {
         previews.forEach((preview) => {
-          preview.classList.remove("active");
+          preview.classList.toggle("active", preview.id === exampleId);
         });
 
-        const selectedPreview = viewer.querySelector(`#${exampleId}`);
-
-        if (selectedPreview) {
-          selectedPreview.classList.add("active");
-        }
-
-        const isCodeView = viewComponentBtn && !viewComponentBtn.classList.contains("hide");
+        const isCodeView =
+          segments.view?.querySelector(`input[name="view-mode-${viewerId}"]:checked`)?.value ===
+          "code";
 
         if (isCodeView) {
-          previews.forEach((preview) => {
-            preview.style.display = "none";
-          });
-
-          codeBlocks.forEach((codeBlock) => {
-            const codeBlockId = codeBlock.id;
-
-            if (codeBlockId === `code-${exampleId}`) {
-              codeBlock.style.display = "block";
-            } else {
-              codeBlock.style.display = "none";
-            }
+          previews.forEach((preview) => (preview.style.display = "none"));
+          codeBlocks.forEach((block) => {
+            block.style.display = block.id === `code-${exampleId}` ? "block" : "none";
           });
         } else {
           previews.forEach((preview) => {
-            if (preview.classList.contains("active")) {
-              preview.style.display = "block";
-            } else {
-              preview.style.display = "none";
-            }
+            preview.style.display = preview.classList.contains("active") ? "block" : "none";
           });
-          codeBlocks.forEach((codeBlock) => {
-            codeBlock.style.display = "none";
-          });
+          codeBlocks.forEach((block) => (block.style.display = "none"));
         }
+      };
+
+      const initSegment = (segmentElement, name, callback) => {
+        if (!segmentElement) return;
+
+        const inputs = segmentElement.querySelectorAll(`input[name="${name}-${viewerId}"]`);
+        const checked = segmentElement.querySelector(`input[name="${name}-${viewerId}"]:checked`);
+
+        if (checked) callback(checked.value);
+
+        inputs.forEach((input) => {
+          input.addEventListener("change", (e) => callback(e.target.value));
+        });
       };
 
       if (exampleSelect) {
         const activePreview = viewer.querySelector(".preview.active");
-
-        if (activePreview) {
-          const activeId = activePreview.id;
-
-          if (exampleSelect.value !== activeId) {
-            exampleSelect.value = activeId;
-          }
+        if (activePreview && exampleSelect.value !== activePreview.id) {
+          exampleSelect.value = activePreview.id;
         }
+        exampleSelect.addEventListener("change", (e) => switchToExample(e.target.value));
       }
 
-      if (exampleSelect) {
-        exampleSelect.addEventListener("change", (event) => {
-          const selectedValue = event.target.value;
+      initSegment(segments.view, "view-mode", () => {
+        const activePreview = viewer.querySelector(".preview.active");
+        if (activePreview) switchToExample(activePreview.id);
+      });
 
-          switchToExample(selectedValue);
-        });
-      }
+      initSegment(segments.theme, "theme-mode", (value) => {
+        previews.forEach((preview) => preview.setAttribute("data-theme", value));
+      });
 
-      if (viewCodeBtn && viewComponentBtn) {
-        viewCodeBtn.addEventListener("click", () => {
-          viewCodeBtn.classList.add("hide");
-          viewComponentBtn.classList.remove("hide");
+      initSegment(segments.direction, "direction-mode", (value) => {
+        previews.forEach((preview) => preview.setAttribute("dir", value));
+      });
 
-          const activePreview = viewer.querySelector(".preview.active");
-
-          if (activePreview) {
-            const activeId = activePreview.id;
-
-            switchToExample(activeId);
-          }
-        });
-
-        viewComponentBtn.addEventListener("click", () => {
-          viewCodeBtn.classList.remove("hide");
-          viewComponentBtn.classList.add("hide");
-
-          const activePreview = viewer.querySelector(".preview.active");
-
-          if (activePreview) {
-            const activeId = activePreview.id;
-
-            switchToExample(activeId);
-          }
-        });
-      }
+      initSegment(segments.deviceSize, "device-size", (value) => {
+        viewer.setAttribute("data-device-size", value);
+      });
     });
   });
 </script>
 
-<!-- Separate script for copy button functionality -->
 <script is:inline>
-  // Global copy button handler - runs once per page load
   document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", async (event) => {
       const button = event.target.closest('[data-action="copy-code"]');
@@ -286,16 +331,16 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 
       if (codeToCopy) {
         try {
-          // Try modern clipboard API first
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(codeToCopy);
           } else {
-            // Fallback for non-secure contexts
             const textArea = document.createElement("textarea");
             textArea.value = codeToCopy;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
+            Object.assign(textArea.style, {
+              position: "fixed",
+              left: "-999999px",
+              top: "-999999px",
+            });
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
@@ -327,7 +372,6 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 
 <style>
   .component-viewer {
-    border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-xs);
     display: flex;
     flex-direction: column;
@@ -341,26 +385,45 @@ Object.entries(componentImports).forEach(([path, obj]) => {
 
   .previews {
     height: 100%;
-    overflow-y: auto;
+  }
+
+  .previews.viewer-size-sm {
+    height: 10rem;
+  }
+
+  .previews.viewer-size-md {
+    height: 20rem;
+  }
+
+  .previews.viewer-size-lg {
+    height: 30rem;
   }
 
   .preview {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border-subtle);
+    border-bottom: 0;
+    border-radius: var(--radius-xs);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     display: none;
-    min-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    transition: max-width var(--animation-slow) ease-in-out;
   }
 
   .preview.active {
     display: block;
-    overflow-y: auto;
   }
 
   .code {
     display: none;
     height: 100%;
+    overflow-x: auto;
     position: relative;
 
     > pre {
-      overflow-y: scroll;
+      overflow: auto scroll;
     }
   }
 
@@ -369,20 +432,6 @@ Object.entries(componentImports).forEach(([path, obj]) => {
     right: var(--spacing-lg);
     top: var(--spacing-sm);
     z-index: 10;
-  }
-
-  .viewer-size {
-    &-sm {
-      height: 10rem;
-    }
-
-    &-md {
-      height: 20rem;
-    }
-
-    &-lg {
-      height: 30rem;
-    }
   }
 
   .controls {
@@ -396,5 +445,59 @@ Object.entries(componentImports).forEach(([path, obj]) => {
     .example-select {
       line-height: 0;
     }
+
+    .end-segments {
+      display: flex;
+      gap: var(--spacing-xs);
+    }
+
+    .hidden-segments {
+      display: flex;
+      gap: var(--spacing-xs);
+      opacity: 0;
+      transition: opacity var(--animation-normal) ease;
+    }
+
+    &:hover .hidden-segments {
+      opacity: 1;
+    }
+
+    .device-size-segments,
+    .direction-segments,
+    .theme-segments,
+    .view-segments {
+      margin-right: var(--spacing-sm);
+
+      .options {
+        display: flex;
+        gap: 0;
+      }
+
+      .option {
+        margin: 0;
+      }
+
+      .segment {
+        min-width: auto;
+        padding: var(--spacing-xs);
+
+        .segment-icon {
+          height: 1rem;
+          width: 1rem;
+        }
+      }
+    }
+
+    .view-segments {
+      margin-right: 0;
+    }
+  }
+
+  .component-viewer[data-device-size="mobile"] .preview {
+    max-width: var(--content-width-sm);
+  }
+
+  .component-viewer[data-device-size="tablet"] .preview {
+    max-width: var(--content-width-lg);
   }
 </style>

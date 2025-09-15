@@ -5,7 +5,6 @@
   gap: var(--spacing-sm);
   margin: 0;
   padding: 0;
-  width: 100%;
 
   .required {
     color: red;
@@ -17,12 +16,13 @@
   }
 
   .options {
-    display: inline-flex;
+    display: flex;
   }
 
   .option {
     align-items: center;
     display: flex;
+    flex-shrink: 0;
     position: relative;
 
     .field {
@@ -31,9 +31,9 @@
 
     .segment {
       align-items: center;
-      background-color: var(--color-bg);
+      background-color: var(--color-bg-surface);
       border: 1px solid var(--color-border);
-      color: var(--color-text);
+      color: var(--color-text-muted);
       cursor: pointer;
       display: inline-flex;
       flex: 1;
@@ -45,7 +45,12 @@
       vertical-align: middle;
 
       &:hover {
-        background-color: var(--color-bg-surface);
+        background-color: var(--color-bg-muted);
+
+        &,
+        .segment-icon {
+          color: var(--color-text-strong);
+        }
       }
 
       .segment-icon {
@@ -64,17 +69,16 @@
     }
 
     .field:checked + .segment {
-      background-color: var(--color-brand);
-      border-color: var(--color-brand);
-      color: var(--color-brand-on);
-      z-index: 1;
-
+      &,
       &:hover {
-        background-color: var(--color-brand-muted);
+        background-color: var(--color-bg);
+        border: 1px solid var(--color-brand);
+        color: var(--color-text-strong);
+        z-index: 1;
       }
 
       .segment-icon {
-        color: var(--color-brand-on);
+        color: var(--color-text-strong);
       }
     }
 
@@ -98,9 +102,11 @@
     border-inline-end: none;
   }
 
+  .option:not(:last-of-type):has(.field:checked) + .option .segment {
+    border-inline-start: 0;
+  }
+
   &.icon-only .option .segment .segment-icon {
-    height: 1.2em;
     margin-block: var(--spacing-xs);
-    width: 1.2em;
   }
 }

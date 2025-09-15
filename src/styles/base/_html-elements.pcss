@@ -9,8 +9,13 @@
 
   body {
     background-color: var(--color-bg);
-    color: var(--color-text);
     min-height: 100vh;
+  }
+
+  body,
+  [data-theme="contrast"],
+  [data-theme="default"] {
+    color: var(--color-text);
   }
 
   main {
@@ -24,7 +29,11 @@
   }
 
   .astro-code {
-    white-space: break-spaces;
+    white-space: pre;
+
+    code {
+      overflow-x: auto;
+    }
   }
 
   p,
