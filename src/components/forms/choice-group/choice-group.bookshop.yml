@@ -74,8 +74,9 @@ _structures:
             comment: Whether the field is checked by default.
         preview:
           icon: check_box
-          text: Choice Group
-          subtext:
+          text:
             - key: label
+            - Choice Option
+          subtext:
             - key: value
-            - Add a value for the input group.
+            - Add a value for the option.

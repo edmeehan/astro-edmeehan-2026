@@ -74,7 +74,7 @@ _structures:
           icon: radio_button_partial
           text:
             - key: label
-            - Add a label for the option.
+            - Segment Option
           subtext:
             - key: value
             - Add a value for the option.
