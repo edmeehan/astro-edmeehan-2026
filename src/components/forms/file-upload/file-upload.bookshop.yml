@@ -3,7 +3,7 @@ spec:
     - formBlocks
   label: File Upload
   description: "A file input field with an optional label."
-  icon: rectangle
+  icon: upload
   tags: []
 
 blueprint:
@@ -22,6 +22,9 @@ _inputs:
   name:
     type: text
     comment: The name attribute for the file upload field.
+    options:
+      required: true
+      required_message: Only form elements with a name will have their values passed when submitting a form.
   required:
     type: switch
     comment: Whether the field is required.

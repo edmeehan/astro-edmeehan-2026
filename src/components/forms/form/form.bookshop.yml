@@ -5,19 +5,21 @@ spec:
     - secondContentBlocks
   label: Form
   description: "A form element that groups related form controls and handles form submission."
-  icon: rectangle
+  icon: checklist_rtl
   tags: []
 
 blueprint:
   action:
-  formBlocks:
+  formBlocks: []
 
 preview:
 
 _inputs:
   action:
     type: url
-    comment: The URL that processes the form submission.
+    comment: Where to send the form-data when the form is submitted. The URL that processes the form submission.
   formBlocks:
-    type: blocks
+    type: array
     comment: The form blocks to render inside the form.
+    options:
+      structures: _structures.formBlocks

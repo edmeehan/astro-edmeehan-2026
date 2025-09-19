@@ -3,7 +3,7 @@ spec:
     - formBlocks
   label: Choice Group
   description: "A group of checkboxes or radio buttons with labels."
-  icon: rectangle
+  icon: checkbox
   tags: []
 
 blueprint:
@@ -25,10 +25,17 @@ preview:
 _inputs:
   name:
     type: text
-    comment: The name attribute for the input group.
+    comment: A unique name attribute for the input group.
+    options:
+      required: true
+      required_message: Only form elements with a name will have their values passed when submitting a form.
   options:
-    type: blocks
+    type: array
     comment: Array of choice options with value, label, and checked state.
+    options:
+      structures: _structures.options
+      min_items: 1
+      min_items_message: At least one option is required.
   title:
     type: text
     comment: Optional title text for the fieldset.
@@ -37,11 +44,38 @@ _inputs:
     comment: The layout orientation - vertical for stacked layout, horizontal for grid layout.
     options:
       values:
-        - vertical
-        - horizontal
+        - id: vertical
+          name: Vertical
+        - id: horizontal
+          name: Horizontal
   required:
     type: switch
     comment: Whether the field is required.
   multiple:
     type: switch
     comment: When true, uses checkboxes for multiple selection. When false, uses radio buttons for single selection.
+
+_structures:
+  options:
+    values:
+      - value:
+          value:
+          label:
+          checked:
+        _inputs:
+          value:
+            type: text
+            comment: The value entered by the user when the option is selected.
+          label:
+            type: text
+            comment: The label text for the option.
+          checked:
+            type: switch
+            comment: Whether the field is checked by default.
+        preview:
+          icon: checkbox
+          text: Choice Group
+          subtext:
+            - key: title
+            - key: name
+            - Enter a name for the input group.
