@@ -142,6 +142,33 @@ pageBlocks:
             required: false
             placeholder: Hello, I'm writing here because...
             value:
+      - _bookshop_name: wrappers/accordion
+        items:
+          - title: Testing media
+            contentBlocks:
+              - _bookshop_name: elements/smart-image
+                source: /component-library/images/dunedin-cliff.jpg
+                alt: Dunedin coastline
+                rounded: true
+                aspectRatio: landscape
+                positionVertical: center
+                positionHorizontal: center
+              - _bookshop_name: elements/smart-video
+                externalVideoHost: true
+                videoHost: youtube
+                id: 5dXw2jaj2so
+                title: CC tutorial
+                source:
+                poster:
+              - _bookshop_name: elements/smart-video
+                externalVideoHost: false
+                videoHost: youtube
+                id:
+                title:
+                source: /assets/videos/glass.mp4
+                poster: /assets/images/video-placeholder.jpg
+        openFirst: false
+        singleOpen: false
     maxContentWidth: 2xl
     paddingHorizontal: lg
     paddingVertical: lg
