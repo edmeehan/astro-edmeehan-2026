@@ -3,8 +3,15 @@ spec:
     - buttonBlocks
   label: Button
   description: "A clickable element that navigates to another page or triggers an action within the current page."
-  icon: rectangle
+  icon: variables
   tags: []
+  preview:
+    icon: variables
+    text:
+      - key: text
+      - Button
+    subtext:
+      - key: link
 
 blueprint:
   text:
@@ -12,7 +19,7 @@ blueprint:
   iconName:
   iconPosition: before
   hideText: false
-  variant: ghost
+  variant: primary
   size: md
 
 preview:

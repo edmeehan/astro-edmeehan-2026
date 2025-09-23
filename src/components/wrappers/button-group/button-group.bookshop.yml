@@ -5,12 +5,8 @@ spec:
     - secondContentBlocks
   label: Button Group
   description: "Controls the alignment and direction of buttons."
-  icon: rectangle
+  icon: splitscreen_top
   tags: []
-  preview:
-    text: Button Group
-    subtext:
-      - template: 
 
 blueprint:
   buttonBlocks:

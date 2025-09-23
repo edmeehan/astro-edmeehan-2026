@@ -32,6 +32,11 @@ collection_groups:
     collections:
       - data
 
+_structures:
+  contentBlocks:
+    style: modal
+    values: []
+
 _select_data:
   icons:
     - id: academic-cap
