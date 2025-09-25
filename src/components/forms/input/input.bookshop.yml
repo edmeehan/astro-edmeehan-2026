@@ -33,7 +33,6 @@ _inputs:
         - tel
         - url
         - number
-        - date
     comment: The input type.
   placeholder:
     type: text

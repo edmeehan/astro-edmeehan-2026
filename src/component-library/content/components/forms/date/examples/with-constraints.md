@@ -1,0 +1,11 @@
+---
+title: "Date Input with Constraints"
+spacing: "all"
+blocks:
+  _bookshop_name: "forms/date"
+  label: "Feb 2026 Date"
+  name: "eventdate"
+  min: "2026-02-01"
+  max: "2026-02-28"
+  placeholder: "Select a date in Feb 2026"
+---
