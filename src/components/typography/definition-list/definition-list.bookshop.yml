@@ -10,7 +10,7 @@ spec:
 
 blueprint:
   items:
-  horizontalAlignment: start
+  alignX: start
 
 preview:
 
@@ -19,7 +19,7 @@ _inputs:
     type: array
     options:
       structures: _structures.item
-  horizontalAlignment:
+  alignX:
     type: select
     options:
       values:
