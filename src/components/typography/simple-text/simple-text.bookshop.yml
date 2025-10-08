@@ -10,7 +10,7 @@ spec:
 
 blueprint:
   text:
-  align: start
+  alignX: start
   size: md
 
 preview:
@@ -31,7 +31,7 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-  align:
+  alignX:
     comment: The alignment of the text.
     type: select
     options:

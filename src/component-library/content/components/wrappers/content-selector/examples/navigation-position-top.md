@@ -28,7 +28,7 @@ blocks:
           text: |
             We ship worldwide. Orders leave within 2 business days.
             Delivery times vary by region.
-          align: start
+          alignX: start
           size: md
         - _bookshop_name: typography/list
           items:
@@ -45,7 +45,7 @@ blocks:
       contentBlocks:
         - _bookshop_name: typography/simple-text
           text: "30‑day returns. Unused items only. Full refund once received."
-          align: start
+          alignX: start
           size: md
         - _bookshop_name: elements/button
           text: Start a return

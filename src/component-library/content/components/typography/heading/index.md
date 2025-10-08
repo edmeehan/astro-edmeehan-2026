@@ -11,7 +11,8 @@ examples:
       - types
   - slugs:
       - sizes
-  - slugs:
+  - title: AlignX
+    slugs:
       - align
   - slugs:
       - icons
