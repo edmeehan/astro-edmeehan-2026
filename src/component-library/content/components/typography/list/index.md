@@ -15,7 +15,6 @@ examples:
       - direction-vertical
       - direction-horizontal
     title: Directions
-    size: md
   - slugs:
       - alignment-start-vertical
       - alignment-center-vertical
@@ -23,8 +22,7 @@ examples:
       - alignment-start-horizontal
       - alignment-center-horizontal
       - alignment-end-horizontal
-    title: Horizontal Alignments
-    size: md
+    title: AlignX
   - slugs:
       - size-xs
       - size-sm
@@ -32,6 +30,5 @@ examples:
       - size-lg
       - size-xl
       - size-2xl
-    size: sm
     title: Sizes
 ---

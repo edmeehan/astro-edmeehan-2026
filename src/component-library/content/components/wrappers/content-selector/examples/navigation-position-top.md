@@ -37,7 +37,7 @@ blocks:
             - text: "US & EU: 5–10 days"
               icon: globe-alt
           direction: vertical
-          horizontalAlignment: start
+          alignX: start
           size: md
     - title: Returns
       sub_text: Easy and fair

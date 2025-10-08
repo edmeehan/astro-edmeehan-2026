@@ -11,7 +11,7 @@ spec:
 blueprint:
   items:
   direction: vertical
-  horizontalAlignment: start
+  alignX: start
   size: md
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
@@ -33,7 +33,7 @@ _inputs:
         - id: vertical
           name: Vertical
     comment: The direction in which list items are arranged.
-  horizontalAlignment:
+  alignX:
     type: select
     comment: The alignment of the list items.
     options:
