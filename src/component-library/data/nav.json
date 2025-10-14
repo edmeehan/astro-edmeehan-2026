@@ -5,36 +5,7 @@
   },
   {
     "name": "Guidelines",
-    "path": "/component-library/guidelines/",
-    "children": [
-      {
-        "name": "Principles",
-        "path": "/component-library/guidelines/principles/"
-      },
-      {
-        "name": "Components",
-        "path": "/component-library/guidelines/components/"
-      },{
-        "name": "Blocks",
-        "path": "/component-library/guidelines/blocks/"
-      },
-      {
-        "name": "Styling",
-        "path": "/component-library/guidelines/styling/"
-      },
-      {
-        "name": "Scripts",
-        "path": "/component-library/guidelines/scripts/"
-      },
-      {
-        "name": "Editing",
-        "path": "/component-library/guidelines/editing/"
-      }
-    ]
-  },
-  {
-    "group": "Blocks",
-    "children": []
+    "path": "/component-library/guidelines/"
   },
   {
     "group": "Typography",
@@ -54,6 +25,10 @@
   },
   {
     "group": "Navigation",
+    "children": []
+  },
+  {
+    "group": "Blocks",
     "children": []
   }
 ]
