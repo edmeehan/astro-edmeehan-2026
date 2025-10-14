@@ -4,27 +4,56 @@
     "path": "/component-library/"
   },
   {
+    "name": "Guidelines",
+    "path": "/component-library/guidelines/",
+    "children": [
+      {
+        "name": "Principles",
+        "path": "/component-library/guidelines/principles/"
+      },
+      {
+        "name": "Components",
+        "path": "/component-library/guidelines/components/"
+      },{
+        "name": "Blocks",
+        "path": "/component-library/guidelines/blocks/"
+      },
+      {
+        "name": "Styling",
+        "path": "/component-library/guidelines/styling/"
+      },
+      {
+        "name": "Scripts",
+        "path": "/component-library/guidelines/scripts/"
+      },
+      {
+        "name": "Editing",
+        "path": "/component-library/guidelines/editing/"
+      }
+    ]
+  },
+  {
     "group": "Blocks",
-    "items": []
+    "children": []
   },
   {
     "group": "Typography",
-    "items": []
+    "children": []
   },
   {
     "group": "Elements",
-    "items": []
+    "children": []
   },
   {
     "group": "Wrappers",
-    "items": []
+    "children": []
   },
   {
     "group": "Forms",
-    "items": []
+    "children": []
   },
   {
     "group": "Navigation",
-    "items": []
+    "children": []
   }
 ]
