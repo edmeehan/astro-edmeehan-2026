@@ -1,6 +1,7 @@
 spec:
   structures:
     - contentBlocks
+    - cardBlocks
   label: Testimonial
   description: A quotation with an author and author description.
   icon: format_quote

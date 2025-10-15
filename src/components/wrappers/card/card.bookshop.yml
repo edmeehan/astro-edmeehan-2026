@@ -7,20 +7,20 @@ spec:
   tags: []
 
 blueprint:
-  label: ""
-  contentBlocks: []
-  headerContentBlocks: []
-  footerContentBlocks: []
+  label:
+  cardBlocks: []
+  headerCardBlocks: []
+  footerCardBlocks: []
   paddingHorizontal: sm
   paddingVertical: sm
   colorScheme: "default"
   backgroundColor:
   backgroundImage:
-    source: ""
-    alt: ""
+    source:
+    alt:
     positionVertical: top
     positionHorizontal: center
-  link: ""
+  link:
   rounded: false
   border: false
 
@@ -32,21 +32,21 @@ _inputs:
   label:
     type: text
     comment: Optional label for the card to help identify it in the editor.
-  contentBlocks:
+  cardBlocks:
     type: array
     comment: Array of content blocks to render within the card.
     options:
-      structures: _structures.contentBlocks
-  headerContentBlocks:
+      structures: _structures.cardBlocks
+  headerCardBlocks:
     type: array
     comment: Array of content blocks to render in the card header.
     options:
-      structures: _structures.contentBlocks
-  footerContentBlocks:
+      structures: _structures.cardBlocks
+  footerCardBlocks:
     type: array
     comment: Array of content blocks to render in the card footer.
     options:
-      structures: _structures.contentBlocks
+      structures: _structures.cardBlocks
   paddingHorizontal:
     type: select
     comment: Horizontal padding applied to the card content.

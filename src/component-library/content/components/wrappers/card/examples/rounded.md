@@ -7,7 +7,7 @@ blocks:
   rounded: true
   paddingHorizontal: sm
   paddingVertical: sm
-  contentBlocks:
+  cardBlocks:
     - _bookshop_name: "typography/heading"
       text: "Rounded Card"
       level: h3

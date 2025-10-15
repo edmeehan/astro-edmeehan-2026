@@ -1,6 +1,7 @@
 spec:
   structures:
     - contentBlocks
+    - cardBlocks
   label: Counter
   description: Animated number that counts up when visible.
   icon: speed

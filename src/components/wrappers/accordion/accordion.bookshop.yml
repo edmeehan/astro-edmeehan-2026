@@ -1,13 +1,14 @@
 spec:
   structures:
     - contentBlocks
+    - cardBlocks
   label: Accordion
   description: Hides content behind an expandable menu.
   icon: expand_all
   tags:
 
 blueprint:
-  label: ""
+  label:
   items:
   openFirst: false
   singleOpen: false
@@ -24,7 +25,6 @@ _inputs:
   items:
     comment: The items to display in the accordion.
     type: array
-    icon: expand_all
     options:
       structures: _structures.accordion_item
   openFirst:

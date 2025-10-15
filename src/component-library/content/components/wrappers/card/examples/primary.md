@@ -6,7 +6,7 @@ blocks:
   border: true
   paddingHorizontal: sm
   paddingVertical: sm
-  contentBlocks:
+  cardBlocks:
     - _bookshop_name: "typography/heading"
       text: "This is a card"
       level: h3

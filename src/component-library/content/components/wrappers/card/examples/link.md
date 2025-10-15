@@ -7,7 +7,7 @@ blocks:
   paddingVertical: md
   backgroundColor: accent
   link: "#"
-  contentBlocks:
+  cardBlocks:
     - _bookshop_name: "typography/heading"
       text: "Clickable Card"
       level: h3

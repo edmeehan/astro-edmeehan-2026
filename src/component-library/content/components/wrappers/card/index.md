@@ -5,15 +5,15 @@ order: 2
 slots:
   - title: default
     description: The contents for the body of the Card.
-    fallback_for: contentBlocks
+    fallback_for: cardBlocks
     child_component:
   - title: header
     description: The contents of header of the Card.
-    fallback_for: headerContentBlocks
+    fallback_for: headerCardBlocks
     child_component:
   - title: footer
     description: The contents of footer of the Card.
-    fallback_for: footerContentBlocks
+    fallback_for: footerCardBlocks
     child_component:
 examples:
   - slugs:

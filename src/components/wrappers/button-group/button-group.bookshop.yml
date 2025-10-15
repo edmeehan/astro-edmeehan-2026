@@ -1,6 +1,7 @@
 spec:
   structures:
     - contentBlocks
+    - cardBlocks
   label: Button Group
   description: "Controls the alignment and direction of buttons."
   icon: rectangle
@@ -8,10 +9,10 @@ spec:
   preview:
     text: Button Group
     subtext:
-      - template:
+      - template: '{buttonBlocks|array_length} {"button"|pluralize=buttonBlocks}'
 
 blueprint:
-  label: ""
+  label:
   buttonBlocks: []
   direction: row
   alignX: start
@@ -25,6 +26,7 @@ _inputs:
     comment: Optional label for the button group to help identify it in the editor.
     type: text
   buttonBlocks:
+    type: array
     comment: Array of button components to render within the group.
     options:
       structures: _structures.buttonBlocks

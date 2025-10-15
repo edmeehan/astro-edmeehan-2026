@@ -1,6 +1,7 @@
 spec:
   structures:
     - contentBlocks
+    - cardBlocks
   label: Simple Text
   description: "Displays plain text in layouts with configurable size and alignment."
   icon: view_headline

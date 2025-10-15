@@ -1,6 +1,7 @@
 spec:
   structures:
     - contentBlocks
+    - cardBlocks
   label: Smart Video
   description: "Play a video from YouTube, Vimeo, or your local files."
   icon: videocam
