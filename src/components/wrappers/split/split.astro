@@ -2,8 +2,8 @@
 import Component from "@components/utils/renderBlock.astro";
 
 const {
-  firstColumnContentBlocks = [],
-  secondColumnContentBlocks = [],
+  firstColumnBlocks = [],
+  secondColumnBlocks = [],
   distributionMode = "half",
   verticalAlignment = "top",
   reverse = false,
@@ -30,8 +30,8 @@ if (!htmlAttributes.id && label) {
 }
 
 // Get content blocks based on reverse setting
-const firstContentBlocks = reverse ? secondColumnContentBlocks : firstColumnContentBlocks;
-const secondContentBlocks = reverse ? firstColumnContentBlocks : secondColumnContentBlocks;
+const firstSplitBlocks = reverse ? secondColumnBlocks : firstColumnBlocks;
+const secondSplitBlocks = reverse ? firstColumnBlocks : secondColumnBlocks;
 
 const getReversedDistributionMode = (mode: string) => {
   const reverseMap = {
@@ -62,11 +62,11 @@ const splitId = `split-${crypto.randomUUID()}`;
   {...htmlAttributes}
 >
   <div class="pane first">
-    <Component contentBlocks={firstContentBlocks} />
+    <Component contentBlocks={firstSplitBlocks} />
     {reverse ? <slot name="second" /> : <slot name="first" />}
   </div>
   <div class="pane second">
-    <Component contentBlocks={secondContentBlocks} />
+    <Component contentBlocks={secondSplitBlocks} />
     {reverse ? <slot name="first" /> : <slot name="second" />}
   </div>
 </section>

@@ -2,6 +2,7 @@ spec:
   structures:
     - contentBlocks
     - cardBlocks
+    - splitBlocks
   label: Accordion
   description: Hides content behind an expandable menu.
   icon: expand_all

@@ -3,7 +3,7 @@ title: Not Reversed
 spacing:
 blocks:
   _bookshop_name: "wrappers/split"
-  firstColumnContentBlocks:
+  firstColumnBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "accent"
       contentBlocks:
@@ -12,7 +12,7 @@ blocks:
             ## Side A
 
             This is content for side A.
-  secondColumnContentBlocks:
+  secondColumnBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
       contentBlocks:

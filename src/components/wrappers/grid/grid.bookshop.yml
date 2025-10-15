@@ -1,6 +1,7 @@
 spec:
   structures:
     - contentBlocks
+    - splitBlocks
   label: Grid
   description: "Responsive, centered grid with configurable sizing."
   icon: grid_on

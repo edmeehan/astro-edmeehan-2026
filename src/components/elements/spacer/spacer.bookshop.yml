@@ -2,6 +2,7 @@ spec:
   structures:
     - contentBlocks
     - cardBlocks
+    - splitBlocks
   label: Spacer
   description: Gives space between content.
   icon: space_bar

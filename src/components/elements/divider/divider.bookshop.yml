@@ -2,6 +2,7 @@ spec:
   structures:
     - contentBlocks
     - cardBlocks
+    - splitBlocks
   label: Divider
   description: A horizontal line to separate content
   icon: horizontal_rule

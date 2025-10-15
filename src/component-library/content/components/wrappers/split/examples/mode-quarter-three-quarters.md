@@ -3,7 +3,7 @@ title: Quarter-Three Quarters
 spacing:
 blocks:
   _bookshop_name: "wrappers/split"
-  firstColumnContentBlocks:
+  firstColumnBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "accent"
       contentBlocks:
@@ -12,7 +12,7 @@ blocks:
             ## Quarter column
 
             This column takes up 25% of the available space.
-  secondColumnContentBlocks:
+  secondColumnBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
       contentBlocks:

@@ -3,7 +3,7 @@ title: Two Thirds-Third
 spacing:
 blocks:
   _bookshop_name: "wrappers/split"
-  firstColumnContentBlocks:
+  firstColumnBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "accent"
       contentBlocks:
@@ -12,7 +12,7 @@ blocks:
             ## Two thirds column
 
             This column takes up 66% of the available space.
-  secondColumnContentBlocks:
+  secondColumnBlocks:
     - _bookshop_name: "wrappers/container"
       backgroundColor: "highlight"
       contentBlocks:

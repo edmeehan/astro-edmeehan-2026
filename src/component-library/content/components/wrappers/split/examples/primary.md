@@ -3,13 +3,13 @@ title: Primary Split
 spacing:
 blocks:
   _bookshop_name: "wrappers/split"
-  firstColumnContentBlocks:
+  firstColumnBlocks:
     - _bookshop_name: "typography/rich-text"
       text: |-
         ## Side A
 
         This is content for side A.
-  secondColumnContentBlocks:
+  secondColumnBlocks:
     - _bookshop_name: "typography/rich-text"
       text: |-
         ## Side B

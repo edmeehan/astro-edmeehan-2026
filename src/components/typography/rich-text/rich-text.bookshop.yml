@@ -2,6 +2,7 @@ spec:
   structures:
     - contentBlocks
     - cardBlocks
+    - splitBlocks
   label: Rich text
   description: A catch-all for all content types. Can contain headings, paragraphs, images, bullets. Use text prop for Markdown content or slot for HTML content.
   icon: edit_note

@@ -2,6 +2,7 @@ spec:
   structures:
     - contentBlocks
     - cardBlocks
+    - splitBlocks
   label: Button Group
   description: "Controls the alignment and direction of buttons."
   icon: rectangle
