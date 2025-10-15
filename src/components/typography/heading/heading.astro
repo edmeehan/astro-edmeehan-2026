@@ -32,6 +32,8 @@ const Tag = getTag(type);
 ---
 
 <Tag
+  data-editable="component"
+  data-component="typography/heading"
   class:list={["heading", `type-${type}`, size && `size-${size}`, `align-${alignX}`, className]}
   {...htmlAttributes}
 >
@@ -46,13 +48,7 @@ const Tag = getTag(type);
       />
     )
   }
-  {
-    text ? (
-      <span data-editable="text" data-prop="text" class="heading-text" set:html={MarkdownText} />
-    ) : (
-      <slot />
-    )
-  }
+  {text ? <span class="heading-text" set:html={MarkdownText} /> : <slot />}
   {
     iconName && iconPosition === "after" && (
       <Icon
