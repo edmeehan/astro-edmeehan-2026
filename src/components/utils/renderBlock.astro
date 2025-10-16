@@ -34,12 +34,7 @@ const { contentBlocks } = Astro.props;
     }
 
     return Component ? (
-      <editable-array-item
-        data-id={block._bookshop_name}
-        data-editable="component"
-        data-component={block._bookshop_name}
-        data-prop="block"
-      >
+      <editable-array-item data-id={block._bookshop_name} data-component={block._bookshop_name}>
         <Component {...block} />
       </editable-array-item>
     ) : null;
