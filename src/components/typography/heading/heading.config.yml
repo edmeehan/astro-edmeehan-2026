@@ -1,6 +1,3 @@
-# CloudCannon component configuration for Heading
-# This will be aggregated into _structures by the generator script
-
 component:
   label: Heading
   icon: title
