@@ -1,0 +1,19 @@
+label: Pagination
+icon: list
+description: "A navigation component for Astro's built-in pagination, simply passing the page object."
+structures: []
+value:
+  _component: elements/pagination
+  page: null
+preview:
+  text: Pagination
+  icon: list
+picker_preview:
+  text: Pagination
+  subtext: "Navigation for Astro's built-in pagination."
+  icon: list
+
+_inputs:
+  page:
+    type: object
+    comment: The Astro page object from paginate() function.

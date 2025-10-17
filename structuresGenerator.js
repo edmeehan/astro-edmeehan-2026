@@ -9,6 +9,26 @@ import path from "path";
  * This script aggregates component configurations from *.config.yml files
  * and generates the _structures section in cloudcannon.config.yml.
  *
+ * Component Config Format:
+ * -----------------------
+ * Each component config file should have the following structure:
+ *
+ *   label: Component Name
+ *   icon: icon_name
+ *   description: "Component description"
+ *   structures:
+ *     - contentBlocks
+ *   value:
+ *     _component: path/to/component
+ *     field: default_value
+ *   preview:
+ *     text: [...]
+ *   picker_preview:
+ *     text: Component Name
+ *   _inputs:
+ *     field:
+ *       type: text
+ *
  * Structure Aliases:
  * -----------------
  * You can define 1:1 relationships between structures in cloudcannon.config.yml:
@@ -19,8 +39,6 @@ import path from "path";
  *
  * When a component specifies it belongs to 'contentBlocks', it will automatically
  * be added to 'firstContentBlocks' and 'secondContentBlocks' as well.
- *
- * This eliminates the need to specify all three structures in every component config.
  */
 
 const CONFIG_FILE = "cloudcannon.config.yml";
@@ -65,28 +83,37 @@ async function generateStructures() {
       const content = fs.readFileSync(configFile, "utf8");
       const config = yaml.load(content);
 
-      // Skip files without a component definition
-      if (!config.component) {
+      // Skip files without required fields
+      if (!config.structures || !config.label) {
         continue;
       }
 
-      const component = config.component;
       const componentPath = path.relative("src/components", configFile);
 
       console.log(`   Processing: ${componentPath}`);
 
-      // Extract the component definition (everything except 'structures')
-      const { structures: targetStructures, ...componentDef } = component;
-
-      // Include _inputs if they exist in the config file
-      // This ensures each structure value has the correct input configuration
-      if (config._inputs) {
-        componentDef._inputs = config._inputs;
-      }
+      // Extract the component definition (everything except 'structures' and nested '_structures')
+      const {
+        structures: targetStructures,
+        _structures: nestedStructures,
+        ...componentDef
+      } = config;
 
       if (!targetStructures || !Array.isArray(targetStructures)) {
         console.warn(`   ⚠️  Warning: ${componentPath} has no structures array`);
         continue;
+      }
+
+      // If the component defines nested structures (like for array items), merge them
+      if (nestedStructures) {
+        for (const [structName, structConfig] of Object.entries(nestedStructures)) {
+          if (!structures[structName]) {
+            structures[structName] = {
+              id_key: "_component",
+              ...structConfig,
+            };
+          }
+        }
       }
 
       // Expand structures to include aliases
@@ -124,10 +151,16 @@ async function generateStructures() {
     console.log(`   - ${name}: ${config.values.length} components`);
   }
 
-  // Merge in the generated structures (preserve structure_aliases)
+  // Merge any existing _structures from the cloudcannon.config.yml that aren't generated
+  // (This preserves manually defined structures)
+  const finalStructures = {
+    ...structures,
+  };
+
+  // Merge in the generated structures (preserve structure_aliases and other config)
   const updatedConfig = {
     ...existingConfig,
-    _structures: structures,
+    _structures: finalStructures,
   };
 
   // Write back to cloudcannon.config.yml

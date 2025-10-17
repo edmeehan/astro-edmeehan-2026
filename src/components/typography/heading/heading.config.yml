@@ -1,26 +1,25 @@
-component:
-  label: Heading
+label: Heading
+icon: title
+description: "The main title or heading with levels (H1 to H6) to show hierarchy and structure for the page and sections."
+structures:
+  - contentBlocks
+value:
+  _component: typography/heading
+  text: ""
+  type: h2
+  size: ""
+  alignX: start
+  iconName: null
+  iconPosition: before
+preview:
+  text:
+    - key: text
+    - Heading
   icon: title
-  description: "The main title or heading with levels (H1 to H6) to show hierarchy and structure for the page and sections."
-  structures:
-    - contentBlocks
-  value:
-    _component: typography/heading
-    text: ""
-    type: h2
-    size: ""
-    alignX: start
-    iconName: null
-    iconPosition: before
-  preview:
-    text:
-      - key: text
-      - Heading
-    icon: title
-  picker_preview:
-    text: Heading
-    subtext: "Main title or heading with levels (H1 to H6)"
-    icon: title
+picker_preview:
+  text: Heading
+  subtext: "Main title or heading with levels (H1 to H6)"
+  icon: title
 
 _inputs:
   text:
