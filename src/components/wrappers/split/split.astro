@@ -29,9 +29,11 @@ if (!htmlAttributes.id && label) {
   htmlAttributes.id = slugifyLabel(label);
 }
 
-// Get content blocks based on reverse setting
+// Get content blocks and prop names based on reverse setting
 const firstSplitBlocks = reverse ? secondColumnContentBlocks : firstColumnContentBlocks;
 const secondSplitBlocks = reverse ? firstColumnContentBlocks : secondColumnContentBlocks;
+const firstPropName = reverse ? "secondColumnContentBlocks" : "firstColumnContentBlocks";
+const secondPropName = reverse ? "firstColumnContentBlocks" : "secondColumnContentBlocks";
 
 const getReversedDistributionMode = (mode: string) => {
   const reverseMap = {
@@ -64,7 +66,7 @@ const splitId = `split-${crypto.randomUUID()}`;
   <div class="pane first">
     {
       firstSplitBlocks && firstSplitBlocks.length > 0 ? (
-        <Component contentBlocks={firstSplitBlocks} propName="firstColumnContentBlocks" />
+        <Component contentBlocks={firstSplitBlocks} propName={firstPropName} />
       ) : reverse ? (
         <slot name="second" />
       ) : (
@@ -75,7 +77,7 @@ const splitId = `split-${crypto.randomUUID()}`;
   <div class="pane second">
     {
       secondSplitBlocks && secondSplitBlocks.length > 0 ? (
-        <Component contentBlocks={secondSplitBlocks} propName="secondColumnContentBlocks" />
+        <Component contentBlocks={secondSplitBlocks} propName={secondPropName} />
       ) : reverse ? (
         <slot name="first" />
       ) : (
