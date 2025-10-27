@@ -820,7 +820,7 @@ _structures:
         value:
           _component: wrappers/grid
           label: ""
-          layout: features
+          layout: center-aligned
           minItemWidth: 280
           maxItemWidth: 400
           items: []
@@ -2620,7 +2620,7 @@ _structures:
           hideText:
             type: switch
             comment: Whether to hide the button text and show only the icon.
-            hidden: "!iconName\""
+            hidden: '!iconName"'
           disabled:
             type: switch
             comment: Whether the submit button is disabled.

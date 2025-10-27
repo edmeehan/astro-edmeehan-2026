@@ -2,7 +2,19 @@
   gap: var(--spacing-md);
   width: 100%;
 
-  &.layout-features {
+  &.layout-start-aligned {
+    align-items: stretch;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--min-item-width), 100%), 1fr));
+    justify-content: start;
+
+    > .grid-item > editable-array > editable-array-item:only-child > *,
+    > .grid-item > :not(editable-array):only-child {
+      height: 100%;
+    }
+  }
+
+  &.layout-center-aligned {
     align-items: stretch;
     display: flex;
     flex-wrap: wrap;
@@ -12,15 +24,14 @@
       flex: 1 1 min(var(--min-item-width), 100%);
       max-width: var(--max-item-width);
 
-      > editable-array > editable-array-item > *:only-child,
+      > editable-array > editable-array-item:only-child > *,
       > :not(editable-array):only-child {
         height: 100%;
       }
     }
   }
 
-  /* Flow Layout: Flex with uneven columns, center vertical, center horizontal */
-  &.layout-flow {
+  &.layout-uneven-columns {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
@@ -30,19 +41,6 @@
       flex: 0 0 auto;
       max-width: var(--max-item-width);
       min-width: min(var(--min-item-width), 100%);
-    }
-  }
-
-  /* Tiles Layout: Grid with stretch vertical, start horizontal */
-  &.layout-tiles {
-    align-items: stretch;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(var(--min-item-width), 100%), 1fr));
-    justify-content: start;
-
-    > .grid-item > editable-array > editable-array-item > *:only-child,
-    > .grid-item > :not(editable-array):only-child {
-      height: 100%;
     }
   }
 }

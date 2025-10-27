@@ -1,9 +1,9 @@
 ---
-title: Tiles Layout
+title: Start Aligned Layout
 spacing:
 blocks:
   _component: "wrappers/grid"
-  layout: tiles
+  layout: start-aligned
   minItemWidth: 200
   maxItemWidth: 300
   items:
@@ -15,10 +15,10 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Tile 1"
+              text: "Item 1"
               level: h3
             - _component: "typography/simple-text"
-              text: "The Tiles layout uses CSS Grid to pack as many items as possible per row while respecting minimum width constraints."
+              text: "The start-aligned layout uses CSS Grid to pack as many items as possible per row while respecting minimum width constraints."
     - contentBlocks:
         - _component: "wrappers/card"
           paddingHorizontal: md
@@ -27,7 +27,7 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Tile 2"
+              text: "Item 2"
               level: h3
             - _component: "typography/simple-text"
               text: "Perfect for image galleries, portfolio items, or any content where you want to maximize space utilization."
@@ -39,7 +39,7 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Tile 3"
+              text: "Item 3"
               level: h3
             - _component: "typography/simple-text"
               text: "Items stretch to fill their grid cells and align to the start horizontally for a clean, organized appearance."
@@ -51,10 +51,10 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Tile 4"
+              text: "Item 4"
               level: h3
             - _component: "typography/simple-text"
-              text: "Each tile maintains consistent sizing within the min width constraints while maximizing items per row."
+              text: "Each item maintains consistent sizing within the min width constraints while maximizing items per row."
     - contentBlocks:
         - _component: "wrappers/card"
           paddingHorizontal: md
@@ -63,7 +63,7 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Tile 5"
+              text: "Item 5"
               level: h3
             - _component: "typography/simple-text"
               text: "It's great for showcasing multiple items like products, blog posts, team members, or portfolio pieces in a grid format."
@@ -75,7 +75,7 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Tile 6"
+              text: "Item 6"
               level: h3
             - _component: "typography/simple-text"
               text: "It adapts to different screen sizes while maintaining alignment between grid items."

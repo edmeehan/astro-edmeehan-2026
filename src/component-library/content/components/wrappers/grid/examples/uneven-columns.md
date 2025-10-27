@@ -1,11 +1,11 @@
 ---
-title: Features Layout
+title: Uneven Columns Layout
 spacing:
 blocks:
   _component: "wrappers/grid"
-  layout: features
-  minItemWidth: 350
-  maxItemWidth: 350
+  layout: uneven-columns
+  minItemWidth: 0
+  maxItemWidth: 320
   items:
     - contentBlocks:
         - _component: "wrappers/card"
@@ -15,10 +15,10 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Feature One"
+              text: "Short"
               level: h3
             - _component: "typography/simple-text"
-              text: "The features layout sizes items within the min/max width provided."
+              text: "Short content."
     - contentBlocks:
         - _component: "wrappers/card"
           paddingHorizontal: md
@@ -27,10 +27,10 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Feature Two"
+              text: "Medium"
               level: h3
             - _component: "typography/simple-text"
-              text: "Items are centered if there is extra whitespace."
+              text: "This card is a little longer."
     - contentBlocks:
         - _component: "wrappers/card"
           paddingHorizontal: md
@@ -39,20 +39,8 @@ blocks:
           border: true
           contentBlocks:
             - _component: "typography/heading"
-              text: "Feature Three"
+              text: "Much Longer Card"
               level: h3
             - _component: "typography/simple-text"
-              text: "You can ensure all items are always equal in a features layout by giving it the same value for min and max width."
-    - contentBlocks:
-        - _component: "wrappers/card"
-          paddingHorizontal: md
-          paddingVertical: md
-          rounded: true
-          border: true
-          contentBlocks:
-            - _component: "typography/heading"
-              text: "Feature Four"
-              level: h3
-            - _component: "typography/simple-text"
-              text: "You can make it more flexible by using different min/max widths, but keep in mind the last row might be larger if there's an uneven number of items."
+              text: "This card demonstrates how the uneven-columns layout handles longer content."
 ---

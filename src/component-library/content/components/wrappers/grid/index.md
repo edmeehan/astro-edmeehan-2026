@@ -13,7 +13,7 @@ slots:
 examples:
   - title: Layouts
     slugs:
-      - features
-      - flow
-      - tiles
+      - start-aligned
+      - center-aligned
+      - uneven-columns
 ---
