@@ -74,7 +74,7 @@ _inputs:
         - id: xl
           name: Extra Large
         - id: 2xl
-          name: 2xL
+          name: 2xl
   paddingVertical:
     type: select
     comment: Vertical padding applied to the card content.
@@ -91,7 +91,7 @@ _inputs:
         - id: xl
           name: Extra Large
         - id: 2xl
-          name: 2xL
+          name: 2xl
   colorScheme:
     type: select
     comment: Color scheme theme for the card.
