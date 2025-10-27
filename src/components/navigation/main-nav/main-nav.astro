@@ -31,7 +31,7 @@ const mobileNavData = [
   class:list={["main-nav", className]}
   {...rest}
 >
-  {logoSource && <SmartImage source={logoSource} alt={logoAlt} />}
+  {logoSource && <SmartImage source={logoSource} alt={logoAlt} editable={false} />}
   <div style=" align-items: center;display: flex;">
     <Bar navData={navData} class="desktop-main-nav" />
 

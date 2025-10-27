@@ -16,7 +16,7 @@ const htmlAttributes = Object.fromEntries(
 <section class:list={["blog-block", className]} {...htmlAttributes}>
   <Grid minItemWidth={280} layout="tiles">
     {
-      blogPosts.map((post) => (
+      blogPosts.map((post: any) => (
         <GridItem>
           <Card
             paddingHorizontal="md"
@@ -30,6 +30,7 @@ const htmlAttributes = Object.fromEntries(
               <SmartImage
                 source={post.imageSource || post.featuredImage || ""}
                 alt={post.imageAlt || post.title || "Blog post image"}
+                editable={false}
               />
             </div>
 

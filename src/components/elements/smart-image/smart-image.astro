@@ -13,6 +13,7 @@ const {
   aspectRatio = null,
   positionVertical = "center",
   positionHorizontal = "center",
+  editable = false,
   class: className,
   ...rest
 } = Astro.props;
@@ -29,6 +30,14 @@ const isExternalCDN = provider !== false;
 const commonProps = {
   alt: alt || "",
 };
+
+const dataAttributes = !editable
+  ? {
+      "data-editable": "image",
+      "data-prop-src": "source",
+      "data-prop-alt": "alt",
+    }
+  : {};
 
 const positionClass = `position-${positionVertical}-${positionHorizontal}`;
 ---
@@ -49,6 +58,7 @@ const positionClass = `position-${positionVertical}-${positionHorizontal}`;
       isExternalCDN ? (
         <UnpicImage
           {...commonProps}
+          {...dataAttributes}
           source={source}
           sizes={sizes}
           widths={widths}
@@ -57,6 +67,7 @@ const positionClass = `position-${positionVertical}-${positionHorizontal}`;
       ) : (
         <AstroImage
           {...commonProps}
+          {...dataAttributes}
           source={source}
           sizes={sizes}
           widths={widths}
@@ -65,13 +76,7 @@ const positionClass = `position-${positionVertical}-${positionHorizontal}`;
       )
     ) : (
       <picture>
-        <img
-          data-editable="image"
-          data-prop-src="source"
-          data-prop-alt="alt"
-          src={source}
-          alt={alt || ""}
-        />
+        <img {...dataAttributes} src={source} alt={alt || ""} />
       </picture>
     )
   }

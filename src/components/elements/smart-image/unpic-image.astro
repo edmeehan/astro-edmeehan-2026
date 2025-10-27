@@ -4,6 +4,16 @@ import { transformUrl } from "unpic";
 
 const { source, alt, sizes, widths, width, height, priority, ...htmlAttributes } = Astro.props;
 
+const {
+  "data-editable": dataEditable,
+  "data-prop-src": dataPropSrc,
+  "data-prop-alt": dataPropAlt,
+  ...restHtmlAttributes
+} = htmlAttributes;
+const dataAttributes = dataEditable
+  ? { "data-editable": dataEditable, "data-prop-src": dataPropSrc, "data-prop-alt": dataPropAlt }
+  : {};
+
 let imageWidth = width;
 let imageHeight = height;
 
@@ -28,7 +38,7 @@ const fallbackHeight = imageHeight || Math.round(fallbackWidth * 0.75);
 const aspectRatio = imageWidth && imageHeight ? imageHeight / imageWidth : 0.75;
 ---
 
-<picture {...htmlAttributes}>
+<picture {...restHtmlAttributes}>
   <source
     type="image/avif"
     srcset={widths
@@ -60,9 +70,7 @@ const aspectRatio = imageWidth && imageHeight ? imageHeight / imageWidth : 0.75;
     sizes={sizes}
   />
   <img
-    data-editable="image"
-    data-prop-src="source"
-    data-prop-alt="alt"
+    {...dataAttributes}
     src={source}
     alt={alt || ""}
     loading={priority ? "eager" : "lazy"}

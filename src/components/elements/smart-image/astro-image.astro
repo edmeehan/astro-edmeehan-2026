@@ -3,6 +3,16 @@ import { Picture } from "astro:assets";
 
 const { source, alt, sizes, widths, width, height, priority, ...htmlAttributes } = Astro.props;
 
+const {
+  "data-editable": dataEditable,
+  "data-prop-src": dataPropSrc,
+  "data-prop-alt": dataPropAlt,
+  ...restHtmlAttributes
+} = htmlAttributes;
+const dataAttributes = dataEditable
+  ? { "data-editable": dataEditable, "data-prop-src": dataPropSrc, "data-prop-alt": dataPropAlt }
+  : {};
+
 let imageSrc = source;
 let imageWidth = width;
 let imageHeight = height;
@@ -79,22 +89,14 @@ if (isRemoteUrl) {
       decoding={priority ? "sync" : "async"}
       fetchpriority={priority ? "high" : undefined}
       inferSize={useInferSize}
-      data-editable="image"
-      data-prop-src="source"
-      data-prop-alt="alt"
+      {...dataAttributes}
       pictureAttributes={{
-        ...htmlAttributes,
+        ...restHtmlAttributes,
       }}
     />
   ) : (
-    <picture {...htmlAttributes}>
-      <img
-        data-editable="image"
-        data-prop-src="source"
-        data-prop-alt="alt"
-        src={source}
-        alt={alt || ""}
-      />
+    <picture {...restHtmlAttributes}>
+      <img {...dataAttributes} src={source} alt={alt || ""} />
     </picture>
   )
 }
