@@ -220,9 +220,14 @@ function hasCurrentChild(item) {
       });
     });
   }
-
-  // Initialize side navigation
   setupSideNavigation();
+
+  setTimeout(() => {
+    const initialNavItems = document.querySelectorAll(".nav-item-content-initial");
+    initialNavItems.forEach((item) => {
+      item.classList.remove("nav-item-content-initial");
+    });
+  }, 1000);
 </script>
 
 <style lang="pcss">
@@ -280,7 +285,7 @@ function hasCurrentChild(item) {
     }
 
     .nav-item-toggle:checked ~ .nav-item-content-initial {
-      animation: none;
+      animation-duration: 1ms;
       display: block;
     }
 

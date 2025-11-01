@@ -186,29 +186,34 @@ function createNavItemData(item, level, parentGroupId) {
 
   // Handle toggle change events
   function handleToggleChange(e) {
-    const target = e.target;
+    const target = e.target as HTMLInputElement;
+
+    // Only handle checkboxes closing other checkboxes
+    // Radio buttons handle themselves and don't affect parents
+    if (target.type !== "checkbox") {
+      updateAriaStates(target, target.checked);
+      return;
+    }
+
     const barNav = target.closest(".bar");
+    updateAriaStates(target, target.checked);
 
-    if (target.checked) {
-      updateAriaStates(target, true);
-
-      if (barNav) {
-        barNav.querySelectorAll(".nav-item-toggle[type='checkbox']").forEach((toggle) => {
-          if (toggle !== target && toggle.checked) {
-            toggle.checked = false;
-            updateAriaStates(toggle, false);
-          }
-        });
-      }
-    } else {
-      updateAriaStates(target, false);
+    if (target.checked && barNav) {
+      // Close other open checkbox dropdowns
+      barNav.querySelectorAll(".nav-item-toggle[type='checkbox']").forEach((toggle) => {
+        const checkbox = toggle as HTMLInputElement;
+        if (checkbox !== target && checkbox.checked) {
+          checkbox.checked = false;
+          updateAriaStates(checkbox, false);
+        }
+      });
     }
   }
 
   // Handle trigger click events
   function handleTriggerClick(e) {
-    const label = e.currentTarget;
-    const toggle = document.getElementById(label.getAttribute("for") || "");
+    const label = e.currentTarget as HTMLElement;
+    const toggle = document.getElementById(label.getAttribute("for") || "") as HTMLInputElement;
 
     if (toggle?.checked) {
       e.preventDefault();
@@ -235,12 +240,18 @@ function createNavItemData(item, level, parentGroupId) {
   function initBarNavigation() {
     // Handle clicks outside bar navigation to close dropdowns
     document.addEventListener("click", (e) => {
-      const clickedBar = e.target.closest(".bar");
+      const target = e.target as HTMLElement;
+      if (!target) return;
+
+      const clickedBar = target.closest(".bar");
+
+      // Only close dropdowns if clicking completely outside the bar
       if (!clickedBar) {
         document.querySelectorAll(".bar .nav-item-toggle").forEach((toggle) => {
-          if (toggle.checked) {
-            toggle.checked = false;
-            updateAriaStates(toggle, false);
+          const checkbox = toggle as HTMLInputElement;
+          if (checkbox.checked) {
+            checkbox.checked = false;
+            updateAriaStates(checkbox, false);
           }
         });
       }
@@ -269,6 +280,17 @@ function createNavItemData(item, level, parentGroupId) {
       barNav.querySelectorAll(".nav-item-trigger").forEach((trigger) => {
         trigger.addEventListener("click", handleTriggerClick);
         trigger.addEventListener("keydown", handleKeydown);
+      });
+
+      // Prevent clicks inside dropdown content from bubbling to document handler
+      barNav.querySelectorAll(".nav-item-content, .nav-item-nested").forEach((content) => {
+        content.addEventListener("click", (e) => {
+          // Don't stop if clicking directly on a trigger (let it handle itself)
+          const target = e.target as HTMLElement;
+          if (!target.closest(".nav-item-trigger")) {
+            e.stopPropagation();
+          }
+        });
       });
     });
   }

@@ -71,7 +71,7 @@ const mobileNavData = [
       }
     }
 
-    > .outer-content > .content {
+    > :global(.outer-content) > :global(.content) {
       align-items: center;
       container-type: inline-size;
       display: flex;
@@ -79,7 +79,7 @@ const mobileNavData = [
       gap: var(--spacing-md);
       justify-content: space-between;
 
-      > .smart-image img {
+      > :global(.smart-image img) {
         height: 1.8em;
         max-width: min(20em, 100%);
         width: auto;

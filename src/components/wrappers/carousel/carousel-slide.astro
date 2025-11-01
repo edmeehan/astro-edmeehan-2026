@@ -12,3 +12,10 @@ const htmlAttributes = Object.fromEntries(
   <Component contentBlocks={contentBlocks} />
   <slot />
 </div>
+
+<style lang="pcss">
+  .slide {
+    flex-shrink: 0;
+    flex-basis: calc(max(var(--slide-width, 100%), var(--min-slide-width, 0px)));
+  }
+</style>

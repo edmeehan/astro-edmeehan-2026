@@ -1,6 +1,6 @@
 ---
 import Button from "@components/elements/button/button.astro";
-import Component from "@components/utils/renderBlock.astro";
+import CarouselSlide from "./carousel-slide.astro";
 
 const {
   slides = [],
@@ -82,14 +82,11 @@ const carouselStyles = `
       {
         slides.length > 0 ? (
           slides.map((slide: any, index: number) => (
-            <div
-              class="slide"
+            <CarouselSlide
+              contentBlocks={slide.contentBlocks}
               data-editable="array-item"
-              role="group"
               aria-label={`Slide ${index + 1} of ${slides.length}`}
-            >
-              <Component contentBlocks={slide.contentBlocks} />
-            </div>
+            />
           ))
         ) : (
           <slot />
@@ -256,11 +253,6 @@ const carouselStyles = `
       flex-wrap: nowrap;
     }
 
-    > .viewport > .track > .slide {
-      flex-shrink: 0;
-      flex-basis: calc(max(var(--slide-width), var(--min-slide-width)));
-    }
-
     > .controls {
       display: flex;
       align-items: center;
@@ -274,8 +266,8 @@ const carouselStyles = `
       pointer-events: none;
     }
 
-    > .controls > .prev,
-    > .controls > .next {
+    > .controls > :global(.prev),
+    > .controls > :global(.next) {
       pointer-events: auto;
       border-radius: var(--radius-full);
       background-color: var(--color-bg);
@@ -291,7 +283,7 @@ const carouselStyles = `
       margin-top: var(--spacing-sm);
     }
 
-    > .indicators > .indicator {
+    > .indicators > :global(.indicator) {
       border-radius: var(--radius-full);
       width: 8px;
       height: 8px;
