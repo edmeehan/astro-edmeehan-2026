@@ -1,5 +1,5 @@
 ---
-import SmartImage from "@components/elements/smart-image/smart-image.astro";
+import Image from "@components/elements/image/image.astro";
 import Heading from "@components/typography/heading/heading.astro";
 import SimpleText from "@components/typography/simple-text/simple-text.astro";
 import Card from "@components/wrappers/card/card.astro";
@@ -27,7 +27,7 @@ const htmlAttributes = Object.fromEntries(
             title={post.title || "Untitled Post"}
           >
             <div slot="before">
-              <SmartImage
+              <Image
                 source={post.imageSource || post.featuredImage || ""}
                 alt={post.imageAlt || post.title || "Blog post image"}
                 editable={false}

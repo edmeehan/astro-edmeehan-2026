@@ -1,4 +1,4 @@
-label: Smart Image
+label: Image
 icon: image
 description: "Optimized image component for local and remote sources."
 structures:
@@ -10,7 +10,7 @@ structures:
   - carouselBlocks
   - contentSelectorBlocks
 value:
-  _component: elements/smart-image
+  _component: elements/image
   source: ""
   alt: ""
   rounded: false
@@ -19,13 +19,13 @@ value:
   positionHorizontal: center
 preview:
   icon: image
-  text: Smart Image
+  text: Image
   subtext:
     - key: alt
     - key: source
     - Add image source
 picker_preview:
-  text: Smart Image
+  text: Image
   subtext: "Optimized image with smart CDN detection."
   icon: image
 

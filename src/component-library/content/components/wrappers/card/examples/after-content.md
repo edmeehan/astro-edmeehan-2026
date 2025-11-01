@@ -14,7 +14,7 @@ blocks:
     - _component: "typography/simple-text"
       text: "The image below is placed in the afterContentBlocks area, which sits outside the card's internal padding. This is ideal for footer images or visual footers."
   afterContentBlocks:
-    - _component: "elements/smart-image"
+    - _component: "elements/image"
       source: "/src/assets/images/component-library/dunedin-cliff.jpg"
       alt: "Dunedin Cliff"
       aspectRatio: widescreen

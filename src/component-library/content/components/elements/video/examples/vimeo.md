@@ -2,7 +2,7 @@
 title: "Vimeo Video"
 spacing: "all"
 blocks:
-  - _component: "elements/smart-video"
+  - _component: "elements/video"
     type: vimeo
     id: "129371220"
     title: Dunedin Tourism

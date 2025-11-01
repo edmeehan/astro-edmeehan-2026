@@ -1,9 +1,10 @@
 ---
-title: "Not rounded"
+title: "Landscape Aspect Ratio"
 spacing: "all"
 blocks:
-  _component: "elements/smart-image"
+  _component: "elements/image"
   source: /src/assets/images/component-library/quiet-street.jpg
   alt: "Quiet Street"
-  style: "max-width: 500px;"
+  aspectRatio: landscape
+  style: "max-width: 400px;"
 ---

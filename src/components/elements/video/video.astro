@@ -11,7 +11,7 @@ const htmlAttributes = Object.fromEntries(
     <>
       <script>import '@choctawnationofoklahoma/lite-vimeo';</script>
       <lite-vimeo
-        class:list={["smart-video", className]}
+        class:list={["video", className]}
         videotitle={`${title}`}
         videoid={`${id}`}
         {...htmlAttributes}
@@ -25,7 +25,7 @@ const htmlAttributes = Object.fromEntries(
     <>
       <script>import '@justinribeiro/lite-youtube';</script>
       <lite-youtube
-        class:list={["smart-video", className]}
+        class:list={["video", className]}
         videotitle={`${title}`}
         videoid={`${id}`}
         {...htmlAttributes}
@@ -40,7 +40,7 @@ const htmlAttributes = Object.fromEntries(
       preload="none"
       controls
       poster={poster}
-      class:list={["smart-video", className]}
+      class:list={["video", className]}
       {...htmlAttributes}
     >
       <source src={`${source}`} type="video/mp4" />

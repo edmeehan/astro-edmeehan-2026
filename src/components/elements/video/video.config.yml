@@ -1,4 +1,4 @@
-label: Smart Video
+label: Video
 icon: videocam
 description: "Video component for YouTube, Vimeo, and HTML5 sources."
 structures:
@@ -10,7 +10,7 @@ structures:
   - carouselBlocks
   - contentSelectorBlocks
 value:
-  _component: elements/smart-video
+  _component: elements/video
   type: ""
   id: ""
   title: ""
@@ -19,14 +19,14 @@ value:
 preview:
   icon: videocam
   text:
-    - template: "Smart Video - {type}"
-    - Smart Video
+    - template: "Video - {type}"
+    - Video
   subtext:
     - key: title
     - key: source
     - Add video
 picker_preview:
-  text: Smart Video
+  text: Video
   subtext: "Play a video from YouTube, Vimeo, or your local files."
   icon: videocam
 

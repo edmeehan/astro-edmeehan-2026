@@ -1,5 +1,5 @@
 ---
-import SmartImage from "@components/elements/smart-image/smart-image.astro";
+import Image from "@components/elements/image/image.astro";
 import Component from "@components/utils/renderBlock.astro";
 
 const {
@@ -47,7 +47,7 @@ if (!htmlAttributes.id && label) {
 >
   {
     source && (
-      <SmartImage
+      <Image
         class:list={["background-image"]}
         source={source}
         alt={alt}

@@ -1,10 +1,9 @@
 ---
-title: "Widescreen Aspect Ratio"
+title: Local source
 spacing: "all"
 blocks:
-  _component: "elements/smart-image"
+  _component: "elements/image"
   source: /src/assets/images/component-library/quiet-street.jpg
   alt: "Quiet Street"
-  aspectRatio: widescreen
   style: "max-width: 500px;"
 ---

@@ -1,5 +1,5 @@
 ---
-import SmartImage from "@components/elements/smart-image/smart-image.astro";
+import Image from "@components/elements/image/image.astro";
 import MarkdownIt from "markdown-it";
 const {
   text,
@@ -26,7 +26,7 @@ const MarkdownText = text ? md.render(text) : "";
   <div class="author">
     {
       authorImage && (
-        <SmartImage
+        <Image
           source={authorImage}
           alt={authorName}
           width={100}

@@ -1845,11 +1845,11 @@ _structures:
                 - id: 3xl
                   name: 3xl
       - &ref_15
-        label: Smart Video
+        label: Video
         icon: videocam
         description: Video component for YouTube, Vimeo, and HTML5 sources.
         value:
-          _component: elements/smart-video
+          _component: elements/video
           type: ""
           id: ""
           title: ""
@@ -1858,14 +1858,14 @@ _structures:
         preview:
           icon: videocam
           text:
-            - template: Smart Video - {type}
-            - Smart Video
+            - template: Video - {type}
+            - Video
           subtext:
             - key: title
             - key: source
             - Add video
         picker_preview:
-          text: Smart Video
+          text: Video
           subtext: Play a video from YouTube, Vimeo, or your local files.
           icon: videocam
         _inputs:
@@ -1907,11 +1907,11 @@ _structures:
                 uploads: public/images
                 static: public
       - &ref_16
-        label: Smart Image
+        label: Image
         icon: image
         description: Optimized image component for local and remote sources.
         value:
-          _component: elements/smart-image
+          _component: elements/image
           source: ""
           alt: ""
           rounded: false
@@ -1920,13 +1920,13 @@ _structures:
           positionHorizontal: center
         preview:
           icon: image
-          text: Smart Image
+          text: Image
           subtext:
             - key: alt
             - key: source
             - Add image source
         picker_preview:
-          text: Smart Image
+          text: Image
           subtext: Optimized image with smart CDN detection.
           icon: image
         _inputs:

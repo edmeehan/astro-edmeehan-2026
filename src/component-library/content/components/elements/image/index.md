@@ -1,5 +1,5 @@
 ---
-title: Smart Image
+title: Image
 order: 2
 overview: "An image component with built-in optimization for local, CDN, and remote sources. Automatically serves responsive sizes and modern formats like AVIF for smaller file sizes. Supports aspect ratios, object fit, positioning, and rounded corners."
 

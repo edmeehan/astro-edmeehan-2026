@@ -1,7 +1,7 @@
 ---
 import Button from "@components/elements/button/button.astro";
 import Icon from "@components/elements/icon/icon.astro";
-import SmartImage from "@components/elements/smart-image/smart-image.astro";
+import Image from "@components/elements/image/image.astro";
 
 const { logoSource, logoAlt, navData = [], class: className, ...rest } = Astro.props as Props;
 
@@ -64,7 +64,7 @@ function createNavItemData(item, level, parentGroupId) {
       <slot name="logo">
         {
           logoSource && (
-            <SmartImage
+            <Image
               source={logoSource}
               alt={logoAlt || "Logo"}
               width={120}

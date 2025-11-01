@@ -1,8 +1,8 @@
 ---
-title: "Smart Video"
+title: "Video"
 spacing: "all"
 blocks:
-  - _component: "elements/smart-video"
+  - _component: "elements/video"
     type: youtube
     id: dsTXcSeAZq8
     title: Astro in 100 Seconds

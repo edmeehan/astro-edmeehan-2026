@@ -8,7 +8,7 @@ blocks:
   paddingVertical: lg
   rounded: true
   beforeContentBlocks:
-    - _component: "elements/smart-image"
+    - _component: "elements/image"
       source: "/src/assets/images/component-library/dunedin-cliff.jpg"
       alt: "Dunedin Cliff"
       aspectRatio: widescreen

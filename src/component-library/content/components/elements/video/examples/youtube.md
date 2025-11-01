@@ -2,7 +2,7 @@
 title: "YouTube Source"
 spacing: "all"
 blocks:
-  - _component: "elements/smart-video"
+  - _component: "elements/video"
     type: youtube
     id: 4mB5KwenCzI
     title: Live visual editing in Astro with CloudCannon
