@@ -1091,6 +1091,54 @@ _structures:
           rounded:
             type: switch
             comment: Whether to apply rounded corners to the container.
+      - &ref_20
+        label: Carousel
+        icon: image
+        description: Displays multiple items in a sliding gallery.
+        value:
+          _component: wrappers/carousel
+          label: ''
+          slides: []
+          autoPlay: false
+          autoScroll: false
+          slideWidthPercent: 100
+          minSlideWidth: 0
+        preview:
+          text:
+            - key: label
+            - Carousel
+          subtext:
+            - template: A carousel containing {slides|array_length} {"slide"|pluralize=slides}
+            - Add slides to the carousel
+        picker_preview:
+          text: Carousel
+          subtext: A carousel component for displaying slides with navigation controls
+          icon: image
+        _inputs:
+          label:
+            comment: Optional label for the carousel to help identify it in the editor.
+            type: text
+          slides:
+            comment: Array of slides to display in the carousel.
+            type: array
+            options:
+              structures: _structures.slides
+          autoPlay:
+            comment: Enable auto-play functionality.
+            type: switch
+          autoScroll:
+            comment: Enable auto-scroll functionality.
+            type: switch
+          slideWidthPercent:
+            comment: Width of each slide as a percentage of the carousel (e.g., 33, 50, 100).
+            type: range
+            options:
+              min: 0
+              max: 100
+              step: 1
+          minSlideWidth:
+            comment: Minimum width of slides in pixels. Prevents slides from getting too small.
+            type: number
       - &ref_3
         label: Card
         icon: crop_square
@@ -1309,54 +1357,6 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_20
-        label: Carousel
-        icon: image
-        description: Displays multiple items in a sliding gallery.
-        value:
-          _component: wrappers/carousel
-          label: ''
-          slides: []
-          autoPlay: false
-          autoScroll: false
-          slideWidthPercent: 100
-          minSlideWidth: 0
-        preview:
-          text:
-            - key: label
-            - Carousel
-          subtext:
-            - template: A carousel containing {slides|array_length} {"slide"|pluralize=slides}
-            - Add slides to the carousel
-        picker_preview:
-          text: Carousel
-          subtext: A carousel component for displaying slides with navigation controls
-          icon: image
-        _inputs:
-          label:
-            comment: Optional label for the carousel to help identify it in the editor.
-            type: text
-          slides:
-            comment: Array of slides to display in the carousel.
-            type: array
-            options:
-              structures: _structures.slides
-          autoPlay:
-            comment: Enable auto-play functionality.
-            type: switch
-          autoScroll:
-            comment: Enable auto-scroll functionality.
-            type: switch
-          slideWidthPercent:
-            comment: Width of each slide as a percentage of the carousel (e.g., 33, 50, 100).
-            type: range
-            options:
-              min: 0
-              max: 100
-              step: 1
-          minSlideWidth:
-            comment: Minimum width of slides in pixels. Prevents slides from getting too small.
-            type: number
       - &ref_5
         label: Accordion
         icon: expand_all
@@ -1509,62 +1509,6 @@ _structures:
                   name: End
             comment: The horizontal alignment of the rich text component.
       - &ref_8
-        label: Simple Text
-        icon: view_headline
-        description: Paragraph for plain text content.
-        value:
-          _component: typography/simple-text
-          text: ''
-          alignX: start
-          size: default
-        preview:
-          text:
-            - key: text
-            - Simple Text
-          icon: view_headline
-        picker_preview:
-          text: Simple Text
-          subtext: Displays blocks of text for content sections with options for alignment, size and decoration.
-          icon: view_headline
-        _inputs:
-          text:
-            comment: The text content of the simple text.
-            type: textarea
-          alignX:
-            comment: The horizontal alignment of the text.
-            type: select
-            options:
-              values:
-                - id: start
-                  name: Start
-                - id: center
-                  name: Center
-                - id: end
-                  name: End
-          size:
-            type: select
-            comment: The font size of the text.
-            options:
-              values:
-                - id: default
-                  name: Default
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
-                - id: 4xl
-                  name: 4xl
-      - &ref_9
         label: List
         icon: list
         description: Lists items with icons as markers.
@@ -1625,7 +1569,7 @@ _structures:
                   name: Extra Large
                 - id: 2xl
                   name: 2xl
-      - &ref_10
+      - &ref_9
         label: Heading
         icon: title
         description: Headings for content hierarchy.
@@ -1709,31 +1653,31 @@ _structures:
                   name: Before
                 - id: after
                   name: After
-      - &ref_11
-        label: Definition List
-        icon: dns
-        description: Lists term/definition pairs for structured content.
+      - &ref_10
+        label: Simple Text
+        icon: view_headline
+        description: Paragraph for plain text content.
         value:
-          _component: typography/definition-list
-          items: []
+          _component: typography/simple-text
+          text: ''
           alignX: start
+          size: default
         preview:
-          subtext:
-            - template: Contains {items|array_length} list {'item'|pluralize=items}
-            - Add definition list items
+          text:
+            - key: text
+            - Simple Text
+          icon: view_headline
         picker_preview:
-          text: Definition List
-          subtext: For displaying key-value pairs. Ideal for glossaries, opening times, etc.
-          icon: dns
+          text: Simple Text
+          subtext: Displays blocks of text for content sections with options for alignment, size and decoration.
+          icon: view_headline
         _inputs:
-          items:
-            type: array
-            label: List Items
-            options:
-              structures: _structures.definitionListItems
+          text:
+            comment: The text content of the simple text.
+            type: textarea
           alignX:
+            comment: The horizontal alignment of the text.
             type: select
-            comment: The horizontal alignment of the definition list items.
             options:
               values:
                 - id: start
@@ -1742,7 +1686,30 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_12
+          size:
+            type: select
+            comment: The font size of the text.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+                - id: 4xl
+                  name: 4xl
+      - &ref_11
         label: Counter
         icon: speed
         description: Animated counter for highlighting key stats or figures.
@@ -1771,6 +1738,39 @@ _structures:
           alignX:
             comment: The horizontal alignment of the counter.
             type: select
+            options:
+              values:
+                - id: start
+                  name: Start
+                - id: center
+                  name: Center
+                - id: end
+                  name: End
+      - &ref_12
+        label: Definition List
+        icon: dns
+        description: Lists term/definition pairs for structured content.
+        value:
+          _component: typography/definition-list
+          items: []
+          alignX: start
+        preview:
+          subtext:
+            - template: Contains {items|array_length} list {'item'|pluralize=items}
+            - Add definition list items
+        picker_preview:
+          text: Definition List
+          subtext: For displaying key-value pairs. Ideal for glossaries, opening times, etc.
+          icon: dns
+        _inputs:
+          items:
+            type: array
+            label: List Items
+            options:
+              structures: _structures.definitionListItems
+          alignX:
+            type: select
+            comment: The horizontal alignment of the definition list items.
             options:
               values:
                 - id: start
@@ -1810,7 +1810,7 @@ _structures:
         description: Video component for YouTube, Vimeo, and HTML5 sources.
         value:
           _component: elements/video
-          type: ''
+          type: youtube
           id: ''
           title: ''
           source: ''
@@ -2067,6 +2067,45 @@ _structures:
                 - id: end
                   name: End
       - &ref_18
+        label: Divider
+        icon: horizontal_rule
+        description: Visual separator for dividing content sections.
+        value:
+          _component: elements/divider
+          paddingVertical: lg
+        preview:
+          text: Divider
+          subtext:
+            - key: paddingVertical
+            - Add a padding value
+          icon: horizontal_rule
+        picker_preview:
+          text: Divider
+          subtext: A horizontal line to separate content.
+          icon: horizontal_rule
+        _inputs:
+          paddingVertical:
+            comment: The space on the top and bottom of the horizontal line.
+            type: select
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+      - &ref_19
         label: Embed
         icon: data_object
         description: Responsive wrapper for third-party embeds.
@@ -2111,45 +2150,6 @@ _structures:
                   name: Portrait (3:4)
                 - id: widescreen
                   name: Widescreen (16:9)
-      - &ref_19
-        label: Divider
-        icon: horizontal_rule
-        description: Visual separator for dividing content sections.
-        value:
-          _component: elements/divider
-          paddingVertical: lg
-        preview:
-          text: Divider
-          subtext:
-            - key: paddingVertical
-            - Add a padding value
-          icon: horizontal_rule
-        picker_preview:
-          text: Divider
-          subtext: A horizontal line to separate content.
-          icon: horizontal_rule
-        _inputs:
-          paddingVertical:
-            comment: The space on the top and bottom of the horizontal line.
-            type: select
-            options:
-              values:
-                - id: none
-                  name: None
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
   carouselBlocks:
     id_key: _component
     style: modal
@@ -2180,9 +2180,9 @@ _structures:
     values:
       - *ref_0
       - *ref_1
+      - *ref_20
       - *ref_3
       - *ref_4
-      - *ref_20
       - *ref_5
       - *ref_6
       - *ref_7
@@ -2226,9 +2226,9 @@ _structures:
     values:
       - *ref_1
       - *ref_2
+      - *ref_20
       - *ref_3
       - *ref_4
-      - *ref_20
       - *ref_5
       - *ref_6
       - *ref_7
@@ -2273,6 +2273,27 @@ _structures:
     style: modal
     values:
       - *ref_21
+  slides:
+    id_key: _component
+    style: modal
+    values:
+      - label: Carousel Slide
+        value:
+          _component: wrappers/carousel/carousel-slide
+          contentBlocks: []
+        _inputs:
+          _component:
+            hidden: true
+          contentBlocks:
+            type: array
+            options:
+              structures: _structures.carouselBlocks
+        preview:
+          icon: transition_slide
+          text: Carousel Slide
+          subtext:
+            - template: Contains {contentBlocks|array_length} content {"block"|pluralize=contentBlocks}
+            - Add one or more content blocks to the grid item
   gridItemBlocks:
     id_key: _component
     style: modal
@@ -2333,27 +2354,6 @@ _structures:
       - *ref_17
       - *ref_18
       - *ref_19
-  slides:
-    id_key: _component
-    style: modal
-    values:
-      - label: Carousel Slide
-        value:
-          _component: wrappers/carousel/carousel-slide
-          contentBlocks: []
-        _inputs:
-          _component:
-            hidden: true
-          contentBlocks:
-            type: array
-            options:
-              structures: _structures.carouselBlocks
-        preview:
-          icon: transition_slide
-          text: Carousel Slide
-          subtext:
-            - template: Contains {contentBlocks|array_length} content {"block"|pluralize=contentBlocks}
-            - Add one or more content blocks to the grid item
   accordionItems:
     id_key: _component
     style: modal
@@ -2592,86 +2592,6 @@ _structures:
           value:
             type: text
             comment: The default value for the textarea field.
-      - label: Submit
-        icon: check
-        description: Button for submitting a form.
-        value:
-          _component: forms/submit
-          text: Submit
-          variant: primary
-          size: md
-          iconName: null
-          iconPosition: before
-          hideText: false
-          disabled: false
-        preview:
-          text:
-            - key: text
-            - key: iconName
-            - Submit Button
-          subtext: A submit button for forms.
-        picker_preview:
-          text: Submit
-          subtext: A submit button for forms.
-          icon: check
-        _inputs:
-          text:
-            type: text
-            comment: The text that goes inside the submit button.
-            hidden: hideText
-          variant:
-            type: select
-            comment: The presentation of the submit button.
-            options:
-              values:
-                - id: primary
-                  name: Primary
-                - id: secondary
-                  name: Secondary
-                - id: tertiary
-                  name: Tertiary
-                - id: ghost
-                  name: Ghost
-                - id: text
-                  name: Text
-          size:
-            type: select
-            comment: The size of the submit button.
-            options:
-              values:
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-          iconName:
-            type: select
-            comment: The name of the icon to display. See the Icon component documentation for more information.
-            options:
-              values: _select_data.icons
-              preview:
-                text:
-                  - key: name
-                image:
-                  - template: src/icons/{id}.svg
-          iconPosition:
-            type: select
-            comment: The position of the icon relative to the text.
-            hidden: '!iconName'
-            options:
-              values:
-                - id: before
-                  name: Before
-                - id: after
-                  name: After
-          hideText:
-            type: switch
-            comment: Whether to hide the button text and show only the icon.
-            hidden: '!iconName'
-          disabled:
-            type: switch
-            comment: Whether the submit button is disabled.
       - label: Select
         icon: view_list
         description: Form field for selecting one option from a list.
@@ -2821,28 +2741,86 @@ _structures:
           value:
             type: text
             comment: The default value for the input field.
-      - label: Hidden
-        icon: eye-slash
-        description: Hidden form field for storing data.
+      - label: Submit
+        icon: check
+        description: Button for submitting a form.
         value:
-          _component: forms/hidden
-          name: ''
-          value: ''
+          _component: forms/submit
+          text: Submit
+          variant: primary
+          size: md
+          iconName: null
+          iconPosition: before
+          hideText: false
+          disabled: false
         preview:
           text:
-            - template: Hidden - {name}
-          subtext: A hidden form field for storing data that should not be visible to users.
+            - key: text
+            - key: iconName
+            - Submit Button
+          subtext: A submit button for forms.
         picker_preview:
-          text: Hidden
-          subtext: A hidden form field for storing data that should not be visible to users.
-          icon: eye-slash
+          text: Submit
+          subtext: A submit button for forms.
+          icon: check
         _inputs:
-          name:
+          text:
             type: text
-            comment: The name attribute for the hidden input field.
-          value:
-            type: text
-            comment: The value to be stored in the hidden field.
+            comment: The text that goes inside the submit button.
+            hidden: hideText
+          variant:
+            type: select
+            comment: The presentation of the submit button.
+            options:
+              values:
+                - id: primary
+                  name: Primary
+                - id: secondary
+                  name: Secondary
+                - id: tertiary
+                  name: Tertiary
+                - id: ghost
+                  name: Ghost
+                - id: text
+                  name: Text
+          size:
+            type: select
+            comment: The size of the submit button.
+            options:
+              values:
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+          iconName:
+            type: select
+            comment: The name of the icon to display. See the Icon component documentation for more information.
+            options:
+              values: _select_data.icons
+              preview:
+                text:
+                  - key: name
+                image:
+                  - template: src/icons/{id}.svg
+          iconPosition:
+            type: select
+            comment: The position of the icon relative to the text.
+            hidden: '!iconName'
+            options:
+              values:
+                - id: before
+                  name: Before
+                - id: after
+                  name: After
+          hideText:
+            type: switch
+            comment: Whether to hide the button text and show only the icon.
+            hidden: '!iconName'
+          disabled:
+            type: switch
+            comment: Whether the submit button is disabled.
       - label: File Upload
         icon: upload
         description: Form field for uploading files.
@@ -2929,11 +2907,11 @@ _structures:
           name: null
           required: false
           options:
-            - value: newsletter
-              label: Subscribe to newsletter
+            - value: item 1
+              label: Item 1
               checked: false
-            - value: updates
-              label: Get product updates
+            - value: item 2
+              label: Item 2
               checked: false
           orientation: vertical
           multiple: true
@@ -2979,6 +2957,28 @@ _structures:
           multiple:
             type: switch
             comment: When true, uses checkboxes for multiple selection. When false, uses radio buttons for single selection.
+      - label: Hidden
+        icon: eye-slash
+        description: Hidden form field for storing data.
+        value:
+          _component: forms/hidden
+          name: ''
+          value: ''
+        preview:
+          text:
+            - template: Hidden - {name}
+          subtext: A hidden form field for storing data that should not be visible to users.
+        picker_preview:
+          text: Hidden
+          subtext: A hidden form field for storing data that should not be visible to users.
+          icon: eye-slash
+        _inputs:
+          name:
+            type: text
+            comment: The name attribute for the hidden input field.
+          value:
+            type: text
+            comment: The value to be stored in the hidden field.
   selectOptions:
     id_key: _component
     style: modal
@@ -3007,9 +3007,9 @@ _structures:
     values:
       - value:
           value: null
-          label: null
+          label: Item
           checked: null
-          icon: null
+          icon: bolt
         preview:
           icon: radio_button_partial
           image:

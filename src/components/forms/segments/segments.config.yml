@@ -53,9 +53,9 @@ _structures:
     values:
       - value:
           value: null
-          label: null
+          label: Item
           checked: null
-          icon: null
+          icon: bolt
         preview:
           icon: radio_button_partial
           image:

@@ -8,7 +8,10 @@ const htmlAttributes = Object.fromEntries(
 );
 ---
 
-<dl class:list={["definition-list", `alignment-${alignX}`, className]} {...htmlAttributes}>
+<dl
+  class:list={["definition-list", `alignment-${alignX}`, className]}
+  {...htmlAttributes}
+>
   {
     items && items.length > 0 ? (
       items.map((item: any) => <DefinitionListItem title={item.title} text={item.text} />)

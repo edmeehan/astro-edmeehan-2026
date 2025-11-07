@@ -58,7 +58,11 @@ function createNavItemData(item, level, parentGroupId) {
   />
 </label>
 
-<nav class:list={["mobile", className]} data-toggle-id={toggleId} {...htmlAttributes}>
+<nav
+  class:list={["mobile", className]}
+  data-toggle-id={toggleId}
+  {...htmlAttributes}
+>
   <div class="mobile-header">
     <div class="mobile-logo">
       <slot name="logo">

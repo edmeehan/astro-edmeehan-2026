@@ -16,7 +16,10 @@ const htmlAttributes = Object.fromEntries(
 );
 ---
 
-<div class:list={["counter", `alignment-${alignX}`, className]} {...htmlAttributes}>
+<div
+  class:list={["counter", `alignment-${alignX}`, className]}
+  {...htmlAttributes}
+>
   {prefix && <span class="prefix">{prefix}</span>}
   <span
     class="number"

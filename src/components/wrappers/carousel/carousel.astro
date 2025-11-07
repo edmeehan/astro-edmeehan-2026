@@ -258,6 +258,15 @@ const carouselStyles = `
     > .viewport > .track {
       display: flex;
       flex-wrap: nowrap;
+
+      > :global(editable-array-item), > :global(.slide) {
+        flex-shrink: 0;
+        flex-basis: calc(max(var(--slide-width, 100%), var(--min-slide-width, 0px)));
+      }
+
+      > :global(editable-array-item) > :global(.slide) {
+        width: 100%;
+      }
     }
 
     > .controls {

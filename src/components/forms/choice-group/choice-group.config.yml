@@ -9,11 +9,11 @@ value:
   name: null
   required: false
   options:
-    - value: newsletter
-      label: Subscribe to newsletter
+    - value: item 1
+      label: Item 1
       checked: false
-    - value: updates
-      label: Get product updates
+    - value: item 2
+      label: Item 2
       checked: false
   orientation: vertical
   multiple: true
