@@ -26,8 +26,6 @@ They should stay minimal, consistent, and easy to maintain.
 
 Components are grouped by purpose:
 
-Building Blocks — Foundational UI components designed for reuse within larger structures.
-
-Page Sections — Full-width sections used to assemble complete page layouts.
-
-Navigation — Components that facilitate movement throughout the site, such as headers, menus, and footers.
+- **Building Blocks** — Foundational UI components designed for reuse within larger structures.
+- **Page Sections** — Full-width sections used to assemble complete page layouts.
+- **Navigation** — Components that facilitate movement throughout the site, such as headers, menus, and footers.
