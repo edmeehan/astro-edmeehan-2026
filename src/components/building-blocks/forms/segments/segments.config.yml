@@ -17,7 +17,7 @@ preview:
     - template: A segments field, containing {options|array_length} {"option"|pluralize=options}
 picker_preview:
   text: Segments
-  subtext: A segmented control component using radio buttons or checkboxes with optional icons.
+  subtext: "Segmented control form field with connected buttons."
   icon: radio_button_partial
 _inputs:
   title:

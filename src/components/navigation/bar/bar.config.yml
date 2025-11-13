@@ -10,7 +10,7 @@ preview:
   icon: navigation
 picker_preview:
   text: Bar Navigation
-  subtext: A horizontal navigation bar with dropdown menus.
+  subtext: "Horizontal navigation bar with dropdown menus."
   icon: navigation
 _inputs:
   navData:

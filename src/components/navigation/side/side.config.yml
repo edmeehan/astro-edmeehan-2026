@@ -10,7 +10,7 @@ preview:
   icon: sidebar
 picker_preview:
   text: Side Navigation
-  subtext: A vertical sidebar navigation with collapsible sections.
+  subtext: "Sidebar navigation with expandable sections."
   icon: sidebar
 _inputs:
   navData:

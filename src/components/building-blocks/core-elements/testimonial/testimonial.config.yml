@@ -25,7 +25,7 @@ preview:
     - Add testimonial text
 picker_preview:
   text: Testimonial
-  subtext: "A quotation with an author and author description."
+  subtext: "Displays customer quotes and reviews."
   icon: format_quote
 
 _inputs:

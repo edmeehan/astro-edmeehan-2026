@@ -27,7 +27,7 @@ preview:
     - Add video
 picker_preview:
   text: Video
-  subtext: "Play a video from YouTube, Vimeo, or your local files."
+  subtext: "Video component for YouTube, Vimeo, and HTML5 sources."
   icon: videocam
 
 _inputs:

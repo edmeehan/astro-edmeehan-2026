@@ -21,7 +21,7 @@ preview:
   icon: star
 picker_preview:
   text: Icon
-  subtext: "Displays an icon from your icon library."
+  subtext: "SVG icon component."
   icon: star
 
 _inputs:

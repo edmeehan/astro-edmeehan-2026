@@ -19,7 +19,7 @@ preview:
     - Add items to the form
 picker_preview:
   text: Form
-  subtext: A form element that groups related form controls and handles form submission.
+  subtext: "Groups form fields into one submission area."
   icon: checklist_rtl
 _inputs:
   action:

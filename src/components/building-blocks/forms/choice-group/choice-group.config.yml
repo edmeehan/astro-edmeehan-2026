@@ -25,7 +25,7 @@ preview:
     - A choice group containing {options|array_length} {"option"|pluralize=options}
 picker_preview:
   text: Choice Group
-  subtext: A group of checkboxes or radio buttons with labels.
+  subtext: "Form field for selecting one or more options."
   icon: check_box
 _inputs:
   title:

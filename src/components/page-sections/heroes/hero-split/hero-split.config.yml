@@ -20,7 +20,7 @@ preview:
     - Add content to the hero
 picker_preview:
   text: Hero Split
-  subtext: "Hero section with heading, subtitle, CTA buttons, and feature image."
+  subtext: "Prominent section block for landing pages."
   icon: hero
 
 _inputs:

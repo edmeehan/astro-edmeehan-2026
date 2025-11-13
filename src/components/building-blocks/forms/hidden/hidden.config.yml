@@ -13,7 +13,7 @@ preview:
   subtext: A hidden form field for storing data that should not be visible to users.
 picker_preview:
   text: Hidden
-  subtext: A hidden form field for storing data that should not be visible to users.
+  subtext: "Hidden form field for storing data."
   icon: eye-slash
 _inputs:
   name:

@@ -24,7 +24,7 @@ preview:
     - Add items to the split
 picker_preview:
   text: Split
-  subtext: Arranges content in two columns.
+  subtext: "Two-column layout for side-by-side content."
   icon: vertical_split
 _inputs:
   label:

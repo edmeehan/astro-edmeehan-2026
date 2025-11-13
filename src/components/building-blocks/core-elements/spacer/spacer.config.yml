@@ -17,7 +17,7 @@ preview:
   icon: space_bar
 picker_preview:
   text: Spacer
-  subtext: "Gives space between content."
+  subtext: "Adds adjustable spacing between content sections."
   icon: space_bar
 
 _inputs:

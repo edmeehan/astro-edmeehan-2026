@@ -24,7 +24,7 @@ preview:
     - Enter a name for the form input.
 picker_preview:
   text: Select
-  subtext: A dropdown select field with an optional label.
+  subtext: "Form field for selecting one option from a list."
   icon: view_list
 _inputs:
   label:

@@ -24,7 +24,7 @@ preview:
   icon: title
 picker_preview:
   text: Heading
-  subtext: "Main title or heading with levels (H1 to H6)"
+  subtext: "Headings for content hierarchy."
   icon: title
 
 _inputs:

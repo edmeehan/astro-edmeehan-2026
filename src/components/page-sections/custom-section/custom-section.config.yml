@@ -27,7 +27,7 @@ preview:
     - Add content blocks to the custom section
 picker_preview:
   text: Custom Section
-  subtext: A custom section component that provides layout structure with background options, padding, and content width controls.
+  subtext: "Used to group and style large sections of a page."
   icon: width_full
 _inputs:
   label:

@@ -24,7 +24,7 @@ preview:
     - Add one or more buttons to the button group
 picker_preview:
   text: Button Group
-  subtext: Controls the alignment and direction of buttons.
+  subtext: "Arranges buttons side by side with consistent spacing."
   icon: rectangle
 _inputs:
   label:

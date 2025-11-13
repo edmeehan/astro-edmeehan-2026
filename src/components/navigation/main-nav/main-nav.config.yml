@@ -13,7 +13,7 @@ preview:
   icon: navigation
 picker_preview:
   text: Main Nav
-  subtext: "Responsive navigation with dropdown support, logo, and action buttons."
+  subtext: "Header navigation combining logo, links, and actions."
   icon: navigation
 
 _inputs:

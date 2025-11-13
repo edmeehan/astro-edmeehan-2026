@@ -21,7 +21,7 @@ preview:
   icon: view_headline
 picker_preview:
   text: Simple Text
-  subtext: "Displays blocks of text for content sections with options for alignment and size."
+  subtext: "Paragraph for plain text content with inline markdown formatting."
   icon: view_headline
 
 _inputs:

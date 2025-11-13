@@ -23,7 +23,7 @@ preview:
     - Add button content
 picker_preview:
   text: Button
-  subtext: "A clickable element that navigates to another page or triggers an action."
+  subtext: "Clickable button for calls-to-action and navigation."
   icon: variables
 
 _inputs:

@@ -23,7 +23,7 @@ preview:
     - Add items to the accordion
 picker_preview:
   text: Accordion
-  subtext: Hides content behind an expandable menu.
+  subtext: "Interactive component for showing and hiding content panels."
   icon: expand_all
 _inputs:
   label:

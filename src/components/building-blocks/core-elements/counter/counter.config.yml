@@ -21,7 +21,7 @@ preview:
     - Add counter details
 picker_preview:
   text: Counter
-  subtext: "Animated number that counts up when visible."
+  subtext: "Animated counter for highlighting key stats or figures."
   icon: speed
 
 _inputs:

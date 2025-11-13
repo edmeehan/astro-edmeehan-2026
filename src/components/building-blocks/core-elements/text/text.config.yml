@@ -19,7 +19,7 @@ preview:
     - Add text to block
 picker_preview:
   text: Text
-  subtext: "A catch-all for all content types. Can contain headings, paragraphs, images, bullets."
+  subtext: "Content component for markdown-formatted text."
   icon: edit_note
 
 _inputs:

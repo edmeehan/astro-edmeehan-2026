@@ -12,7 +12,7 @@ preview:
   icon: device-phone-mobile
 picker_preview:
   text: Mobile Navigation
-  subtext: A mobile navigation with hamburger menu and slide-out panel.
+  subtext: "Mobile navigation with full-screen overlay."
   icon: device-phone-mobile
 _inputs:
   logoSource:

@@ -23,7 +23,7 @@ preview:
     - Add items to the grid
 picker_preview:
   text: Grid
-  subtext: Responsive, centered grid with configurable sizing.
+  subtext: "Arranges content into a grid that adapts to screen size."
   icon: grid_on
 _inputs:
   label:

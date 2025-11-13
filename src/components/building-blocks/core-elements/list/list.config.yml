@@ -27,7 +27,7 @@ preview:
     - Add list items
 picker_preview:
   text: List
-  subtext: "Displays items in a list with icons as markers."
+  subtext: "Lists items with icons as markers."
   icon: list
 
 _inputs:

@@ -10,7 +10,7 @@ preview:
   icon: list
 picker_preview:
   text: Pagination
-  subtext: "Navigation for Astro's built-in pagination."
+  subtext: "Navigation component for multi-page content."
   icon: list
 
 _inputs:

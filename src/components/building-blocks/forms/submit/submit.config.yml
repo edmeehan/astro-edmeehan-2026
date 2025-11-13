@@ -20,7 +20,7 @@ preview:
   subtext: A submit button for forms.
 picker_preview:
   text: Submit
-  subtext: A submit button for forms.
+  subtext: "Button for submitting a form."
   icon: check
 _inputs:
   text:

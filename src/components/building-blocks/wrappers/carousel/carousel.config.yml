@@ -22,7 +22,7 @@ preview:
     - Add slides to the carousel
 picker_preview:
   text: Carousel
-  subtext: A carousel component for displaying slides with navigation controls
+  subtext: "Displays multiple items in a sliding gallery."
   icon: image
 _inputs:
   label:

@@ -33,7 +33,7 @@ preview:
     - Card
 picker_preview:
   text: Card
-  subtext: A container component that provides card layout with background options and padding controls.
+  subtext: "Groups related content within a section."
   icon: crop_square
 _inputs:
   label:

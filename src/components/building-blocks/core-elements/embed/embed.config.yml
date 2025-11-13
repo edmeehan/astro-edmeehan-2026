@@ -23,7 +23,7 @@ preview:
     - Add embed source
 picker_preview:
   text: Embed
-  subtext: "Embed content from other sources."
+  subtext: "Responsive wrapper for third-party embeds."
   icon: data_object
 
 _inputs:

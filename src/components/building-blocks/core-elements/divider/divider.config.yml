@@ -20,7 +20,7 @@ preview:
   icon: horizontal_rule
 picker_preview:
   text: Divider
-  subtext: "A horizontal line to separate content."
+  subtext: "Visual separator for dividing content sections."
   icon: horizontal_rule
 
 _inputs:

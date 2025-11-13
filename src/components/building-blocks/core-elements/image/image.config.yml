@@ -26,7 +26,7 @@ preview:
     - Add image source
 picker_preview:
   text: Image
-  subtext: "Optimized image with smart CDN detection."
+  subtext: "Optimized image component for local and remote sources."
   icon: image
 
 _inputs:

@@ -19,7 +19,7 @@ preview:
     - Add items to the content selector
 picker_preview:
   text: Content Selector
-  subtext: Switches between related content panels using tab buttons.
+  subtext: "Lets users switch between different content panels using tabs."
   icon: view_sidebar
 _inputs:
   label:

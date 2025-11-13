@@ -20,7 +20,7 @@ preview:
     - A form input field with an optional label.
 picker_preview:
   text: Input
-  subtext: A form input field with an optional label.
+  subtext: "Single text input form field."
   icon: rectangle
 _inputs:
   label:
