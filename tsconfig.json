@@ -3,7 +3,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@building-blocks/*": ["src/components/building-blocks/*"],
+      "@core-elements/*": ["src/components/building-blocks/core-elements/*"],
+      "@forms/*": ["src/components/building-blocks/forms/*"],
+      "@wrappers/*": ["src/components/building-blocks/wrappers/*"],
+      "@navigation/*": ["src/components/navigation/*"],
+      "@page-sections/*": ["src/components/page-sections/*"],
+      "@features/*": ["src/components/page-sections/features/*"],
+      "@builders/*": ["src/components/page-sections/builders/*"],
+      "@sections/*": ["src/components/sections/*"],
+      "@component-utils/*": ["src/components/utils/*"]
     }
   },
   "include": ["src/**/*"],

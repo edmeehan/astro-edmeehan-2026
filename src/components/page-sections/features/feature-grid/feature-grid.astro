@@ -1,0 +1,60 @@
+---
+import CustomSection from "@builders/custom-section/custom-section.astro";
+import Heading from "@core-elements/heading/heading.astro";
+import SimpleText from "@core-elements/simple-text/simple-text.astro";
+import FeatureItem from "@features/feature-grid/feature-item.astro";
+import GridItem from "@wrappers/grid/grid-item.astro";
+import Grid from "@wrappers/grid/grid.astro";
+
+const {
+  eyebrow = "",
+  heading = "",
+  subtext = "",
+  features = [],
+  colorScheme,
+  backgroundColor,
+  class: className,
+} = Astro.props;
+---
+
+<CustomSection
+  class:list={["feature-grid", className]}
+  maxContentWidth="2xl"
+  paddingHorizontal="lg"
+  paddingVertical="lg"
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+>
+  {
+    eyebrow && (
+      <SimpleText alignX="center" class="eyebrow">
+        {eyebrow}
+      </SimpleText>
+    )
+  }
+  {
+    heading && (
+      <Heading level="h2" size="lg" alignX="center">
+        {heading}
+      </Heading>
+    )
+  }
+  {
+    subtext && (
+      <SimpleText class="feature-grid-subtext" size="md" alignX="center">
+        {subtext}
+      </SimpleText>
+    )
+  }
+  {
+    features?.length > 0 && (
+      <Grid gap="lg" minItemWidth="360" maxItemWidth="360" style="margin-top: var(--spacing-2xl)">
+        {features.map((feature, index) => (
+          <GridItem>
+            <FeatureItem {...feature} class="feature-grid-item" data-index={index} />
+          </GridItem>
+        ))}
+      </Grid>
+    )
+  }
+</CustomSection>

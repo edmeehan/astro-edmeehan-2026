@@ -1,4 +1,5 @@
 ---
+import mainNavData from "@data/mainNav.json";
 import Page from "@layouts/Page.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
@@ -8,8 +9,10 @@ export interface Props {
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
+
   return pages.map((page) => {
     const slug = page.slug.replace(/index$/, "");
+
     if (slug.length === 0) return { params: { slug: undefined }, props: { page } };
     return { params: { slug }, props: { page } };
   });
@@ -18,4 +21,4 @@ export async function getStaticPaths() {
 const { page } = Astro.props;
 ---
 
-<Page frontmatter={page.data} />
+<Page frontmatter={page.data} mainNav={mainNavData} />

@@ -55,7 +55,7 @@ async function generateStructures() {
       console.log(`   Processing: ${componentPath}`);
 
       // Fix _component path if it has duplicate folder names
-      // e.g., page-sections/custom-section/custom-section -> page-sections/custom-section
+      // e.g., page-sections/builders/custom-section/custom-section -> page-sections/builders/custom-section
       if (config.value && config.value._component) {
         const parts = config.value._component.split("/");
 

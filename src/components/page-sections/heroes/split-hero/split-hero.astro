@@ -1,0 +1,52 @@
+---
+import CustomSection from "@builders/custom-section/custom-section.astro";
+import Heading from "@core-elements/heading/heading.astro";
+import Image from "@core-elements/image/image.astro";
+import SimpleText from "@core-elements/simple-text/simple-text.astro";
+import ButtonGroup from "@wrappers/button-group/button-group.astro";
+import Card from "@wrappers/card/card.astro";
+import Split from "@wrappers/split/split.astro";
+
+const {
+  eyebrow = "",
+  heading = "",
+  subtitle = "",
+  imageSource = "",
+  imageAlt = "",
+  buttonSections = [],
+  reverse = false,
+  colorScheme,
+  backgroundColor,
+  class: className,
+} = Astro.props;
+---
+
+<CustomSection
+  maxContentWidth="2xl"
+  paddingHorizontal="md"
+  paddingVertical="xl"
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  class:list={["hero", className]}
+>
+  <Split
+    distributionMode="flexible-fixed"
+    fixedWidth="400"
+    verticalAlignment="center"
+    reverse={reverse}
+    minSplitWidth={710}
+    class="split-hero"
+  >
+    <div slot="first">
+      <Card>
+        {eyebrow && <SimpleText class="eyebrow">{eyebrow}</SimpleText>}
+        <Heading level="h1" size="xl">{heading}</Heading>
+        <SimpleText class="subtext">{subtitle}</SimpleText>
+        <ButtonGroup class="buttons-container" buttonSections={buttonSections} />
+      </Card>
+    </div>
+    <div slot="second">
+      <Image source={imageSource} alt={imageAlt} rounded="true" editable={false} />
+    </div>
+  </Split>
+</CustomSection>

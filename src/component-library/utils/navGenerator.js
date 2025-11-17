@@ -1,5 +1,22 @@
 import { getCollection } from "astro:content";
 
+const DISPLAY_NAME_OVERRIDES = {
+  ctas: "CTAs",
+  cta: "CTA",
+};
+
+const formatDisplayName = (value = "") => {
+  const lower = value.toLowerCase();
+  if (DISPLAY_NAME_OVERRIDES[lower]) {
+    return DISPLAY_NAME_OVERRIDES[lower];
+  }
+
+  return value
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export async function generateNavData(navData) {
   const allComponents = await getCollection("docs-components");
 
@@ -136,10 +153,7 @@ export async function generateNavData(navData) {
           return a.name.localeCompare(b.name);
         });
 
-        const displayName = subCategory
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
+        const displayName = formatDisplayName(subCategory);
 
         return {
           group: displayName,

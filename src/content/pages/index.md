@@ -2,7 +2,7 @@
 _schema: default
 title: Your Site
 pageSections:
-  - _component: page-sections/custom-section
+  - _component: page-sections/builders/custom-section
     label: ''
     contentSections:
       - _component: building-blocks/core-elements/heading

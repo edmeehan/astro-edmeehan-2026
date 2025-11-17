@@ -1,4 +1,5 @@
 ---
+import MainNavigation from "@components/navigation/main-nav/main-nav.astro";
 import Components from "@components/utils/renderBlock.astro";
 import Layout from "@layouts/BaseLayout.astro";
 
@@ -11,17 +12,19 @@ type Props = {
     canonical?: string;
     pageSections: any[];
   };
+  mainNav?: Record<string, any>;
 };
 
-const props = Astro.props.frontmatter;
+const { frontmatter, mainNav } = Astro.props as Props;
 ---
 
 <Layout
-  title={props.title}
-  description={props.description}
-  keywords={props.keywords}
-  image={props.image}
-  canonical={props.canonical}
+  title={frontmatter.title}
+  description={frontmatter.description}
+  keywords={frontmatter.keywords}
+  image={frontmatter.image}
+  canonical={frontmatter.canonical}
 >
-  <Components contentSections={props.pageSections} propName="pageSections" />
+  <MainNavigation {...mainNav ?? {}} style="margin-top: var(--spacing-md);" />
+  <Components contentSections={frontmatter.pageSections} propName="pageSections" />
 </Layout>

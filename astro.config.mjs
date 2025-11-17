@@ -60,6 +60,14 @@ export default defineConfig({
     resolve: {
       alias: {
         "@components": path.resolve(__dirname, "src/components"),
+        "@building-blocks": path.resolve(__dirname, "src/components/building-blocks"),
+        "@core-elements": path.resolve(__dirname, "src/components/building-blocks/core-elements"),
+        "@forms": path.resolve(__dirname, "src/components/building-blocks/forms"),
+        "@wrappers": path.resolve(__dirname, "src/components/building-blocks/wrappers"),
+        "@navigation": path.resolve(__dirname, "src/components/navigation"),
+        "@page-sections": path.resolve(__dirname, "src/components/page-sections"),
+        "@features": path.resolve(__dirname, "src/components/page-sections/features"),
+        "@builders": path.resolve(__dirname, "src/components/page-sections/builders"),
         "@data": path.resolve(__dirname, "src/data"),
         "@content": path.resolve(__dirname, "src/content"),
         "@assets": path.resolve(__dirname, "src/assets"),

@@ -1,11 +1,11 @@
 ---
-import Button from "@components/building-blocks/core-elements/button/button.astro";
-import Divider from "@components/building-blocks/core-elements/divider/divider.astro";
-import Image from "@components/building-blocks/core-elements/image/image.astro";
-import Text from "@components/building-blocks/core-elements/text/text.astro";
-import ButtonGroup from "@components/building-blocks/wrappers/button-group/button-group.astro";
+import CustomSection from "@builders/custom-section/custom-section.astro";
 import Bar from "@components/navigation/bar/bar.astro";
-import CustomSection from "@components/page-sections/custom-section/custom-section.astro";
+import Button from "@core-elements/button/button.astro";
+import Divider from "@core-elements/divider/divider.astro";
+import Image from "@core-elements/image/image.astro";
+import Text from "@core-elements/text/text.astro";
+import ButtonGroup from "@wrappers/button-group/button-group.astro";
 
 const { links = [], socials = [], footerText = "", logoSource, logoAlt } = Astro.props;
 ---

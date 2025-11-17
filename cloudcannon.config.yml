@@ -726,15 +726,689 @@ _select_data:
     - id: x-mark
       name: X Mark
 _structures:
+  navItemLevel1:
+    id_key: _component
+    style: modal
+    values:
+      - label: Navigation Item (Level 1)
+        icon: link
+        value:
+          name: null
+          path: null
+          children: null
+        _inputs:
+          name:
+            type: text
+            comment: The display text for the navigation item.
+          path:
+            type: text
+            comment: The URL/path for the navigation item.
+          children:
+            type: array
+            comment: Optional nested navigation items (level 2).
+            options:
+              structures: _structures.navItemLevel2
+  navItemLevel2:
+    id_key: _component
+    style: modal
+    values:
+      - label: Navigation Item (Level 2)
+        icon: link
+        value:
+          name: null
+          path: null
+          children: null
+        _inputs:
+          name:
+            type: text
+            comment: The display text for the navigation item.
+          path:
+            type: text
+            comment: The URL/path for the navigation item.
+          children:
+            type: array
+            comment: Optional nested navigation items (level 3, final level).
+            options:
+              structures: _structures.navItemLevel3
+  navItemLevel3:
+    id_key: _component
+    style: modal
+    values:
+      - label: Navigation Item (Level 3)
+        icon: link
+        value:
+          name: null
+          path: null
+        _inputs:
+          name:
+            type: text
+            comment: The display text for the navigation item.
+          path:
+            type: text
+            comment: The URL/path for the navigation item.
+  linkItems:
+    id_key: _component
+    style: modal
+    values:
+      - label: Navigation Link
+        icon: link
+        value:
+          name: ""
+          path: ""
+        _inputs:
+          name:
+            type: text
+            comment: Display text for the navigation link.
+          path:
+            type: text
+            comment: URL path for the navigation link.
+  socialItems:
+    id_key: _component
+    style: modal
+    values:
+      - label: Social Link
+        icon: share
+        value:
+          icon: ""
+          link: ""
+        _inputs:
+          icon:
+            type: text
+            comment: Icon name for the social media platform.
+          link:
+            type: text
+            comment: URL link to the social media profile.
   pageSections:
     id_key: _component
     style: modal
     values:
+      - label: Split Hero
+        icon: hero
+        description: Prominent section block for landing pages.
+        value:
+          _component: page-sections/heroes/split-hero
+          eyebrow: ""
+          heading: ""
+          subtitle: ""
+          imageSource: ""
+          imageAlt: ""
+          buttonSections: []
+          reverse: false
+          colorScheme: null
+          backgroundColor: base
+        preview:
+          text:
+            - key: heading
+            - Hero
+          subtext:
+            - key: eyebrow
+            - Eyebrow
+            - key: subtitle
+            - Add content to the hero
+        picker_preview:
+          text: Split Hero
+          subtext: Prominent section block for landing pages.
+          icon: hero
+        _inputs:
+          eyebrow:
+            type: text
+            comment: Optional label displayed above the hero heading.
+          heading:
+            type: text
+            comment: Main heading text for the hero section.
+          subtitle:
+            type: text
+            comment: Subtitle text displayed below the main heading.
+          imageSource:
+            type: image
+            comment: Feature image to display alongside the hero content.
+            options:
+              paths:
+                uploads: src/assets/images
+                static: ""
+          imageAlt:
+            type: text
+            comment: Alt text for the feature image for accessibility.
+          buttonSections:
+            type: array
+            comment: Array of button components for call-to-action buttons. See the Button component documentation for more information.
+            options:
+              structures: _structures.buttonSections
+          reverse:
+            type: switch
+            comment: Whether to reverse the order of content and image (image first, content second).
+          colorScheme:
+            type: select
+            comment: Color scheme theme for the hero.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color for the hero.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+      - label: Center Hero
+        icon: hero
+        description: Centered hero with heading, supporting text, and buttons.
+        value:
+          _component: page-sections/heroes/center-hero
+          eyebrow: ""
+          heading: ""
+          subtext: ""
+          buttonSections: []
+          colorScheme: null
+          backgroundColor: base
+        preview:
+          text:
+            - key: heading
+            - Center Hero
+          subtext:
+            - key: eyebrow
+            - Eyebrow
+            - key: subtext
+            - Add subtext to the hero
+        picker_preview:
+          text: Center Hero
+          subtext: Centered hero with heading, subtext, and buttons.
+          icon: hero
+        _inputs:
+          eyebrow:
+            type: text
+            comment: Optional label displayed above the hero heading.
+          heading:
+            type: text
+            comment: Main heading text for the hero.
+          subtext:
+            type: textarea
+            comment: Supporting subtext displayed beneath the heading.
+          buttonSections:
+            type: array
+            comment: Button blocks for calls to action.
+            options:
+              structures: _structures.buttonSections
+          colorScheme:
+            type: select
+            comment: Color scheme theme for the hero.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color for the hero.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+      - label: Feature Split
+        icon: view_week
+        description: Split layout that pairs narrative content with a focused feature list.
+        value:
+          _component: page-sections/features/feature-split
+          eyebrow: ""
+          heading: ""
+          subtext: ""
+          buttonSections: []
+          features: []
+          imageSource: ""
+          imageAlt: ""
+          imageAspectRatio: portrait
+          imageRounded: true
+          reverse: false
+          colorScheme: null
+          backgroundColor: base
+        preview:
+          text:
+            - key: heading
+            - Feature Split
+          subtext:
+            - template: Includes {features|array_length} {"feature"|pluralize=features}
+            - Add feature details to the split panel
+        picker_preview:
+          text: Feature Split
+          subtext: Split view with story content and supporting feature list.
+          icon: view_week
+        _inputs:
+          eyebrow:
+            type: text
+            comment: Optional eyebrow text displayed above the heading.
+          heading:
+            type: text
+            comment: Main heading for the split section.
+          subtext:
+            type: textarea
+            comment: Supporting body copy beneath the heading.
+          buttonSections:
+            type: array
+            comment: Calls-to-action shown beneath the copy block.
+            options:
+              structures: _structures.buttonSections
+          features:
+            type: array
+            label: Feature List
+            comment: Feature cards rendered beside the copy.
+            options:
+              structures: _structures.featureSplitItems
+          imageSource:
+            type: image
+            comment: Optional image displayed above the feature list.
+            options:
+              paths:
+                uploads: src/assets/images
+                static: ""
+          imageAlt:
+            type: text
+            comment: Alt text describing the image content.
+          imageAspectRatio:
+            type: select
+            comment: Aspect ratio applied to the image.
+            options:
+              values:
+                - id: portrait
+                  name: Portrait
+                - id: square
+                  name: Square
+                - id: landscape
+                  name: Landscape
+                - id: widescreen
+                  name: Widescreen
+          imageRounded:
+            type: switch
+            comment: Toggles rounded corners on the image.
+          reverse:
+            type: switch
+            comment: Flips the layout so the feature list appears before the copy.
+          colorScheme:
+            type: select
+            comment: Color scheme theme applied to the section wrapper.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color for the section.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+      - label: Feature Grid
+        icon: apps
+        description: Responsive grid layout for highlighting multiple product features.
+        value:
+          _component: page-sections/features/feature-grid
+          eyebrow: ""
+          heading: ""
+          subtext: ""
+          align: center
+          gap: xl
+          minItemWidth: 280
+          maxItemWidth: 360
+          features: []
+          colorScheme: null
+          backgroundColor: base
+        preview:
+          text:
+            - key: heading
+            - Feature Grid
+          subtext:
+            - template: Displays {features|array_length} {"feature"|pluralize=features}
+            - Add feature items to the grid
+        picker_preview:
+          text: Feature Grid
+          subtext: Grid of feature highlights with icons and descriptions.
+          icon: apps
+        _inputs:
+          eyebrow:
+            type: text
+            comment: Optional eyebrow text shown above the heading.
+          heading:
+            type: text
+            comment: Main heading for the feature grid.
+          subtext:
+            type: textarea
+            comment: Supporting copy beneath the heading.
+          align:
+            type: select
+            comment: Alignment for the heading and supporting text.
+            options:
+              values:
+                - id: start
+                  name: Start
+                - id: center
+                  name: Center
+          gap:
+            type: select
+            comment: Spacing between feature cards.
+            options:
+              values:
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+          minItemWidth:
+            type: number
+            comment: Minimum width for each feature card in pixels.
+          maxItemWidth:
+            type: number
+            comment: Maximum width for each feature card in pixels.
+          features:
+            type: array
+            label: Features
+            comment: Feature cards rendered in the grid.
+            options:
+              structures: _structures.featureGridItems
+          colorScheme:
+            type: select
+            comment: Color scheme theme applied to the section wrapper.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color used behind the grid.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+      - label: Split CTA
+        icon: hero
+        description: Side-by-side CTA with copy on one side and stacked buttons on the other.
+        value:
+          _component: page-sections/ctas/split-cta
+          heading: ""
+          subtext: ""
+          imageSource: ""
+          imageAlt: ""
+          buttonSections: []
+          reverse: false
+          colorScheme: null
+          backgroundColor: base
+        preview:
+          text:
+            - key: heading
+            - Split CTA
+          subtext:
+            - key: subtext
+            - Add supporting text
+        picker_preview:
+          text: Split CTA
+          subtext: Split layout CTA with button stack.
+          icon: hero
+        _inputs:
+          heading:
+            type: text
+            comment: Headline for the CTA.
+          subtext:
+            type: textarea
+            comment: Supporting copy beneath the headline.
+          imageSource:
+            type: image
+            comment: Image displayed alongside the CTA content.
+            options:
+              paths:
+                uploads: src/assets/images
+                static: ""
+          imageAlt:
+            type: text
+            comment: Alt text describing the CTA image.
+          buttonSections:
+            comment: Buttons for calls-to-action.
+            options:
+              structures: _structures.buttonSections
+          reverse:
+            type: switch
+            comment: Reverse the order so buttons appear before the copy.
+          colorScheme:
+            type: select
+            comment: Color scheme theme for the CTA.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color for the CTA.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+      - label: Center CTA
+        icon: hero
+        description: Centered call-to-action with headline, supporting text, and buttons.
+        value:
+          _component: page-sections/ctas/center-cta
+          heading: ""
+          subtext: ""
+          buttonSections: []
+          colorScheme: null
+          backgroundColor: base
+        preview:
+          text:
+            - key: heading
+            - Center CTA
+          subtext:
+            - key: subtext
+            - Add supporting text
+        picker_preview:
+          text: Center CTA
+          subtext: Centered CTA with stacked text and buttons.
+          icon: hero
+        _inputs:
+          heading:
+            type: text
+            comment: Headline for the CTA.
+          subtext:
+            type: textarea
+            comment: Supporting copy beneath the headline.
+          buttonSections:
+            type: array
+            comment: Buttons for calls-to-action.
+            options:
+              structures: _structures.buttonSections
+          colorScheme:
+            type: select
+            comment: Color scheme theme for the CTA.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color for the CTA.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+      - label: Section
+        icon: width_full
+        description: Used to group and style large sections of a page.
+        value:
+          _component: page-sections/builders/custom-section
+          label: ""
+          contentSections: []
+          maxContentWidth: 2xl
+          paddingHorizontal: lg
+          paddingVertical: lg
+          colorScheme: null
+          backgroundColor: base
+          backgroundImage:
+            source: ""
+            alt: ""
+            positionVertical: top
+            positionHorizontal: center
+          rounded: false
+        preview:
+          text:
+            - key: label
+            - Section
+          subtext:
+            - template: Contains {contentSections|array_length} content {"block"|pluralize=contentSections}
+            - Add content blocks to the section
+        picker_preview:
+          text: Section
+          subtext: Custom section with fixed content width and padding.
+          icon: width_full
+        _inputs:
+          label:
+            type: text
+            comment: Optional label to help identify the section in the editor.
+          contentSections:
+            type: array
+            comment: Array of content sections rendered inside the section.
+            options:
+              structures: _structures.containerSections
+          colorScheme:
+            type: select
+            comment: Color scheme theme for the section.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: contrast
+                  name: Contrast
+          backgroundColor:
+            type: select
+            comment: Background color for the section.
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: base
+                  name: Base
+                - id: surface
+                  name: Surface
+                - id: accent
+                  name: Accent
+                - id: highlight
+                  name: Highlight
+          backgroundImage:
+            type: object
+            comment: Background image configuration for the section.
+            options:
+              preview:
+                icon: image
+                text:
+                  - key: alt
+                  - Background Image
+                subtext:
+                  - key: source
+                  - Add an image source
+                image:
+                  - key: source
+          backgroundImage.source:
+            comment: URL or path to the background image.
+            type: image
+            options:
+              paths:
+                uploads: src/assets/images
+                static: ""
+          backgroundImage.alt:
+            comment: Alt text for the background image.
+            type: textarea
+          backgroundImage.positionVertical:
+            comment: Vertical position of the background image.
+            type: select
+            options:
+              values:
+                - id: top
+                  name: Top
+                - id: center
+                  name: Center
+                - id: bottom
+                  name: Bottom
+          backgroundImage.positionHorizontal:
+            comment: Horizontal position of the background image.
+            type: select
+            options:
+              values:
+                - id: left
+                  name: Left
+                - id: center
+                  name: Center
+                - id: right
+                  name: Right
+          rounded:
+            type: switch
+            comment: Whether to apply rounded corners to the section.
       - label: Custom Section
         icon: width_full
         description: Used to group and style large sections of a page.
         value:
-          _component: page-sections/custom-section
+          _component: page-sections/builders/custom-section
           label: ""
           contentSections: []
           maxContentWidth: 2xl
@@ -757,7 +1431,7 @@ _structures:
             - Add content blocks to the custom section
         picker_preview:
           text: Custom Section
-          subtext: A custom section component that provides layout structure with background options, padding, and content width controls.
+          subtext: Used to group and style large sections of a page.
           icon: width_full
         _inputs:
           label:
@@ -902,145 +1576,134 @@ _structures:
           rounded:
             type: switch
             comment: Whether to apply rounded corners to the custom section.
-      - label: Hero Split
-        icon: hero
-        description: Prominent section block for landing pages.
+  featureSplitItems:
+    id_key: _component
+    style: modal
+    values:
+      - label: Feature
+        icon: checklist
         value:
-          _component: page-sections/heroes/hero-split
-          heading: ""
-          subtitle: ""
-          imageSource: ""
-          imageAlt: ""
-          buttonSections: []
-          reverse: false
+          title: ""
+          description: ""
+          iconName: ""
+          iconColor: default
+          iconBackground: false
         preview:
           text:
-            - key: heading
-            - Hero
+            - key: title
+            - Feature
           subtext:
-            - key: subtitle
-            - Add content to the hero
-        picker_preview:
-          text: Hero Split
-          subtext: Hero section with heading, subtitle, CTA buttons, and feature image.
-          icon: hero
+            - key: description
+            - Describe the feature
+          image:
+            - template: src/icons/{iconName}.svg
         _inputs:
-          heading:
+          title:
             type: text
-            comment: Main heading text for the hero section.
-          subtitle:
-            type: text
-            comment: Subtitle text displayed below the main heading.
-          imageSource:
-            type: image
-            comment: Feature image to display alongside the hero content.
+            comment: Name of the feature.
+          description:
+            type: textarea
+            comment: Supporting description for the feature.
+          iconName:
+            type: select
+            comment: Icon displayed with the feature.
             options:
-              paths:
-                uploads: src/assets/images
-                static: ""
-          imageAlt:
-            type: text
-            comment: Alt text for the feature image for accessibility.
-          buttonSections:
-            type: array
-            comment: Array of button components for call-to-action buttons. See the Button component documentation for more information.
+              values: _select_data.icons
+              preview:
+                text:
+                  - key: name
+                image:
+                  - template: src/icons/{id}.svg
+          iconColor:
+            type: select
+            comment: Color accent applied to the icon.
             options:
-              structures: _structures.buttonSections
-          reverse:
+              values:
+                - id: default
+                  name: Default
+                - id: blue
+                  name: Blue
+                - id: green
+                  name: Green
+                - id: yellow
+                  name: Yellow
+                - id: orange
+                  name: Orange
+                - id: red
+                  name: Red
+                - id: purple
+                  name: Purple
+                - id: pink
+                  name: Pink
+                - id: cyan
+                  name: Cyan
+          iconBackground:
             type: switch
-            comment: Whether to reverse the order of content and image (image first, content second).
-  navItemLevel1:
+            comment: Adds a subtle background shape behind the icon.
+  featureGridItems:
     id_key: _component
     style: modal
     values:
-      - label: Navigation Item (Level 1)
-        icon: link
+      - label: Feature
+        icon: apps
         value:
-          name: null
-          path: null
-          children: null
+          title: ""
+          description: ""
+          iconName: ""
+          iconColor: default
+          iconBackground: false
+        preview:
+          text:
+            - key: title
+            - Feature
+          subtext:
+            - key: description
+            - Describe the feature
+          image:
+            - template: src/icons/{iconName}.svg
         _inputs:
-          name:
+          title:
             type: text
-            comment: The display text for the navigation item.
-          path:
-            type: text
-            comment: The URL/path for the navigation item.
-          children:
-            type: array
-            comment: Optional nested navigation items (level 2).
+            comment: Name of the feature.
+          description:
+            type: textarea
+            comment: Supporting description for the feature.
+          iconName:
+            type: select
+            comment: Icon displayed with the feature.
             options:
-              structures: _structures.navItemLevel2
-  navItemLevel2:
-    id_key: _component
-    style: modal
-    values:
-      - label: Navigation Item (Level 2)
-        icon: link
-        value:
-          name: null
-          path: null
-          children: null
-        _inputs:
-          name:
-            type: text
-            comment: The display text for the navigation item.
-          path:
-            type: text
-            comment: The URL/path for the navigation item.
-          children:
-            type: array
-            comment: Optional nested navigation items (level 3, final level).
+              values: _select_data.icons
+              preview:
+                text:
+                  - key: name
+                image:
+                  - template: src/icons/{id}.svg
+          iconColor:
+            type: select
+            comment: Color accent applied to the icon.
             options:
-              structures: _structures.navItemLevel3
-  navItemLevel3:
-    id_key: _component
-    style: modal
-    values:
-      - label: Navigation Item (Level 3)
-        icon: link
-        value:
-          name: null
-          path: null
-        _inputs:
-          name:
-            type: text
-            comment: The display text for the navigation item.
-          path:
-            type: text
-            comment: The URL/path for the navigation item.
-  linkItems:
-    id_key: _component
-    style: modal
-    values:
-      - label: Navigation Link
-        icon: link
-        value:
-          name: ""
-          path: ""
-        _inputs:
-          name:
-            type: text
-            comment: Display text for the navigation link.
-          path:
-            type: text
-            comment: URL path for the navigation link.
-  socialItems:
-    id_key: _component
-    style: modal
-    values:
-      - label: Social Link
-        icon: share
-        value:
-          icon: ""
-          link: ""
-        _inputs:
-          icon:
-            type: text
-            comment: Icon name for the social media platform.
-          link:
-            type: text
-            comment: URL link to the social media profile.
+              values:
+                - id: default
+                  name: Default
+                - id: blue
+                  name: Blue
+                - id: green
+                  name: Green
+                - id: yellow
+                  name: Yellow
+                - id: orange
+                  name: Orange
+                - id: red
+                  name: Red
+                - id: purple
+                  name: Purple
+                - id: pink
+                  name: Pink
+                - id: cyan
+                  name: Cyan
+          iconBackground:
+            type: switch
+            comment: Adds a subtle background shape behind the icon.
   containerSections:
     id_key: _component
     style: modal
@@ -1068,7 +1731,7 @@ _structures:
             - Add items to the split
         picker_preview:
           text: Split
-          subtext: Arranges content in two columns.
+          subtext: Two-column layout for side-by-side content.
           icon: vertical_split
         _inputs:
           label:
@@ -1146,7 +1809,7 @@ _structures:
             - Add items to the grid
         picker_preview:
           text: Grid
-          subtext: Responsive, centered grid with configurable sizing.
+          subtext: Arranges content into a grid that adapts to screen size.
           icon: grid_on
         _inputs:
           label:
@@ -1192,42 +1855,6 @@ _structures:
                   name: 2xl
                 - id: 3xl
                   name: 3xl
-      - &ref_2
-        label: Content Selector
-        icon: view_sidebar
-        description: Lets users switch between different content panels using tabs.
-        value:
-          _component: building-blocks/wrappers/content-selector
-          label: ""
-          items: []
-          navigationPosition: start
-        preview:
-          text:
-            - key: label
-            - Content Selector
-          subtext:
-            - template: A content selector containing {items|array_length} {"item"|pluralize=items}
-            - Add items to the content selector
-        picker_preview:
-          text: Content Selector
-          subtext: Switches between related content panels using tab buttons.
-          icon: view_sidebar
-        _inputs:
-          label:
-            comment: Optional label for the content selector to help identify it in the editor.
-            type: text
-          items:
-            type: array
-            options:
-              structures: _structures.contentSelectorItems
-          navigationPosition:
-            type: select
-            options:
-              values:
-                - id: start
-                  name: Start
-                - id: top
-                  name: Top
       - &ref_20
         label: Carousel
         icon: image
@@ -1249,7 +1876,7 @@ _structures:
             - Add slides to the carousel
         picker_preview:
           text: Carousel
-          subtext: A carousel component for displaying slides with navigation controls
+          subtext: Displays multiple items in a sliding gallery.
           icon: image
         _inputs:
           label:
@@ -1276,6 +1903,42 @@ _structures:
           minSlideWidth:
             comment: Minimum width of slides in pixels. Prevents slides from getting too small.
             type: number
+      - &ref_2
+        label: Content Selector
+        icon: view_sidebar
+        description: Lets users switch between different content panels using tabs.
+        value:
+          _component: building-blocks/wrappers/content-selector
+          label: ""
+          items: []
+          navigationPosition: start
+        preview:
+          text:
+            - key: label
+            - Content Selector
+          subtext:
+            - template: A content selector containing {items|array_length} {"item"|pluralize=items}
+            - Add items to the content selector
+        picker_preview:
+          text: Content Selector
+          subtext: Lets users switch between different content panels using tabs.
+          icon: view_sidebar
+        _inputs:
+          label:
+            comment: Optional label for the content selector to help identify it in the editor.
+            type: text
+          items:
+            type: array
+            options:
+              structures: _structures.contentSelectorItems
+          navigationPosition:
+            type: select
+            options:
+              values:
+                - id: start
+                  name: Start
+                - id: top
+                  name: Top
       - &ref_3
         label: Button Group
         icon: rectangle
@@ -1295,7 +1958,7 @@ _structures:
             - Add one or more buttons to the button group
         picker_preview:
           text: Button Group
-          subtext: Controls the alignment and direction of buttons.
+          subtext: Arranges buttons side by side with consistent spacing.
           icon: rectangle
         _inputs:
           label:
@@ -1327,6 +1990,42 @@ _structures:
                 - id: end
                   name: End
       - &ref_4
+        label: Accordion
+        icon: expand_all
+        description: Interactive component for showing and hiding content panels.
+        value:
+          _component: building-blocks/wrappers/accordion
+          label: null
+          items: []
+          openFirst: false
+          singleOpen: false
+        preview:
+          text:
+            - key: label
+            - Accordion
+          subtext:
+            - template: An accordion containing {items|array_length} {"item"|pluralize=items}
+            - Add items to the accordion
+        picker_preview:
+          text: Accordion
+          subtext: Interactive component for showing and hiding content panels.
+          icon: expand_all
+        _inputs:
+          label:
+            comment: Optional label for the accordion to help identify it in the editor.
+            type: text
+          items:
+            comment: The items to display in the accordion.
+            type: array
+            options:
+              structures: _structures.accordionItems
+          openFirst:
+            comment: Whether the first item will be open by default.
+            type: switch
+          singleOpen:
+            comment: Whether only one item can be open at a time within this accordion.
+            type: switch
+      - &ref_5
         label: Card
         icon: crop_square
         description: Groups related content within a section.
@@ -1356,7 +2055,7 @@ _structures:
             - Card
         picker_preview:
           text: Card
-          subtext: A container component that provides card layout with background options and padding controls.
+          subtext: Groups related content within a section.
           icon: crop_square
         _inputs:
           label:
@@ -1514,42 +2213,6 @@ _structures:
           border:
             type: switch
             comment: Whether to apply a border to the card.
-      - &ref_5
-        label: Accordion
-        icon: expand_all
-        description: Interactive component for showing and hiding content panels.
-        value:
-          _component: building-blocks/wrappers/accordion
-          label: null
-          items: []
-          openFirst: false
-          singleOpen: false
-        preview:
-          text:
-            - key: label
-            - Accordion
-          subtext:
-            - template: An accordion containing {items|array_length} {"item"|pluralize=items}
-            - Add items to the accordion
-        picker_preview:
-          text: Accordion
-          subtext: Hides content behind an expandable menu.
-          icon: expand_all
-        _inputs:
-          label:
-            comment: Optional label for the accordion to help identify it in the editor.
-            type: text
-          items:
-            comment: The items to display in the accordion.
-            type: array
-            options:
-              structures: _structures.accordionItems
-          openFirst:
-            comment: Whether the first item will be open by default.
-            type: switch
-          singleOpen:
-            comment: Whether only one item can be open at a time within this accordion.
-            type: switch
       - &ref_6
         label: Form
         icon: checklist_rtl
@@ -1564,7 +2227,7 @@ _structures:
             - Add items to the form
         picker_preview:
           text: Form
-          subtext: A form element that groups related form controls and handles form submission.
+          subtext: Groups form fields into one submission area.
           icon: checklist_rtl
         _inputs:
           action:
@@ -1589,7 +2252,7 @@ _structures:
             - Add text to block
         picker_preview:
           text: Text
-          subtext: A catch-all for all content types. Can contain headings, paragraphs, images, bullets.
+          subtext: Content component for markdown-formatted text.
           icon: edit_note
         _inputs:
           text:
@@ -1631,6 +2294,40 @@ _structures:
                   name: End
             comment: The horizontal alignment of the text component.
       - &ref_8
+        label: Spacer
+        icon: space_bar
+        description: Adds adjustable spacing between content sections.
+        value:
+          _component: building-blocks/core-elements/spacer
+          size: md
+        preview:
+          text: Spacer
+          icon: space_bar
+        picker_preview:
+          text: Spacer
+          subtext: Adds adjustable spacing between content sections.
+          icon: space_bar
+        _inputs:
+          size:
+            type: select
+            comment: The amount of space to add.
+            options:
+              values:
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+      - &ref_9
         label: Testimonial
         icon: format_quote
         description: Displays customer quotes and reviews.
@@ -1650,7 +2347,7 @@ _structures:
             - Add testimonial text
         picker_preview:
           text: Testimonial
-          subtext: A quotation with an author and author description.
+          subtext: Displays customer quotes and reviews.
           icon: format_quote
         _inputs:
           text:
@@ -1690,103 +2387,7 @@ _structures:
                   name: Start
                 - id: center
                   name: Center
-      - &ref_9
-        label: Spacer
-        icon: space_bar
-        description: Adds adjustable spacing between content sections.
-        value:
-          _component: building-blocks/core-elements/spacer
-          size: md
-        preview:
-          text: Spacer
-          icon: space_bar
-        picker_preview:
-          text: Spacer
-          subtext: Gives space between content.
-          icon: space_bar
-        _inputs:
-          size:
-            type: select
-            comment: The amount of space to add.
-            options:
-              values:
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
       - &ref_10
-        label: Video
-        icon: videocam
-        description: Video component for YouTube, Vimeo, and HTML5 sources.
-        value:
-          _component: building-blocks/core-elements/video
-          type: youtube
-          id: ""
-          title: ""
-          source: ""
-          thumbnail: ""
-        preview:
-          icon: videocam
-          text:
-            - template: Video - {type}
-            - Video
-          subtext:
-            - key: title
-            - key: source
-            - Add video
-        picker_preview:
-          text: Video
-          subtext: Play a video from YouTube, Vimeo, or your local files.
-          icon: videocam
-        _inputs:
-          type:
-            type: select
-            options:
-              values:
-                - id: youtube
-                  name: YouTube
-                - id: vimeo
-                  name: Vimeo
-                - id: local-source
-                  name: Local Source
-          title:
-            type: text
-            comment: Used for externally hosted videos - The video title provides accessibility information for assistive technologies (like screen readers) and can display a tooltip when a user hovers over the video.
-          id:
-            type: text
-            comment: Used for externally hosted videos - Enter the YouTube or Vimeo id.
-          source:
-            type: file
-            label: Video Source
-            comment: Used for locally hosted videos - Must be mp4 as this is supported by all modern browsers.
-            options:
-              accepts_mime_types:
-                - video/mp4
-              paths:
-                uploads: public/videos
-                static: public
-          thumbnail:
-            type: image
-            comment: Used for locally hosted videos - The image displayed before the video plays or while it is loading.
-            options:
-              accepts_mime_types:
-                - image/jpeg
-                - image/png
-                - image/webp
-              paths:
-                uploads: public/images
-                static: public
-      - &ref_11
         label: Simple Text
         icon: view_headline
         description: Paragraph for plain text content with inline markdown formatting.
@@ -1802,7 +2403,7 @@ _structures:
           icon: view_headline
         picker_preview:
           text: Simple Text
-          subtext: Displays blocks of text for content sections with options for alignment and size.
+          subtext: Paragraph for plain text content with inline markdown formatting.
           icon: view_headline
         _inputs:
           text:
@@ -1842,7 +2443,7 @@ _structures:
                   name: 3xl
                 - id: 4xl
                   name: 4xl
-      - &ref_12
+      - &ref_11
         label: List
         icon: list
         description: Lists items with icons as markers.
@@ -1864,7 +2465,7 @@ _structures:
             - Add list items
         picker_preview:
           text: List
-          subtext: Displays items in a list with icons as markers.
+          subtext: Lists items with icons as markers.
           icon: list
         _inputs:
           items:
@@ -1909,7 +2510,7 @@ _structures:
                   name: Extra Large
                 - id: 2xl
                   name: 2xl
-      - &ref_13
+      - &ref_12
         label: Icon
         icon: star
         description: SVG icon component.
@@ -1925,7 +2526,7 @@ _structures:
           icon: star
         picker_preview:
           text: Icon
-          subtext: Displays an icon from your icon library.
+          subtext: SVG icon component.
           icon: star
         _inputs:
           name:
@@ -1997,7 +2598,7 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_14
+      - &ref_13
         label: Image
         icon: image
         description: Optimized image component for local and remote sources.
@@ -2018,7 +2619,7 @@ _structures:
             - Add image source
         picker_preview:
           text: Image
-          subtext: Optimized image with smart CDN detection.
+          subtext: Optimized image component for local and remote sources.
           icon: image
         _inputs:
           source:
@@ -2075,7 +2676,7 @@ _structures:
             type: switch
             hidden: true
             comment: Covers the entire parent container with the image.
-      - &ref_15
+      - &ref_14
         label: Heading
         icon: title
         description: Headings for content hierarchy.
@@ -2094,7 +2695,7 @@ _structures:
           icon: title
         picker_preview:
           text: Heading
-          subtext: Main title or heading with levels (H1 to H6)
+          subtext: Headings for content hierarchy.
           icon: title
         _inputs:
           text:
@@ -2159,6 +2760,45 @@ _structures:
                   name: Before
                 - id: after
                   name: After
+      - &ref_15
+        label: Divider
+        icon: horizontal_rule
+        description: Visual separator for dividing content sections.
+        value:
+          _component: building-blocks/core-elements/divider
+          paddingVertical: lg
+        preview:
+          text: Divider
+          subtext:
+            - key: paddingVertical
+            - Add a padding value
+          icon: horizontal_rule
+        picker_preview:
+          text: Divider
+          subtext: Visual separator for dividing content sections.
+          icon: horizontal_rule
+        _inputs:
+          paddingVertical:
+            comment: The space on the top and bottom of the horizontal line.
+            type: select
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
       - &ref_16
         label: Embed
         icon: data_object
@@ -2177,7 +2817,7 @@ _structures:
             - Add embed source
         picker_preview:
           text: Embed
-          subtext: Embed content from other sources.
+          subtext: Responsive wrapper for third-party embeds.
           icon: data_object
         _inputs:
           source:
@@ -2205,45 +2845,6 @@ _structures:
                 - id: widescreen
                   name: Widescreen (16:9)
       - &ref_17
-        label: Divider
-        icon: horizontal_rule
-        description: Visual separator for dividing content sections.
-        value:
-          _component: building-blocks/core-elements/divider
-          paddingVertical: lg
-        preview:
-          text: Divider
-          subtext:
-            - key: paddingVertical
-            - Add a padding value
-          icon: horizontal_rule
-        picker_preview:
-          text: Divider
-          subtext: A horizontal line to separate content.
-          icon: horizontal_rule
-        _inputs:
-          paddingVertical:
-            comment: The space on the top and bottom of the horizontal line.
-            type: select
-            options:
-              values:
-                - id: none
-                  name: None
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
-      - &ref_18
         label: Definition List
         icon: dns
         description: Lists term/definition pairs for structured content.
@@ -2257,7 +2858,7 @@ _structures:
             - Add definition list items
         picker_preview:
           text: Definition List
-          subtext: For displaying key-value pairs. Ideal for glossaries, opening times, etc.
+          subtext: Lists term/definition pairs for structured content.
           icon: dns
         _inputs:
           items:
@@ -2276,7 +2877,7 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_19
+      - &ref_18
         label: Counter
         icon: speed
         description: Animated counter for highlighting key stats or figures.
@@ -2292,7 +2893,7 @@ _structures:
             - Add counter details
         picker_preview:
           text: Counter
-          subtext: Animated number that counts up when visible.
+          subtext: Animated counter for highlighting key stats or figures.
           icon: speed
         _inputs:
           number:
@@ -2313,6 +2914,68 @@ _structures:
                   name: Center
                 - id: end
                   name: End
+      - &ref_19
+        label: Video
+        icon: videocam
+        description: Video component for YouTube, Vimeo, and HTML5 sources.
+        value:
+          _component: building-blocks/core-elements/video
+          type: youtube
+          id: ""
+          title: ""
+          source: ""
+          thumbnail: ""
+        preview:
+          icon: videocam
+          text:
+            - template: Video - {type}
+            - Video
+          subtext:
+            - key: title
+            - key: source
+            - Add video
+        picker_preview:
+          text: Video
+          subtext: Video component for YouTube, Vimeo, and HTML5 sources.
+          icon: videocam
+        _inputs:
+          type:
+            type: select
+            options:
+              values:
+                - id: youtube
+                  name: YouTube
+                - id: vimeo
+                  name: Vimeo
+                - id: local-source
+                  name: Local Source
+          title:
+            type: text
+            comment: Used for externally hosted videos - The video title provides accessibility information for assistive technologies (like screen readers) and can display a tooltip when a user hovers over the video.
+          id:
+            type: text
+            comment: Used for externally hosted videos - Enter the YouTube or Vimeo id.
+          source:
+            type: file
+            label: Video Source
+            comment: Used for locally hosted videos - Must be mp4 as this is supported by all modern browsers.
+            options:
+              accepts_mime_types:
+                - video/mp4
+              paths:
+                uploads: public/videos
+                static: public
+          thumbnail:
+            type: image
+            comment: Used for locally hosted videos - The image displayed before the video plays or while it is loading.
+            options:
+              accepts_mime_types:
+                - image/jpeg
+                - image/png
+                - image/webp
+              paths:
+                uploads: public/images
+                static: public
   carouselSections:
     id_key: _component
     style: modal
@@ -2388,8 +3051,8 @@ _structures:
     style: modal
     values:
       - *ref_1
-      - *ref_2
       - *ref_20
+      - *ref_2
       - *ref_3
       - *ref_4
       - *ref_5
@@ -2407,6 +3070,27 @@ _structures:
       - *ref_17
       - *ref_18
       - *ref_19
+  slides:
+    id_key: _component
+    style: modal
+    values:
+      - label: Carousel Slide
+        value:
+          _component: building-blocks/wrappers/carousel/carousel-slide
+          contentSections: []
+        _inputs:
+          _component:
+            hidden: true
+          contentSections:
+            type: array
+            options:
+              structures: _structures.carouselSections
+        preview:
+          icon: transition_slide
+          text: Carousel Slide
+          subtext:
+            - template: Contains {contentSections|array_length} content {"block"|pluralize=contentSections}
+            - Add one or more content blocks to the grid item
   contentSelectorItems:
     id_key: _component
     style: modal
@@ -2434,33 +3118,12 @@ _structures:
               structures: _structures.contentSelectorSections
           _component:
             hidden: true
-  slides:
-    id_key: _component
-    style: modal
-    values:
-      - label: Carousel Slide
-        value:
-          _component: building-blocks/wrappers/carousel/carousel-slide
-          contentSections: []
-        _inputs:
-          _component:
-            hidden: true
-          contentSections:
-            type: array
-            options:
-              structures: _structures.carouselSections
-        preview:
-          icon: transition_slide
-          text: Carousel Slide
-          subtext:
-            - template: Contains {contentSections|array_length} content {"block"|pluralize=contentSections}
-            - Add one or more content blocks to the grid item
   cardSections:
     id_key: _component
     style: modal
     values:
       - *ref_3
-      - *ref_5
+      - *ref_4
       - *ref_6
       - *ref_7
       - *ref_8
@@ -2556,7 +3219,7 @@ _structures:
             - Enter a name for the textarea input.
         picker_preview:
           text: Textarea
-          subtext: A multi-line text input field with an optional label.
+          subtext: Form field for entering multi-line text.
           icon: text_ad
         _inputs:
           label:
@@ -2597,7 +3260,7 @@ _structures:
           subtext: A submit button for forms.
         picker_preview:
           text: Submit
-          subtext: A submit button for forms.
+          subtext: Button for submitting a form.
           icon: check
         _inputs:
           text:
@@ -2681,7 +3344,7 @@ _structures:
             - Enter a name for the form input.
         picker_preview:
           text: Select
-          subtext: A dropdown select field with an optional label.
+          subtext: Form field for selecting one option from a list.
           icon: view_list
         _inputs:
           label:
@@ -2726,7 +3389,7 @@ _structures:
             - template: A segments field, containing {options|array_length} {"option"|pluralize=options}
         picker_preview:
           text: Segments
-          subtext: A segmented control component using radio buttons or checkboxes with optional icons.
+          subtext: Segmented control form field with connected buttons.
           icon: radio_button_partial
         _inputs:
           title:
@@ -2757,28 +3420,6 @@ _structures:
           keepStateOnRefresh:
             type: switch
             comment: When true, sets autocomplete="on" to allow browser to remember state on page refresh. Defaults to false (autocomplete="off").
-      - label: Hidden
-        icon: eye-slash
-        description: Hidden form field for storing data.
-        value:
-          _component: building-blocks/forms/hidden
-          name: ""
-          value: ""
-        preview:
-          text:
-            - template: Hidden - {name}
-          subtext: A hidden form field for storing data that should not be visible to users.
-        picker_preview:
-          text: Hidden
-          subtext: A hidden form field for storing data that should not be visible to users.
-          icon: eye-slash
-        _inputs:
-          name:
-            type: text
-            comment: The name attribute for the hidden input field.
-          value:
-            type: text
-            comment: The value to be stored in the hidden field.
       - label: Input
         icon: rectangle
         description: Single text input form field.
@@ -2799,7 +3440,7 @@ _structures:
             - A form input field with an optional label.
         picker_preview:
           text: Input
-          subtext: A form input field with an optional label.
+          subtext: Single text input form field.
           icon: rectangle
         _inputs:
           label:
@@ -2828,6 +3469,28 @@ _structures:
           value:
             type: text
             comment: The default value for the input field.
+      - label: Hidden
+        icon: eye-slash
+        description: Hidden form field for storing data.
+        value:
+          _component: building-blocks/forms/hidden
+          name: ""
+          value: ""
+        preview:
+          text:
+            - template: Hidden - {name}
+          subtext: A hidden form field for storing data that should not be visible to users.
+        picker_preview:
+          text: Hidden
+          subtext: Hidden form field for storing data.
+          icon: eye-slash
+        _inputs:
+          name:
+            type: text
+            comment: The name attribute for the hidden input field.
+          value:
+            type: text
+            comment: The value to be stored in the hidden field.
       - label: File Upload
         icon: upload
         description: Form field for uploading files.
@@ -2845,7 +3508,7 @@ _structures:
             - Enter a name for the file upload form field.
         picker_preview:
           text: File Upload
-          subtext: A file input field with an optional label.
+          subtext: Form field for uploading files.
           icon: upload
         _inputs:
           label:
@@ -2884,7 +3547,7 @@ _structures:
           subtext: A date input field with an optional label, date constraints, and ISO8601 format validation
         picker_preview:
           text: Date
-          subtext: A date input field with an optional label, date constraints, and ISO8601 format validation.
+          subtext: Form field for selecting a date.
           icon: calendar
         _inputs:
           label:
@@ -2930,7 +3593,7 @@ _structures:
             - A choice group containing {options|array_length} {"option"|pluralize=options}
         picker_preview:
           text: Choice Group
-          subtext: A group of checkboxes or radio buttons with labels.
+          subtext: Form field for selecting one or more options.
           icon: check_box
         _inputs:
           title:
@@ -3162,7 +3825,7 @@ _structures:
             - Add button content
         picker_preview:
           text: Button
-          subtext: A clickable element that navigates to another page or triggers an action.
+          subtext: Clickable button for calls-to-action and navigation.
           icon: variables
         _inputs:
           text:

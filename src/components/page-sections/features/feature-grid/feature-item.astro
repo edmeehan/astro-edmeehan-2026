@@ -1,0 +1,64 @@
+---
+import Heading from "@core-elements/heading/heading.astro";
+import Icon from "@core-elements/icon/icon.astro";
+import SimpleText from "@core-elements/simple-text/simple-text.astro";
+import Card from "@wrappers/card/card.astro";
+
+const {
+  title = "",
+  description = "",
+  iconName = "",
+  iconColor = "default",
+  iconBackground = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const htmlAttributes = Object.fromEntries(
+  Object.entries(rest).filter(([key]) => key !== "_component")
+);
+
+const cardClasses = ["feature-item", className].filter(Boolean).join(" ");
+---
+
+<Card
+  {...htmlAttributes}
+  class={cardClasses || undefined}
+  paddingHorizontal="lg"
+  paddingVertical="lg"
+  rounded
+  border
+>
+  {
+    iconName && (
+      <Icon
+        class="feature-icon"
+        name={iconName}
+        size="lg"
+        color={iconColor}
+        background={iconBackground}
+        alignX="start"
+      />
+    )
+  }
+  {
+    title && (
+      <Heading
+        class="feature-title"
+        level="h3"
+        size="md"
+        alignX="start"
+        style="margin-bottom: var(--spacing-sm); margin-top: var(--spacing-sm);"
+      >
+        {title}
+      </Heading>
+    )
+  }
+  {
+    description && (
+      <SimpleText class="feature-description" size="sm" alignX="start" style="margin-top: 0;">
+        {description}
+      </SimpleText>
+    )
+  }
+</Card>

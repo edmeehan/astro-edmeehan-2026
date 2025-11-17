@@ -4,7 +4,7 @@ spacing:
 blocks:
   _component: "building-blocks/wrappers/split"
   firstColumnContentSections:
-    - _component: "page-sections/custom-section"
+    - _component: "page-sections/builders/custom-section"
       backgroundColor: "accent"
       paddingHorizontal: sm
       paddingVertical: sm
@@ -15,7 +15,7 @@ blocks:
 
             This is content for side A.
   secondColumnContentSections:
-    - _component: "page-sections/custom-section"
+    - _component: "page-sections/builders/custom-section"
       backgroundColor: "highlight"
       paddingHorizontal: sm
       paddingVertical: sm
