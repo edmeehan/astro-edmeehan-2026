@@ -10,14 +10,13 @@ const {
   items = [],
   label,
   gap = "md",
-  "data-editable": dataEditable = "array",
-  "data-prop": dataProp = "items",
-  "data-component-key": dataComponentKey = "_component",
   ...rest
 } = Astro.props;
 
+const dataProp = (Astro.props as any)["data-prop"] ?? "items";
+
 const htmlAttributes = Object.fromEntries(
-  Object.entries(rest).filter(([key]) => key !== "_component")
+  Object.entries(rest).filter(([key]) => key !== "_component" && key !== "data-prop")
 );
 
 const slugifyLabel = (label: string) => {
@@ -42,9 +41,9 @@ const gridStyles = [
 ---
 
 <div
-  data-editable={dataEditable}
+  data-editable="array"
   data-prop={dataProp}
-  data-component-key={dataComponentKey}
+  data-component-key="_component"
   data-id-key="_component"
   class:list={["grid", `layout-${layout}`, className]}
   style={gridStyles}

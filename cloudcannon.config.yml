@@ -786,6 +786,38 @@ _structures:
           path:
             type: text
             comment: The URL/path for the navigation item.
+  linkItems:
+    id_key: _component
+    style: modal
+    values:
+      - label: Navigation Link
+        icon: link
+        value:
+          name: ''
+          path: ''
+        _inputs:
+          name:
+            type: text
+            comment: Display text for the navigation link.
+          path:
+            type: text
+            comment: URL path for the navigation link.
+  socialItems:
+    id_key: _component
+    style: modal
+    values:
+      - label: Social Link
+        icon: share
+        value:
+          icon: ''
+          link: ''
+        _inputs:
+          icon:
+            type: text
+            comment: Icon name for the social media platform.
+          link:
+            type: text
+            comment: URL link to the social media profile.
   pageSections:
     id_key: _component
     style: modal
@@ -1433,38 +1465,6 @@ _structures:
           rounded:
             type: switch
             comment: Whether to apply rounded corners to the custom section.
-  linkItems:
-    id_key: _component
-    style: modal
-    values:
-      - label: Navigation Link
-        icon: link
-        value:
-          name: ''
-          path: ''
-        _inputs:
-          name:
-            type: text
-            comment: Display text for the navigation link.
-          path:
-            type: text
-            comment: URL path for the navigation link.
-  socialItems:
-    id_key: _component
-    style: modal
-    values:
-      - label: Social Link
-        icon: share
-        value:
-          icon: ''
-          link: ''
-        _inputs:
-          icon:
-            type: text
-            comment: Icon name for the social media platform.
-          link:
-            type: text
-            comment: URL link to the social media profile.
   featureSplitItems:
     id_key: _component
     style: modal
@@ -1885,6 +1885,42 @@ _structures:
                 - id: end
                   name: End
       - &ref_4
+        label: Accordion
+        icon: expand_all
+        description: Interactive component for showing and hiding content panels.
+        value:
+          _component: building-blocks/wrappers/accordion
+          label: null
+          items: []
+          openFirst: false
+          singleOpen: false
+        preview:
+          text:
+            - key: label
+            - Accordion
+          subtext:
+            - template: An accordion containing {items|array_length} {"item"|pluralize=items}
+            - Add items to the accordion
+        picker_preview:
+          text: Accordion
+          subtext: Interactive component for showing and hiding content panels.
+          icon: expand_all
+        _inputs:
+          label:
+            comment: Optional label for the accordion to help identify it in the editor.
+            type: text
+          items:
+            comment: The items to display in the accordion.
+            type: array
+            options:
+              structures: _structures.accordionItems
+          openFirst:
+            comment: Whether the first item will be open by default.
+            type: switch
+          singleOpen:
+            comment: Whether only one item can be open at a time within this accordion.
+            type: switch
+      - &ref_5
         label: Card
         icon: crop_square
         description: Groups related content within a section.
@@ -2072,42 +2108,6 @@ _structures:
           border:
             type: switch
             comment: Whether to apply a border to the card.
-      - &ref_5
-        label: Accordion
-        icon: expand_all
-        description: Interactive component for showing and hiding content panels.
-        value:
-          _component: building-blocks/wrappers/accordion
-          label: null
-          items: []
-          openFirst: false
-          singleOpen: false
-        preview:
-          text:
-            - key: label
-            - Accordion
-          subtext:
-            - template: An accordion containing {items|array_length} {"item"|pluralize=items}
-            - Add items to the accordion
-        picker_preview:
-          text: Accordion
-          subtext: Interactive component for showing and hiding content panels.
-          icon: expand_all
-        _inputs:
-          label:
-            comment: Optional label for the accordion to help identify it in the editor.
-            type: text
-          items:
-            comment: The items to display in the accordion.
-            type: array
-            options:
-              structures: _structures.accordionItems
-          openFirst:
-            comment: Whether the first item will be open by default.
-            type: switch
-          singleOpen:
-            comment: Whether only one item can be open at a time within this accordion.
-            type: switch
       - &ref_6
         label: Form
         icon: checklist_rtl
@@ -2134,6 +2134,68 @@ _structures:
             options:
               structures: _structures.formBlocks
       - &ref_7
+        label: Video
+        icon: videocam
+        description: Video component for YouTube, Vimeo, and HTML5 sources.
+        value:
+          _component: building-blocks/core-elements/video
+          type: youtube
+          id: ''
+          title: ''
+          source: ''
+          thumbnail: ''
+        preview:
+          icon: videocam
+          text:
+            - template: Video - {type}
+            - Video
+          subtext:
+            - key: title
+            - key: source
+            - Add video
+        picker_preview:
+          text: Video
+          subtext: Video component for YouTube, Vimeo, and HTML5 sources.
+          icon: videocam
+        _inputs:
+          type:
+            type: select
+            options:
+              values:
+                - id: youtube
+                  name: YouTube
+                - id: vimeo
+                  name: Vimeo
+                - id: local-source
+                  name: Local Source
+          title:
+            type: text
+            comment: Used for externally hosted videos - The video title provides accessibility information for assistive technologies (like screen readers) and can display a tooltip when a user hovers over the video.
+          id:
+            type: text
+            comment: Used for externally hosted videos - Enter the YouTube or Vimeo id.
+          source:
+            type: file
+            label: Video Source
+            comment: Used for locally hosted videos - Must be mp4 as this is supported by all modern browsers.
+            options:
+              accepts_mime_types:
+                - video/mp4
+              paths:
+                uploads: public/videos
+                static: public
+          thumbnail:
+            type: image
+            comment: Used for locally hosted videos - The image displayed before the video plays or while it is loading.
+            options:
+              accepts_mime_types:
+                - image/jpeg
+                - image/png
+                - image/webp
+              paths:
+                uploads: public/images
+                static: public
+      - &ref_8
         label: Text
         icon: edit_note
         description: Content component for markdown-formatted text.
@@ -2188,40 +2250,6 @@ _structures:
                 - id: end
                   name: End
             comment: The horizontal alignment of the text component.
-      - &ref_8
-        label: Spacer
-        icon: space_bar
-        description: Adds adjustable spacing between content sections.
-        value:
-          _component: building-blocks/core-elements/spacer
-          size: md
-        preview:
-          text: Spacer
-          icon: space_bar
-        picker_preview:
-          text: Spacer
-          subtext: Adds adjustable spacing between content sections.
-          icon: space_bar
-        _inputs:
-          size:
-            type: select
-            comment: The amount of space to add.
-            options:
-              values:
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
       - &ref_9
         label: Testimonial
         icon: format_quote
@@ -2283,6 +2311,40 @@ _structures:
                 - id: center
                   name: Center
       - &ref_10
+        label: Spacer
+        icon: space_bar
+        description: Adds adjustable spacing between content sections.
+        value:
+          _component: building-blocks/core-elements/spacer
+          size: md
+        preview:
+          text: Spacer
+          icon: space_bar
+        picker_preview:
+          text: Spacer
+          subtext: Adds adjustable spacing between content sections.
+          icon: space_bar
+        _inputs:
+          size:
+            type: select
+            comment: The amount of space to add.
+            options:
+              values:
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+      - &ref_11
         label: Simple Text
         icon: view_headline
         description: Paragraph for plain text content with inline markdown formatting.
@@ -2338,7 +2400,7 @@ _structures:
                   name: 3xl
                 - id: 4xl
                   name: 4xl
-      - &ref_11
+      - &ref_12
         label: List
         icon: list
         description: Lists items with icons as markers.
@@ -2405,7 +2467,7 @@ _structures:
                   name: Extra Large
                 - id: 2xl
                   name: 2xl
-      - &ref_12
+      - &ref_13
         label: Image
         icon: image
         description: Optimized image component for local and remote sources.
@@ -2483,7 +2545,7 @@ _structures:
             type: switch
             hidden: true
             comment: Covers the entire parent container with the image.
-      - &ref_13
+      - &ref_14
         label: Icon
         icon: star
         description: SVG icon component.
@@ -2571,91 +2633,7 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_14
-        label: Embed
-        icon: data_object
-        description: Responsive wrapper for third-party embeds.
-        value:
-          _component: building-blocks/core-elements/embed
-          source: ''
-          title: ''
-          aspectRatio: landscape
-        preview:
-          icon: data_object
-          text: Embed
-          subtext:
-            - key: title
-            - key: source
-            - Add embed source
-        picker_preview:
-          text: Embed
-          subtext: Responsive wrapper for third-party embeds.
-          icon: data_object
-        _inputs:
-          source:
-            type: url
-            comment: The url source for the iframe.
-            options:
-              disable_upload_file: true
-              disable_direct_input: false
-              disable_upload_file_in_file_browser: true
-              hide_link_to_file: true
-              hide_link_to_page: false
-              hide_link_to_email_address: true
-              hide_link_to_telephone: true
-          aspectRatio:
-            type: select
-            comment: The aspect ratio of the embed.
-            options:
-              values:
-                - id: square
-                  name: Square (1:1)
-                - id: landscape
-                  name: Landscape (4:3)
-                - id: portrait
-                  name: Portrait (3:4)
-                - id: widescreen
-                  name: Widescreen (16:9)
       - &ref_15
-        label: Divider
-        icon: horizontal_rule
-        description: Visual separator for dividing content sections.
-        value:
-          _component: building-blocks/core-elements/divider
-          paddingVertical: lg
-        preview:
-          text: Divider
-          subtext:
-            - key: paddingVertical
-            - Add a padding value
-          icon: horizontal_rule
-        picker_preview:
-          text: Divider
-          subtext: Visual separator for dividing content sections.
-          icon: horizontal_rule
-        _inputs:
-          paddingVertical:
-            comment: The space on the top and bottom of the horizontal line.
-            type: select
-            options:
-              values:
-                - id: none
-                  name: None
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
-      - &ref_16
         label: Heading
         icon: title
         description: Headings for content hierarchy.
@@ -2739,7 +2717,124 @@ _structures:
                   name: Before
                 - id: after
                   name: After
+      - &ref_16
+        label: Embed
+        icon: data_object
+        description: Responsive wrapper for third-party embeds.
+        value:
+          _component: building-blocks/core-elements/embed
+          source: ''
+          title: ''
+          aspectRatio: landscape
+        preview:
+          icon: data_object
+          text: Embed
+          subtext:
+            - key: title
+            - key: source
+            - Add embed source
+        picker_preview:
+          text: Embed
+          subtext: Responsive wrapper for third-party embeds.
+          icon: data_object
+        _inputs:
+          source:
+            type: url
+            comment: The url source for the iframe.
+            options:
+              disable_upload_file: true
+              disable_direct_input: false
+              disable_upload_file_in_file_browser: true
+              hide_link_to_file: true
+              hide_link_to_page: false
+              hide_link_to_email_address: true
+              hide_link_to_telephone: true
+          aspectRatio:
+            type: select
+            comment: The aspect ratio of the embed.
+            options:
+              values:
+                - id: square
+                  name: Square (1:1)
+                - id: landscape
+                  name: Landscape (4:3)
+                - id: portrait
+                  name: Portrait (3:4)
+                - id: widescreen
+                  name: Widescreen (16:9)
       - &ref_17
+        label: Divider
+        icon: horizontal_rule
+        description: Visual separator for dividing content sections.
+        value:
+          _component: building-blocks/core-elements/divider
+          paddingVertical: lg
+        preview:
+          text: Divider
+          subtext:
+            - key: paddingVertical
+            - Add a padding value
+          icon: horizontal_rule
+        picker_preview:
+          text: Divider
+          subtext: Visual separator for dividing content sections.
+          icon: horizontal_rule
+        _inputs:
+          paddingVertical:
+            comment: The space on the top and bottom of the horizontal line.
+            type: select
+            options:
+              values:
+                - id: none
+                  name: None
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+      - &ref_18
+        label: Definition List
+        icon: dns
+        description: Lists term/definition pairs for structured content.
+        value:
+          _component: building-blocks/core-elements/definition-list
+          items: []
+          alignX: start
+        preview:
+          subtext:
+            - template: Contains {items|array_length} list {'item'|pluralize=items}
+            - Add definition list items
+        picker_preview:
+          text: Definition List
+          subtext: Lists term/definition pairs for structured content.
+          icon: dns
+        _inputs:
+          items:
+            type: array
+            label: List Items
+            options:
+              structures: _structures.definitionListItems
+          alignX:
+            type: select
+            comment: The horizontal alignment of the definition list items.
+            options:
+              values:
+                - id: start
+                  name: Start
+                - id: center
+                  name: Center
+                - id: end
+                  name: End
+      - &ref_19
         label: Counter
         icon: speed
         description: Animated counter for highlighting key stats or figures.
@@ -2776,101 +2871,6 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_18
-        label: Definition List
-        icon: dns
-        description: Lists term/definition pairs for structured content.
-        value:
-          _component: building-blocks/core-elements/definition-list
-          items: []
-          alignX: start
-        preview:
-          subtext:
-            - template: Contains {items|array_length} list {'item'|pluralize=items}
-            - Add definition list items
-        picker_preview:
-          text: Definition List
-          subtext: Lists term/definition pairs for structured content.
-          icon: dns
-        _inputs:
-          items:
-            type: array
-            label: List Items
-            options:
-              structures: _structures.definitionListItems
-          alignX:
-            type: select
-            comment: The horizontal alignment of the definition list items.
-            options:
-              values:
-                - id: start
-                  name: Start
-                - id: center
-                  name: Center
-                - id: end
-                  name: End
-      - &ref_19
-        label: Video
-        icon: videocam
-        description: Video component for YouTube, Vimeo, and HTML5 sources.
-        value:
-          _component: building-blocks/core-elements/video
-          type: youtube
-          id: ''
-          title: ''
-          source: ''
-          thumbnail: ''
-        preview:
-          icon: videocam
-          text:
-            - template: Video - {type}
-            - Video
-          subtext:
-            - key: title
-            - key: source
-            - Add video
-        picker_preview:
-          text: Video
-          subtext: Video component for YouTube, Vimeo, and HTML5 sources.
-          icon: videocam
-        _inputs:
-          type:
-            type: select
-            options:
-              values:
-                - id: youtube
-                  name: YouTube
-                - id: vimeo
-                  name: Vimeo
-                - id: local-source
-                  name: Local Source
-          title:
-            type: text
-            comment: Used for externally hosted videos - The video title provides accessibility information for assistive technologies (like screen readers) and can display a tooltip when a user hovers over the video.
-          id:
-            type: text
-            comment: Used for externally hosted videos - Enter the YouTube or Vimeo id.
-          source:
-            type: file
-            label: Video Source
-            comment: Used for locally hosted videos - Must be mp4 as this is supported by all modern browsers.
-            options:
-              accepts_mime_types:
-                - video/mp4
-              paths:
-                uploads: public/videos
-                static: public
-          thumbnail:
-            type: image
-            comment: Used for locally hosted videos - The image displayed before the video plays or while it is loading.
-            options:
-              accepts_mime_types:
-                - image/jpeg
-                - image/png
-                - image/webp
-              paths:
-                uploads: public/images
-                static: public
   carouselSections:
     id_key: _component
     style: modal
@@ -3018,7 +3018,7 @@ _structures:
     style: modal
     values:
       - *ref_3
-      - *ref_5
+      - *ref_4
       - *ref_6
       - *ref_7
       - *ref_8
@@ -3135,58 +3135,6 @@ _structures:
           value:
             type: text
             comment: The default value for the textarea field.
-      - label: Select
-        icon: view_list
-        description: Form field for selecting one option from a list.
-        value:
-          _component: building-blocks/forms/select
-          label: null
-          name: null
-          required: false
-          options:
-            - value: option1
-              label: Option 1
-            - value: option2
-              label: Option 2
-            - value: option3
-              label: Option 3
-          placeholder: null
-          value: null
-        preview:
-          subtext:
-            - key: label
-            - key: name
-            - Enter a name for the form input.
-        picker_preview:
-          text: Select
-          subtext: Form field for selecting one option from a list.
-          icon: view_list
-        _inputs:
-          label:
-            type: text
-            comment: The label text for the select field.
-          name:
-            type: text
-            comment: A unique name attribute for the select field.
-            options:
-              required: true
-              required_message: Only form elements with a name will have their values passed when submitting a form.
-          required:
-            type: switch
-            comment: Whether the field is required.
-          options:
-            type: array
-            comment: Array of select options with value and label.
-            options:
-              structures: _structures.selectOptions
-              min_items: 2
-              min_items_message: At least two options are required.
-          placeholder:
-            type: text
-            comment: Placeholder text for the select field.
-          value:
-            type: text
-            comment: The default selected value.
       - label: Submit
         icon: check
         description: Button for submitting a form.
@@ -3267,6 +3215,58 @@ _structures:
           disabled:
             type: switch
             comment: Whether the submit button is disabled.
+      - label: Select
+        icon: view_list
+        description: Form field for selecting one option from a list.
+        value:
+          _component: building-blocks/forms/select
+          label: null
+          name: null
+          required: false
+          options:
+            - value: option1
+              label: Option 1
+            - value: option2
+              label: Option 2
+            - value: option3
+              label: Option 3
+          placeholder: null
+          value: null
+        preview:
+          subtext:
+            - key: label
+            - key: name
+            - Enter a name for the form input.
+        picker_preview:
+          text: Select
+          subtext: Form field for selecting one option from a list.
+          icon: view_list
+        _inputs:
+          label:
+            type: text
+            comment: The label text for the select field.
+          name:
+            type: text
+            comment: A unique name attribute for the select field.
+            options:
+              required: true
+              required_message: Only form elements with a name will have their values passed when submitting a form.
+          required:
+            type: switch
+            comment: Whether the field is required.
+          options:
+            type: array
+            comment: Array of select options with value and label.
+            options:
+              structures: _structures.selectOptions
+              min_items: 2
+              min_items_message: At least two options are required.
+          placeholder:
+            type: text
+            comment: Placeholder text for the select field.
+          value:
+            type: text
+            comment: The default selected value.
       - label: Segments
         icon: radio_button_partial
         description: Segmented control form field with connected buttons.
