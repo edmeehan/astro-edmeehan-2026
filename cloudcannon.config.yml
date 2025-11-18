@@ -827,14 +827,14 @@ _structures:
         description: Prominent section block for landing pages.
         value:
           _component: page-sections/heroes/split-hero
-          eyebrow: ''
-          heading: ''
-          subtitle: ''
-          imageSource: ''
-          imageAlt: ''
+          eyebrow: Eyebrow text
+          heading: Heading text
+          subtitle: Subtitle placeholder text that will be replaced with actual content.
+          imageSource: src/assets/images/component-library/dunedin-cliff.jpg
+          imageAlt: Hero image
           buttonSections: []
           reverse: false
-          colorScheme: null
+          colorScheme: default
           backgroundColor: base
         preview:
           text:
@@ -906,9 +906,9 @@ _structures:
         description: Centered hero with heading, supporting text, and buttons.
         value:
           _component: page-sections/heroes/center-hero
-          eyebrow: ''
-          heading: ''
-          subtext: ''
+          eyebrow: Eyebrow text
+          heading: Heading text
+          subtext: Subtext placeholder text that will be replaced with actual content.
           buttonSections: []
           colorScheme: null
           backgroundColor: base
@@ -1786,6 +1786,54 @@ _structures:
                   name: Start
                 - id: top
                   name: Top
+      - &ref_20
+        label: Carousel
+        icon: image
+        description: Displays multiple items in a sliding gallery.
+        value:
+          _component: building-blocks/wrappers/carousel
+          label: ''
+          slides: []
+          autoPlay: false
+          autoScroll: false
+          slideWidthPercent: 100
+          minSlideWidth: 0
+        preview:
+          text:
+            - key: label
+            - Carousel
+          subtext:
+            - template: A carousel containing {slides|array_length} {"slide"|pluralize=slides}
+            - Add slides to the carousel
+        picker_preview:
+          text: Carousel
+          subtext: Displays multiple items in a sliding gallery.
+          icon: image
+        _inputs:
+          label:
+            comment: Optional label for the carousel to help identify it in the editor.
+            type: text
+          slides:
+            comment: Array of slides to display in the carousel.
+            type: array
+            options:
+              structures: _structures.slides
+          autoPlay:
+            comment: Enable auto-play functionality.
+            type: switch
+          autoScroll:
+            comment: Enable auto-scroll functionality.
+            type: switch
+          slideWidthPercent:
+            comment: Width of each slide as a percentage of the carousel (e.g., 33, 50, 100).
+            type: range
+            options:
+              min: 0
+              max: 100
+              step: 1
+          minSlideWidth:
+            comment: Minimum width of slides in pixels. Prevents slides from getting too small.
+            type: number
       - &ref_3
         label: Card
         icon: crop_square
@@ -2060,54 +2108,6 @@ _structures:
           singleOpen:
             comment: Whether only one item can be open at a time within this accordion.
             type: switch
-      - &ref_20
-        label: Carousel
-        icon: image
-        description: Displays multiple items in a sliding gallery.
-        value:
-          _component: building-blocks/wrappers/carousel
-          label: ''
-          slides: []
-          autoPlay: false
-          autoScroll: false
-          slideWidthPercent: 100
-          minSlideWidth: 0
-        preview:
-          text:
-            - key: label
-            - Carousel
-          subtext:
-            - template: A carousel containing {slides|array_length} {"slide"|pluralize=slides}
-            - Add slides to the carousel
-        picker_preview:
-          text: Carousel
-          subtext: Displays multiple items in a sliding gallery.
-          icon: image
-        _inputs:
-          label:
-            comment: Optional label for the carousel to help identify it in the editor.
-            type: text
-          slides:
-            comment: Array of slides to display in the carousel.
-            type: array
-            options:
-              structures: _structures.slides
-          autoPlay:
-            comment: Enable auto-play functionality.
-            type: switch
-          autoScroll:
-            comment: Enable auto-scroll functionality.
-            type: switch
-          slideWidthPercent:
-            comment: Width of each slide as a percentage of the carousel (e.g., 33, 50, 100).
-            type: range
-            options:
-              min: 0
-              max: 100
-              step: 1
-          minSlideWidth:
-            comment: Minimum width of slides in pixels. Prevents slides from getting too small.
-            type: number
       - &ref_6
         label: Form
         icon: checklist_rtl
@@ -2345,6 +2345,62 @@ _structures:
                 - id: 3xl
                   name: 3xl
       - &ref_11
+        label: Simple Text
+        icon: view_headline
+        description: Paragraph for plain text content with inline markdown formatting.
+        value:
+          _component: building-blocks/core-elements/simple-text
+          text: My text goes here.
+          alignX: start
+          size: default
+        preview:
+          text:
+            - key: text
+            - Simple Text
+          icon: view_headline
+        picker_preview:
+          text: Simple Text
+          subtext: Paragraph for plain text content with inline markdown formatting.
+          icon: view_headline
+        _inputs:
+          text:
+            comment: The text content of the simple text (inline markdown only).
+            type: textarea
+          alignX:
+            comment: The horizontal alignment of the text.
+            type: select
+            options:
+              values:
+                - id: start
+                  name: Start
+                - id: center
+                  name: Center
+                - id: end
+                  name: End
+          size:
+            type: select
+            comment: The font size of the text.
+            options:
+              values:
+                - id: default
+                  name: Default
+                - id: xs
+                  name: Extra Small
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+                - id: xl
+                  name: Extra Large
+                - id: 2xl
+                  name: 2xl
+                - id: 3xl
+                  name: 3xl
+                - id: 4xl
+                  name: 4xl
+      - &ref_12
         label: List
         icon: list
         description: Lists items with icons as markers.
@@ -2411,7 +2467,7 @@ _structures:
                   name: Extra Large
                 - id: 2xl
                   name: 2xl
-      - &ref_12
+      - &ref_13
         label: Image
         icon: image
         description: Optimized image component for local and remote sources.
@@ -2489,7 +2545,7 @@ _structures:
             type: switch
             hidden: true
             comment: Covers the entire parent container with the image.
-      - &ref_13
+      - &ref_14
         label: Heading
         icon: title
         description: Headings for content hierarchy.
@@ -2573,7 +2629,7 @@ _structures:
                   name: Before
                 - id: after
                   name: After
-      - &ref_14
+      - &ref_15
         label: Embed
         icon: data_object
         description: Responsive wrapper for third-party embeds.
@@ -2618,7 +2674,7 @@ _structures:
                   name: Portrait (3:4)
                 - id: widescreen
                   name: Widescreen (16:9)
-      - &ref_15
+      - &ref_16
         label: Icon
         icon: star
         description: SVG icon component.
@@ -2706,7 +2762,7 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_16
+      - &ref_17
         label: Divider
         icon: horizontal_rule
         description: Visual separator for dividing content sections.
@@ -2745,7 +2801,7 @@ _structures:
                   name: 2xl
                 - id: 3xl
                   name: 3xl
-      - &ref_17
+      - &ref_18
         label: Counter
         icon: speed
         description: Animated counter for highlighting key stats or figures.
@@ -2782,7 +2838,7 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_18
+      - &ref_19
         label: Definition List
         icon: dns
         description: Lists term/definition pairs for structured content.
@@ -2815,62 +2871,6 @@ _structures:
                   name: Center
                 - id: end
                   name: End
-      - &ref_19
-        label: Simple Text
-        icon: view_headline
-        description: Paragraph for plain text content with inline markdown formatting.
-        value:
-          _component: building-blocks/core-elements/simple-text
-          text: My text goes here.
-          alignX: start
-          size: default
-        preview:
-          text:
-            - key: text
-            - Simple Text
-          icon: view_headline
-        picker_preview:
-          text: Simple Text
-          subtext: Paragraph for plain text content with inline markdown formatting.
-          icon: view_headline
-        _inputs:
-          text:
-            comment: The text content of the simple text (inline markdown only).
-            type: textarea
-          alignX:
-            comment: The horizontal alignment of the text.
-            type: select
-            options:
-              values:
-                - id: start
-                  name: Start
-                - id: center
-                  name: Center
-                - id: end
-                  name: End
-          size:
-            type: select
-            comment: The font size of the text.
-            options:
-              values:
-                - id: default
-                  name: Default
-                - id: xs
-                  name: Extra Small
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-                - id: xl
-                  name: Extra Large
-                - id: 2xl
-                  name: 2xl
-                - id: 3xl
-                  name: 3xl
-                - id: 4xl
-                  name: 4xl
   carouselSections:
     id_key: _component
     style: modal
@@ -2901,10 +2901,10 @@ _structures:
     values:
       - *ref_0
       - *ref_1
+      - *ref_20
       - *ref_3
       - *ref_4
       - *ref_5
-      - *ref_20
       - *ref_6
       - *ref_7
       - *ref_8
@@ -2947,10 +2947,10 @@ _structures:
     values:
       - *ref_1
       - *ref_2
+      - *ref_20
       - *ref_3
       - *ref_4
       - *ref_5
-      - *ref_20
       - *ref_6
       - *ref_7
       - *ref_8
@@ -2992,6 +2992,27 @@ _structures:
               structures: _structures.contentSelectorSections
           _component:
             hidden: true
+  slides:
+    id_key: _component
+    style: modal
+    values:
+      - label: Carousel Slide
+        value:
+          _component: building-blocks/wrappers/carousel/carousel-slide
+          contentSections: []
+        _inputs:
+          _component:
+            hidden: true
+          contentSections:
+            type: array
+            options:
+              structures: _structures.carouselSections
+        preview:
+          icon: transition_slide
+          text: Carousel Slide
+          subtext:
+            - template: Contains {contentSections|array_length} content {"block"|pluralize=contentSections}
+            - Add one or more content blocks to the grid item
   gridItemSections:
     id_key: _component
     style: modal
@@ -3052,47 +3073,6 @@ _structures:
       - *ref_17
       - *ref_18
       - *ref_19
-  accordionItems:
-    id_key: _component
-    style: modal
-    values:
-      - label: Item
-        icon: place_item
-        value:
-          _component: building-blocks/wrappers/accordion/accordion-item
-          title: null
-          contentSections: null
-        _inputs:
-          title:
-            comment: The title of the accordion item.
-            type: text
-          contentSections:
-            type: array
-            options:
-              structures: _structures.accordionSections
-          _component:
-            hidden: true
-  slides:
-    id_key: _component
-    style: modal
-    values:
-      - label: Carousel Slide
-        value:
-          _component: building-blocks/wrappers/carousel/carousel-slide
-          contentSections: []
-        _inputs:
-          _component:
-            hidden: true
-          contentSections:
-            type: array
-            options:
-              structures: _structures.carouselSections
-        preview:
-          icon: transition_slide
-          text: Carousel Slide
-          subtext:
-            - template: Contains {contentSections|array_length} content {"block"|pluralize=contentSections}
-            - Add one or more content blocks to the grid item
   formBlocks:
     id_key: _component
     style: modal
@@ -3135,54 +3115,86 @@ _structures:
           value:
             type: text
             comment: The default value for the textarea field.
-      - label: Segments
-        icon: radio_button_partial
-        description: Segmented control form field with connected buttons.
+      - label: Submit
+        icon: check
+        description: Button for submitting a form.
         value:
-          _component: building-blocks/forms/segments
-          title: null
-          name: my_segments
-          required: false
-          options: []
-          iconOnly: false
-          multiple: false
-          keepStateOnRefresh: true
+          _component: building-blocks/forms/submit
+          text: Submit
+          variant: primary
+          size: md
+          iconName: null
+          iconPosition: before
+          hideText: false
+          disabled: false
         preview:
-          subtext:
-            - template: A segments field, containing {options|array_length} {"option"|pluralize=options}
+          text:
+            - key: text
+            - key: iconName
+            - Submit Button
+          subtext: A submit button for forms.
         picker_preview:
-          text: Segments
-          subtext: Segmented control form field with connected buttons.
-          icon: radio_button_partial
+          text: Submit
+          subtext: Button for submitting a form.
+          icon: check
         _inputs:
-          title:
+          text:
             type: text
-            comment: Optional title text for the fieldset.
-          name:
-            type: text
-            comment: A unique name attribute for the radio button group.
+            comment: The text that goes inside the submit button.
+            hidden: hideText
+          variant:
+            type: select
+            comment: The presentation of the submit button.
             options:
-              required: true
-              required_message: Only form elements with a name will have their values passed when submitting a form.
-          required:
-            type: switch
-            comment: Whether the field is required.
-          options:
-            type: array
-            comment: Array of segment options with value, label, icon, and checked state.
+              values:
+                - id: primary
+                  name: Primary
+                - id: secondary
+                  name: Secondary
+                - id: tertiary
+                  name: Tertiary
+                - id: ghost
+                  name: Ghost
+                - id: text
+                  name: Text
+          size:
+            type: select
+            comment: The size of the submit button.
             options:
-              structures: _structures.segmentOptions
-              min_items: 1
-              min_items_message: At least one option is required.
-          iconOnly:
+              values:
+                - id: sm
+                  name: Small
+                - id: md
+                  name: Medium
+                - id: lg
+                  name: Large
+          iconName:
+            type: select
+            comment: The name of the icon to display. See the Icon component documentation for more information.
+            options:
+              values: _select_data.icons
+              preview:
+                text:
+                  - key: name
+                image:
+                  - template: src/icons/{id}.svg
+          iconPosition:
+            type: select
+            comment: The position of the icon relative to the text.
+            hidden: '!iconName'
+            options:
+              values:
+                - id: before
+                  name: Before
+                - id: after
+                  name: After
+          hideText:
             type: switch
-            comment: When true, labels are used as tooltips instead of being displayed as text.
-          multiple:
+            comment: Whether to hide the button text and show only the icon.
+            hidden: '!iconName'
+          disabled:
             type: switch
-            comment: When true, uses checkboxes for multiple selection instead of radio buttons for single selection.
-          keepStateOnRefresh:
-            type: switch
-            comment: When true, sets autocomplete="on" to allow browser to remember state on page refresh. Defaults to false (autocomplete="off").
+            comment: Whether the submit button is disabled.
       - label: Select
         icon: view_list
         description: Form field for selecting one option from a list.
@@ -3235,6 +3247,54 @@ _structures:
           value:
             type: text
             comment: The default selected value.
+      - label: Segments
+        icon: radio_button_partial
+        description: Segmented control form field with connected buttons.
+        value:
+          _component: building-blocks/forms/segments
+          title: null
+          name: my_segments
+          required: false
+          options: []
+          iconOnly: false
+          multiple: false
+          keepStateOnRefresh: true
+        preview:
+          subtext:
+            - template: A segments field, containing {options|array_length} {"option"|pluralize=options}
+        picker_preview:
+          text: Segments
+          subtext: Segmented control form field with connected buttons.
+          icon: radio_button_partial
+        _inputs:
+          title:
+            type: text
+            comment: Optional title text for the fieldset.
+          name:
+            type: text
+            comment: A unique name attribute for the radio button group.
+            options:
+              required: true
+              required_message: Only form elements with a name will have their values passed when submitting a form.
+          required:
+            type: switch
+            comment: Whether the field is required.
+          options:
+            type: array
+            comment: Array of segment options with value, label, icon, and checked state.
+            options:
+              structures: _structures.segmentOptions
+              min_items: 1
+              min_items_message: At least one option is required.
+          iconOnly:
+            type: switch
+            comment: When true, labels are used as tooltips instead of being displayed as text.
+          multiple:
+            type: switch
+            comment: When true, uses checkboxes for multiple selection instead of radio buttons for single selection.
+          keepStateOnRefresh:
+            type: switch
+            comment: When true, sets autocomplete="on" to allow browser to remember state on page refresh. Defaults to false (autocomplete="off").
       - label: Input
         icon: rectangle
         description: Single text input form field.
@@ -3442,86 +3502,48 @@ _structures:
           multiple:
             type: switch
             comment: When true, uses checkboxes for multiple selection. When false, uses radio buttons for single selection.
-      - label: Submit
-        icon: check
-        description: Button for submitting a form.
+  accordionItems:
+    id_key: _component
+    style: modal
+    values:
+      - label: Item
+        icon: place_item
         value:
-          _component: building-blocks/forms/submit
-          text: Submit
-          variant: primary
-          size: md
-          iconName: null
-          iconPosition: before
-          hideText: false
-          disabled: false
-        preview:
-          text:
-            - key: text
-            - key: iconName
-            - Submit Button
-          subtext: A submit button for forms.
-        picker_preview:
-          text: Submit
-          subtext: Button for submitting a form.
-          icon: check
+          _component: building-blocks/wrappers/accordion/accordion-item
+          title: null
+          contentSections: null
         _inputs:
-          text:
+          title:
+            comment: The title of the accordion item.
             type: text
-            comment: The text that goes inside the submit button.
-            hidden: hideText
-          variant:
-            type: select
-            comment: The presentation of the submit button.
+          contentSections:
+            type: array
             options:
-              values:
-                - id: primary
-                  name: Primary
-                - id: secondary
-                  name: Secondary
-                - id: tertiary
-                  name: Tertiary
-                - id: ghost
-                  name: Ghost
-                - id: text
-                  name: Text
-          size:
-            type: select
-            comment: The size of the submit button.
-            options:
-              values:
-                - id: sm
-                  name: Small
-                - id: md
-                  name: Medium
-                - id: lg
-                  name: Large
-          iconName:
-            type: select
-            comment: The name of the icon to display. See the Icon component documentation for more information.
-            options:
-              values: _select_data.icons
-              preview:
-                text:
-                  - key: name
-                image:
-                  - template: src/icons/{id}.svg
-          iconPosition:
-            type: select
-            comment: The position of the icon relative to the text.
-            hidden: '!iconName'
-            options:
-              values:
-                - id: before
-                  name: Before
-                - id: after
-                  name: After
-          hideText:
-            type: switch
-            comment: Whether to hide the button text and show only the icon.
-            hidden: '!iconName'
-          disabled:
-            type: switch
-            comment: Whether the submit button is disabled.
+              structures: _structures.accordionSections
+          _component:
+            hidden: true
+  selectOptions:
+    id_key: _component
+    style: modal
+    values:
+      - value:
+          value: null
+          label: null
+        preview:
+          icon: check_circle
+          text:
+            - key: label
+            - Add a label for the select item
+          subtext:
+            - key: value
+            - Add a value for the select item
+        _inputs:
+          label:
+            type: text
+            comment: The label text for the select option.
+          value:
+            type: text
+            comment: The value to add to the form when the option is selected.
   segmentOptions:
     id_key: _component
     style: modal
@@ -3561,28 +3583,6 @@ _structures:
                   - key: name
                 image:
                   - template: src/icons/{id}.svg
-  selectOptions:
-    id_key: _component
-    style: modal
-    values:
-      - value:
-          value: null
-          label: null
-        preview:
-          icon: check_circle
-          text:
-            - key: label
-            - Add a label for the select item
-          subtext:
-            - key: value
-            - Add a value for the select item
-        _inputs:
-          label:
-            type: text
-            comment: The label text for the select option.
-          value:
-            type: text
-            comment: The value to add to the form when the option is selected.
   choiceOptions:
     id_key: _component
     style: modal
