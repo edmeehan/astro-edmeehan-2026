@@ -97,14 +97,14 @@ pageSections:
     maxItemWidth: 360
     features:
       - _component: page-sections/features/feature-grid/feature-item
-        title: Web Fundamentals
+        title: Web fundamentals
         description: >-
           Semantic HTML. Lean CSS. JavaScript only when it's needed. The stack
           is boring by design, and that’s exactly why it works.
         iconName: cube
         iconColor: blue
       - _component: page-sections/features/feature-grid/feature-item
-        title: Built for Speed
+        title: Built for speed
         description: >-
           Static-rendered, minimal payloads, zero waste. Built to be extremely
           fast from the first byte.
@@ -118,7 +118,7 @@ pageSections:
         iconName: puzzle-piece
         iconColor: green
       - _component: page-sections/features/feature-grid/feature-item
-        title: Controlled Editing
+        title: Controlled editing
         description: >-
           Enough freedom for editors to move fast. Enough structure for
           developers to sleep at night.
@@ -126,7 +126,9 @@ pageSections:
         iconColor: purple
       - _component: page-sections/features/feature-grid/feature-item
         title: Adaptable
-        description: Purposefully plain styling. It adapts to any design without a fight.
+        description: >-
+          Purposefully plain styling. The whole component library adapts to your
+          designs without a fight.
         iconName: paint-brush
         iconColor: pink
     colorScheme: default
@@ -148,8 +150,8 @@ pageSections:
         variant: primary
         size: md
       - _component: building-blocks/core-elements/button
-        text: View Guidelines
-        link: /component-library/guidelines
+        text: Deploy in CloudCannon
+        link: '#'
         iconName: ''
         iconPosition: before
         hideText: false
