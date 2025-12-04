@@ -2,13 +2,27 @@
 import Icon from "@core-elements/icon/icon.astro";
 import MarkdownIt from "markdown-it";
 
-const { text = "", iconName, iconColor = "default", class: className, ...restProps } = Astro.props;
+const {
+  text = "",
+  iconName,
+  iconColor = "default",
+  class: className,
+  "data-prop": customDataProp = "text",
+  ...restProps
+} = Astro.props;
 
 const htmlAttributes = Object.fromEntries(
   Object.entries(restProps).filter(([key]) => key !== "_component")
 );
 
 const md = new MarkdownIt({ html: true });
+
+const textDataAttributes = customDataProp
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataProp,
+    }
+  : {};
 ---
 
 <li class:list={["item", className]} {...htmlAttributes}>
@@ -17,7 +31,15 @@ const md = new MarkdownIt({ html: true });
       <Icon name={iconName} color={iconColor} size="none" class="list-icon" aria-hidden="true" />
     )
   }
-  {text ? <span set:html={md.renderInline(text)} /> : <slot />}
+  {
+    text ? (
+      <span {...textDataAttributes} set:html={md.renderInline(text)} />
+    ) : (
+      <span {...textDataAttributes}>
+        <slot />
+      </span>
+    )
+  }
 </li>
 
 <style lang="pcss">

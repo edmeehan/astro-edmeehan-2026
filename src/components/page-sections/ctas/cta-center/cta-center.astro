@@ -30,14 +30,14 @@ const {
   <div class="stack">
     {
       heading && (
-        <Heading level="h2" size="xl" alignX="center">
+        <Heading level="h2" size="xl" alignX="center" data-prop="heading">
           {heading}
         </Heading>
       )
     }
     {
       subtext && (
-        <SimpleText size="md" alignX="center">
+        <SimpleText size="md" alignX="center" data-prop="subtext">
           {subtext}
         </SimpleText>
       )

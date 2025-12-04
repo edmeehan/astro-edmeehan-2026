@@ -1,14 +1,51 @@
 ---
-const { title, text, class: className, ...restProps } = Astro.props;
+const {
+  title,
+  text,
+  class: className,
+  "data-prop-title": customDataPropTitle = "title",
+  "data-prop-content": customDataPropContent = "text",
+  ...restProps
+} = Astro.props;
 
 const htmlAttributes = Object.fromEntries(
   Object.entries(restProps).filter(([key]) => key !== "_component")
 );
+
+const titleDataAttributes = customDataPropTitle
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataPropTitle,
+    }
+  : {};
+
+const contentDataAttributes = customDataPropContent
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataPropContent,
+    }
+  : {};
 ---
 
 <dt class:list={["title", className]} role="term" {...htmlAttributes}>
-  {title ? <strong>{title}</strong> : <slot name="title" />}
+  {
+    title ? (
+      <strong {...titleDataAttributes}>{title}</strong>
+    ) : (
+      <span {...titleDataAttributes}>
+        <slot name="title" />
+      </span>
+    )
+  }
 </dt>
 <dd class:list={["content", className]} role="definition" {...htmlAttributes}>
-  {text ? text : <slot />}
+  {
+    text ? (
+      <span {...contentDataAttributes}>{text}</span>
+    ) : (
+      <span {...contentDataAttributes}>
+        <slot />
+      </span>
+    )
+  }
 </dd>
