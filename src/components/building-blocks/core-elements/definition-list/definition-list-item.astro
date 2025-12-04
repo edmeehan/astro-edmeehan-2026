@@ -3,8 +3,8 @@ const {
   title,
   text,
   class: className,
-  "data-prop-title": customDataPropTitle,
-  "data-prop-content": customDataPropContent,
+  "data-prop-title": customDataPropTitle = "title",
+  "data-prop-content": customDataPropContent = "text",
   ...restProps
 } = Astro.props;
 
