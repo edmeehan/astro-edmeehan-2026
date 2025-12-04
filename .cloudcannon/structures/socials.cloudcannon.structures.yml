@@ -20,10 +20,10 @@ socials:
         icon: share
       _inputs:
         icon:
-          type: select_data
+          type: select
           comment: Icon to display for the social media link.
           options:
-            data: icons
+            values: _select_data.icons
         link:
           type: text
           comment: URL for the social media link.
