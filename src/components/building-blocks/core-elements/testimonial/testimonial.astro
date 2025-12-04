@@ -8,6 +8,9 @@ const {
   alignX = "center",
   authorImage = "",
   class: className,
+  "data-prop": customDataProp,
+  "data-prop-author-name": customDataPropAuthorName,
+  "data-prop-author-description": customDataPropAuthorDescription,
   ...restProps
 } = Astro.props;
 
@@ -17,11 +20,44 @@ const htmlAttributes = Object.fromEntries(
 
 const md = MarkdownIt({ html: true });
 const MarkdownText = text ? md.render(text) : "";
+
+const textDataAttributes = customDataProp
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataProp,
+    }
+  : {};
+
+const authorNameDataAttributes = customDataPropAuthorName
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataPropAuthorName,
+    }
+  : {};
+
+const authorDescriptionDataAttributes = customDataPropAuthorDescription
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataPropAuthorDescription,
+    }
+  : {};
 ---
 
 <blockquote class:list={["testimonial", `alignment-${alignX}`, className]} {...htmlAttributes}>
   <div class="quote">
-    {text ? <Fragment set:html={MarkdownText} /> : <slot />}
+    {
+      text ? (
+        customDataProp ? (
+          <span {...textDataAttributes} set:html={MarkdownText} />
+        ) : (
+          <Fragment set:html={MarkdownText} />
+        )
+      ) : (
+        <span {...textDataAttributes}>
+          <slot />
+        </span>
+      )
+    }
   </div>
   <div class="author">
     {
@@ -39,14 +75,16 @@ const MarkdownText = text ? md.render(text) : "";
       )
     }
     <cite class="author-content">
-      <strong class="name">
+      <strong class="name" {...authorNameDataAttributes}>
         {authorName}
       </strong>
       {
         authorDescription && (
           <>
             <br />
-            <span class="description">{authorDescription}</span>
+            <span class="description" {...authorDescriptionDataAttributes}>
+              {authorDescription}
+            </span>
           </>
         )
       }

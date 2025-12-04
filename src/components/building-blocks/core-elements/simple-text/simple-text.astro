@@ -1,7 +1,14 @@
 ---
 import MarkdownIt from "markdown-it";
 
-const { text, size, alignX = "start", class: className, ...rest } = Astro.props;
+const {
+  text,
+  size,
+  alignX = "start",
+  class: className,
+  "data-prop": customDataProp,
+  ...rest
+} = Astro.props;
 
 const htmlAttributes = Object.fromEntries(
   Object.entries(rest).filter(([key]) => key !== "_component")
@@ -11,13 +18,28 @@ const md = MarkdownIt({ html: true });
 let MarkdownText = text ? md.renderInline(text) : "";
 
 MarkdownText = MarkdownText.replace(/\n/g, "<br />");
+
+const textDataAttributes = customDataProp
+  ? {
+      "data-editable": "text",
+      "data-prop": customDataProp,
+    }
+  : {};
 ---
 
 <p
   class:list={["simple-text", size && `size-${size}`, `align-${alignX}`, className]}
   {...htmlAttributes}
 >
-  {text ? <span set:html={MarkdownText} /> : <slot />}
+  {
+    text ? (
+      <span {...textDataAttributes} set:html={MarkdownText} />
+    ) : (
+      <span {...textDataAttributes}>
+        <slot />
+      </span>
+    )
+  }
 </p>
 
 <style lang="pcss">
@@ -69,4 +91,3 @@ MarkdownText = MarkdownText.replace(/\n/g, "<br />");
     }
   }
 </style>
-
