@@ -31,7 +31,7 @@ _inputs:
     type: text
     comment: Main heading for the split section.
   subtext:
-    type: textarea
+    type: markdown
     comment: Supporting body copy beneath the heading.
   buttonSections:
     type: array

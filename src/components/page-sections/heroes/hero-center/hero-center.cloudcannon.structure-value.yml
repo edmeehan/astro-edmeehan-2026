@@ -34,7 +34,7 @@ _inputs:
     type: text
     comment: Main heading text for the hero.
   subtext:
-    type: textarea
+    type: markdown
     comment: Supporting subtext displayed beneath the heading.
   buttonSections:
     type: array

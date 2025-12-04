@@ -29,7 +29,7 @@ _inputs:
     type: text
     comment: Main heading for the feature grid.
   subtext:
-    type: textarea
+    type: markdown
     comment: Supporting copy beneath the heading.
   align:
     type: select
@@ -118,7 +118,7 @@ _structures:
             type: text
             comment: Name of the feature.
           description:
-            type: textarea
+            type: markdown
             comment: Supporting description for the feature.
           iconName:
             type: select

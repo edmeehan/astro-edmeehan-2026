@@ -38,7 +38,7 @@ _inputs:
     type: text
     comment: Main heading text for the hero section.
   subtitle:
-    type: text
+    type: markdown
     comment: Subtitle text displayed below the main heading.
   imageSource:
     type: image

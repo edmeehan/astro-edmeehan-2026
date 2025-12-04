@@ -31,7 +31,7 @@ _inputs:
     type: text
     comment: Headline for the CTA.
   subtext:
-    type: textarea
+    type: markdown
     comment: Supporting copy beneath the headline.
   buttonSections:
     type: array
