@@ -36,6 +36,31 @@ _inputs:
   subtext:
     type: markdown
     comment: Supporting subtext displayed beneath the heading.
+    options:
+      options:
+        bold: true
+        italic: true
+        link: true
+        strike: false
+        subscript: true
+        superscript: true
+        underline: true
+        undo: true
+        redo: true
+        format: false
+        removeformat: true
+        copyformatting: false
+        bulletedlist: false
+        numberedlist: false
+        indent: false
+        outdent: false
+        join_above: false
+        join_below: false
+        code: false
+        embed: false
+        horizontalrule: false
+        image: false
+        table: false
   buttonSections:
     type: array
     comment: Button blocks for calls to action.

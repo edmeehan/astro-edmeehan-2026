@@ -22,26 +22,26 @@ _inputs:
       bold: true
       italic: true
       link: true
-      strike: true
+      strike: false
       subscript: true
       superscript: true
       underline: true
       undo: true
       redo: true
-      format: p h1 h2 h3 h4 h5 h6
+      format: false
       removeformat: true
-      copyformatting: true
-      bulletedlist: true
-      numberedlist: true
-      indent: true
-      outdent: true
-      join_above: true
-      join_below: true
-      code: true
-      embed: true
-      horizontalrule: true
-      image: true
-      table: true
+      copyformatting: false
+      bulletedlist: false
+      numberedlist: false
+      indent: false
+      outdent: false
+      join_above: false
+      join_below: false
+      code: false
+      embed: false
+      horizontalrule: false
+      image: false
+      table: false
   alignX:
     type: select
     options:
