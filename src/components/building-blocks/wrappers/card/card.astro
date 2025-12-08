@@ -14,6 +14,7 @@ const {
   backgroundColor,
   backgroundImage,
   link,
+  showBeforeAfter = true,
   rounded = false,
   border = false,
   class: className,
@@ -52,21 +53,21 @@ const Tag = link ? "a" : "div";
   class:list={["card", rounded && "rounded", border && "border", className]}
   data-theme={colorScheme}
 >
-    {
-      source && (
-        <Image
-          class:list={["background-image"]}
-          source={source}
-          alt={alt}
-          editable={editable}
-          data-prop-src="backgroundImage.source"
-          data-prop-alt="backgroundImage.alt"
-          positionVertical={positionVertical}
-          positionHorizontal={positionHorizontal}
-          background={true}
-        />
-      )
-    }
+  {
+    source && (
+      <Image
+        class:list={["background-image"]}
+        source={source}
+        alt={alt}
+        editable={editable}
+        data-prop-src="backgroundImage.source"
+        data-prop-alt="backgroundImage.alt"
+        positionVertical={positionVertical}
+        positionHorizontal={positionHorizontal}
+        background={true}
+      />
+    )
+  }
   {
     backgroundColor && (
       <div
@@ -77,7 +78,7 @@ const Tag = link ? "a" : "div";
   }
 
   {
-    (beforeContentSections || Astro.slots.has("before")) && (
+    ((beforeContentSections && showBeforeAfter) || Astro.slots.has("before")) && (
       <div class="before-content">
         {beforeContentSections ? (
           <Component contentSections={beforeContentSections} propName="beforeContentSections" />
@@ -108,7 +109,7 @@ const Tag = link ? "a" : "div";
   </div>
 
   {
-    (afterContentSections || Astro.slots.has("after")) && (
+    (afterContentSections && showBeforeAfter) || Astro.slots.has("after")) && (
       <div class="after-content">
         {afterContentSections ? (
           <Component contentSections={afterContentSections} propName="afterContentSections" />
