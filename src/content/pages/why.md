@@ -167,7 +167,7 @@ pageSections:
     paddingHorizontal: xl
     paddingVertical: 4xl
     colorScheme: contrast
-    backgroundColor: base
+    backgroundColor: surface
   - _component: page-sections/ctas/cta-form
     heading: Get in touch
     subtext: Have questions? We'd love to hear from you.
