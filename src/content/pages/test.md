@@ -113,19 +113,66 @@ pageSections:
         paddingVertical: lg
       - _component: building-blocks/core-elements/embed
         source: >-
-          <p class="codepen" data-height="300" data-default-tab="html,result"
-          data-slug-hash="ogvWOgN" data-pen-title="2024 Rewind  - Top 80 most ❤️
-          pens (scroll to see more)" data-user="cbolson" style="height: 300px;
-          box-sizing: border-box; display: flex; align-items: center;
-          justify-content: center; border: 2px solid; margin: 1em 0; padding:
-          1em;">       <span>See the Pen <a
-          href="https://codepen.io/cbolson/pen/ogvWOgN">   2024 Rewind  - Top 80
-          most ❤️ pens (scroll to see more)</a> by Chris Bolson (<a
-          href="https://codepen.io/cbolson">@cbolson</a>)   on <a
-          href="https://codepen.io">CodePen</a>.</span>       </p>       <script
-          async src="https://public.codepenassets.com/embed/index.js"></script>
+          https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1372.6620524183181!2d170.33341713890303!3d-45.94684064277149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa82c02d1a756cd97%3A0x44fe11e513ff4adb!2sBrighton%20Beach!5e1!3m2!1sen!2sus!4v1752859116638!5m2!1sen!2sus
         title: ''
         aspectRatio: widescreen
+      - _component: building-blocks/forms/form
+        action: ./
+        formBlocks: []
+      - _component: building-blocks/wrappers/grid
+        label: ''
+        layout: center
+        minItemWidth: 280
+        maxItemWidth: 400
+        items: []
+        gap: md
+      - _component: building-blocks/core-elements/icon
+        name: social/bluesky
+        size: lg
+        color: default
+        background: true
+        alignX: start
+      - _component: building-blocks/core-elements/image
+        source: /src/assets/images/screenshot-2025-12-09-at-10-16-19-am.png
+        alt: ''
+        rounded: false
+        aspectRatio: square
+        positionVertical: center
+        positionHorizontal: left
+        priority: false
+      - _component: building-blocks/core-elements/simple-text
+        text: 'My text goes here. And here and here and '
+        alignX: center
+        size: default
+      - _component: building-blocks/core-elements/spacer
+        size: 3xl
+      - _component: building-blocks/wrappers/split
+        label: ''
+        firstColumnContentSections:
+          - _component: building-blocks/core-elements/simple-text
+            text: My text goes here.
+            alignX: start
+            size: default
+        secondColumnContentSections:
+          - _component: building-blocks/core-elements/heading
+            text: My Heading
+            level: h2
+            size: default
+            alignX: start
+            iconName:
+            iconPosition: before
+        distributionMode: half
+        fixedWidth:
+        minSplitWidth: 760
+        verticalAlignment: center
+        reverse: false
+        gap: lg
+      - _component: building-blocks/core-elements/testimonial
+        text: My testimonial text.
+        authorName: Charlie Parker
+        authorDescription: Agent
+        authorImage: /src/assets/images/component-library/profile4.jpg
+        alignX: start
     maxContentWidth: 2xl
     paddingHorizontal: md
     paddingVertical: md
