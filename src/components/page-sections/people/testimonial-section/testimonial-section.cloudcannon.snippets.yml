@@ -1,0 +1,27 @@
+TestimonialSection:
+  snippet: "<TestimonialSection [[testimonial_section_args]] />"
+  params:
+    testimonial_section_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: text
+          - editor_key: authorName
+          - editor_key: authorDescription
+          - editor_key: authorImage
+          - editor_key: alignX
+          - editor_key: maxContentWidth
+          - editor_key: paddingHorizontal
+          - editor_key: paddingVertical
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/people/testimonial-section/testimonial-section.cloudcannon.inputs.yml
+

@@ -24,32 +24,8 @@ picker_preview:
   text: Select
   subtext: Form field for selecting one option from a list.
   icon: view_list
-_inputs:
-  label:
-    type: text
-    comment: The label text for the select field.
-  name:
-    type: text
-    comment: A unique name attribute for the select field.
-    options:
-      required: true
-      required_message: Only form elements with a name will have their values passed when submitting a form.
-  required:
-    type: switch
-    comment: Whether the field is required.
-  options:
-    type: array
-    comment: Array of select options with value and label.
-    options:
-      structures: _structures.selectOptions
-      min_items: 2
-      min_items_message: At least two options are required.
-  placeholder:
-    type: text
-    comment: Placeholder text for the select field.
-  value:
-    type: text
-    comment: The default selected value.
+_inputs_from_glob:
+  - /src/components/building-blocks/forms/select/select.cloudcannon.inputs.yml
 _structures:
   selectOptions:
     values:

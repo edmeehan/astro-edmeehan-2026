@@ -13,8 +13,6 @@ picker_preview:
   text: Raw HTML
   subtext: Raw HTML content including scripts and styles.
   icon: code
-_inputs:
-  html:
-    comment: The raw HTML content to render (including scripts, styles, etc.).
-    type: textarea
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/raw-html/raw-html.cloudcannon.inputs.yml
 

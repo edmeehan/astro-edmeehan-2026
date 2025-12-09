@@ -1,0 +1,23 @@
+CtaCenter:
+  snippet: "<CtaCenter [[cta_center_args]] />"
+  params:
+    cta_center_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: heading
+          - editor_key: subtext
+          - editor_key: buttonSections
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+          - editor_key: rounded
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/ctas/cta-center/cta-center.cloudcannon.inputs.yml
+

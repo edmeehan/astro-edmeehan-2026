@@ -1,0 +1,19 @@
+DefinitionList:
+  snippet: "<DefinitionList [[definition_list_args]] />"
+  params:
+    definition_list_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: items
+          - editor_key: alignX
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/building-blocks/core-elements/definition-list/definition-list.cloudcannon.inputs.yml
+

@@ -14,12 +14,5 @@ picker_preview:
   text: Form
   subtext: Groups form fields into one submission area.
   icon: checklist_rtl
-_inputs:
-  action:
-    type: url
-    comment: Where to send the form-data when the form is submitted. The URL that processes the form submission.
-  formBlocks:
-    type: array
-    comment: The form blocks to render inside the form.
-    options:
-      structures: _structures.formBlocks
+_inputs_from_glob:
+  - /src/components/building-blocks/forms/form/form.cloudcannon.inputs.yml

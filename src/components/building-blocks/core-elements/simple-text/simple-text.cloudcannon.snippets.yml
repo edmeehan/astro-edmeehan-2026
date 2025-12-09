@@ -1,0 +1,20 @@
+SimpleText:
+  snippet: "<SimpleText [[simple_text_args]] />"
+  params:
+    simple_text_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: text
+          - editor_key: alignX
+          - editor_key: size
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/building-blocks/core-elements/simple-text/simple-text.cloudcannon.inputs.yml
+

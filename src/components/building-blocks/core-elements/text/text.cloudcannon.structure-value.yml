@@ -14,27 +14,5 @@ picker_preview:
   text: Text
   subtext: Content component for markdown-formatted text.
   icon: edit_note
-_inputs:
-  text:
-    comment: The content for the text component (Markdown format). Leave empty to use slot content instead.
-    type: markdown
-    options:
-      blockquote: false
-      bold: true
-      italic: true
-      link: true
-      strike: false
-      subscript: true
-      superscript: true
-      underline: false
-  alignX:
-    type: select
-    options:
-      values:
-        - id: start
-          name: Start
-        - id: center
-          name: Center
-        - id: end
-          name: End
-    comment: The horizontal alignment of the text component.
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/text/text.cloudcannon.inputs.yml

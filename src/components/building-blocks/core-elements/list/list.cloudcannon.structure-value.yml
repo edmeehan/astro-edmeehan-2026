@@ -20,49 +20,8 @@ picker_preview:
   text: List
   subtext: Lists items with icons as markers.
   icon: list
-_inputs:
-  items:
-    type: array
-    options:
-      structures: _structures.listItems
-    comment: Array of list items.
-  direction:
-    type: select
-    options:
-      values:
-        - id: horizontal
-          name: Horizontal
-        - id: vertical
-          name: Vertical
-    comment: The direction in which list items are arranged.
-  alignX:
-    type: select
-    comment: The horizontal alignment of the list items.
-    options:
-      values:
-        - id: start
-          name: Start
-        - id: center
-          name: Center
-        - id: end
-          name: End
-  size:
-    comment: Controls the size of the icon and text.
-    type: select
-    options:
-      values:
-        - id: xs
-          name: Extra Small
-        - id: sm
-          name: Small
-        - id: md
-          name: Medium
-        - id: lg
-          name: Large
-        - id: xl
-          name: Extra Large
-        - id: 2xl
-          name: 2xl
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/list/list.cloudcannon.inputs.yml
 _structures:
   listItems:
     values:

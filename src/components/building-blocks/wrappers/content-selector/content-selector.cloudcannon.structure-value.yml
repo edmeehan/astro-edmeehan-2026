@@ -15,22 +15,8 @@ picker_preview:
   text: Content Selector
   subtext: Lets users switch between different content panels using tabs.
   icon: view_sidebar
-_inputs:
-  label:
-    comment: Optional label for the content selector to help identify it in the editor.
-    type: text
-  items:
-    type: array
-    options:
-      structures: _structures.contentSelectorItems
-  navigationPosition:
-    type: select
-    options:
-      values:
-        - id: start
-          name: Start
-        - id: top
-          name: Top
+_inputs_from_glob:
+  - /src/components/building-blocks/wrappers/content-selector/content-selector.cloudcannon.inputs.yml
 _structures:
   contentSelectorItems:
     values:

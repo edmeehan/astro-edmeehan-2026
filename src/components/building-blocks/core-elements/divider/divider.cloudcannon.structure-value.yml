@@ -11,25 +11,5 @@ picker_preview:
   text: Divider
   subtext: Visual separator for dividing content sections.
   icon: horizontal_rule
-_inputs:
-  paddingVertical:
-    comment: The space on the top and bottom of the horizontal line.
-    type: select
-    options:
-      values:
-        - id: none
-          name: None
-        - id: xs
-          name: Extra Small
-        - id: sm
-          name: Small
-        - id: md
-          name: Medium
-        - id: lg
-          name: Large
-        - id: xl
-          name: Extra Large
-        - id: 2xl
-          name: 2xl
-        - id: 3xl
-          name: 3xl
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/divider/divider.cloudcannon.inputs.yml

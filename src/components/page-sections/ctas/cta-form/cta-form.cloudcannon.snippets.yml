@@ -1,0 +1,26 @@
+CtaForm:
+  snippet: "<CtaForm [[cta_form_args]] />"
+  params:
+    cta_form_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: heading
+          - editor_key: subtext
+          - editor_key: formAction
+          - editor_key: formBlocks
+          - editor_key: imageSource
+          - editor_key: imageAlt
+          - editor_key: reverse
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/ctas/cta-form/cta-form.cloudcannon.inputs.yml
+

@@ -1,0 +1,27 @@
+FeatureGrid:
+  snippet: "<FeatureGrid [[feature_grid_args]] />"
+  params:
+    feature_grid_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: eyebrow
+          - editor_key: heading
+          - editor_key: subtext
+          - editor_key: align
+          - editor_key: gap
+          - editor_key: minItemWidth
+          - editor_key: maxItemWidth
+          - editor_key: features
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/features/feature-grid/feature-grid.cloudcannon.inputs.yml
+

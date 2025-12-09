@@ -1,0 +1,19 @@
+Text:
+  snippet: "<Text [[text_args]] />"
+  params:
+    text_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: text
+          - editor_key: alignX
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/building-blocks/core-elements/text/text.cloudcannon.inputs.yml
+

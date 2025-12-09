@@ -1,0 +1,23 @@
+HeroCenter:
+  snippet: "<HeroCenter [[hero_center_args]] />"
+  params:
+    hero_center_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: eyebrow
+          - editor_key: heading
+          - editor_key: subtext
+          - editor_key: buttonSections
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/heroes/hero-center/hero-center.cloudcannon.inputs.yml
+

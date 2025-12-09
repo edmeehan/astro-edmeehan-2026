@@ -1,0 +1,26 @@
+CustomSection:
+  snippet: "<CustomSection [[custom_section_args]] />"
+  params:
+    custom_section_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: label
+          - editor_key: contentSections
+          - editor_key: maxContentWidth
+          - editor_key: paddingHorizontal
+          - editor_key: paddingVertical
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+          - editor_key: backgroundImage
+          - editor_key: rounded
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/builders/custom-section/custom-section.cloudcannon.inputs.yml
+

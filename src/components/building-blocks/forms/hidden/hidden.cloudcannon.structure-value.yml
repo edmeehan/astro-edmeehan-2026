@@ -15,10 +15,5 @@ picker_preview:
   text: Hidden
   subtext: Hidden form field for storing data.
   icon: eye-slash
-_inputs:
-  name:
-    type: text
-    comment: The name attribute for the hidden input field.
-  value:
-    type: text
-    comment: The value to be stored in the hidden field.
+_inputs_from_glob:
+  - /src/components/building-blocks/forms/hidden/hidden.cloudcannon.inputs.yml

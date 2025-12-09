@@ -1,0 +1,28 @@
+FaqSection:
+  snippet: "<FaqSection [[faq_section_args]] />"
+  params:
+    faq_section_args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: heading
+          - editor_key: headingLevel
+          - editor_key: headingSize
+          - editor_key: singleOpen
+          - editor_key: openFirst
+          - editor_key: items
+          - editor_key: maxContentWidth
+          - editor_key: paddingHorizontal
+          - editor_key: paddingVertical
+          - editor_key: colorScheme
+          - editor_key: backgroundColor
+        format:
+          string_boundary:
+            - '"'
+          root_value_delimiter: "="
+          root_pair_delimiter:
+            - " "
+          allow_booleans: true
+  _inputs_from_glob:
+    - /src/components/page-sections/info-blocks/faq-section/faq-section.cloudcannon.inputs.yml
+
