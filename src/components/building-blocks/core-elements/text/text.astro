@@ -19,24 +19,21 @@ const htmlAttributes = Object.fromEntries(
 
 const markdownContent = text ? md.render(text) : "";
 
-const textDataAttributes = editable && customDataProp
-  ? {
-      "data-editable": "text",
-      "data-prop": customDataProp,
-    }
-  : {};
+const textDataAttributes =
+  editable && customDataProp
+    ? {
+        "data-editable": "text",
+        "data-prop": customDataProp,
+      }
+    : {};
 ---
 
-<div class:list={["text", className, `align-${alignX}`]} {...htmlAttributes}>
-  {
-    text ? (
-      <span {...textDataAttributes} set:html={markdownContent} />
-    ) : (
-      <span {...textDataAttributes}>
-        <slot />
-      </span>
-    )
-  }
+<div
+  class:list={["text", className, `align-${alignX}`]}
+  {...htmlAttributes}
+  {...textDataAttributes}
+>
+  {text ? <Fragment set:html={markdownContent} /> : <slot />}
 </div>
 
 <style lang="pcss">

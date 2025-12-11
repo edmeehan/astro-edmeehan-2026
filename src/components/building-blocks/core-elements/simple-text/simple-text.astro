@@ -20,27 +20,21 @@ let MarkdownText = text ? md.renderInline(text) : "";
 
 MarkdownText = MarkdownText.replace(/\n/g, "<br />");
 
-const textDataAttributes = editable && customDataProp
-  ? {
-      "data-editable": "text",
-      "data-prop": customDataProp,
-    }
-  : {};
+const textDataAttributes =
+  editable && customDataProp
+    ? {
+        "data-editable": "text",
+        "data-prop": customDataProp,
+      }
+    : {};
 ---
 
 <p
   class:list={["simple-text", size && `size-${size}`, `align-${alignX}`, className]}
   {...htmlAttributes}
+  {...textDataAttributes}
 >
-  {
-    text ? (
-      <span {...textDataAttributes} set:html={MarkdownText} />
-    ) : (
-      <span {...textDataAttributes}>
-        <slot />
-      </span>
-    )
-  }
+  {text ? <Fragment set:html={MarkdownText} /> : <slot />}
 </p>
 
 <style lang="pcss">

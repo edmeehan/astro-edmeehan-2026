@@ -18,12 +18,13 @@ const htmlAttributes = Object.fromEntries(
 
 const md = new MarkdownIt({ html: true });
 
-const textDataAttributes = editable && customDataProp
-  ? {
-      "data-editable": "text",
-      "data-prop": customDataProp,
-    }
-  : {};
+const textDataAttributes =
+  editable && customDataProp
+    ? {
+        "data-editable": "text",
+        "data-prop": customDataProp,
+      }
+    : {};
 ---
 
 <li class:list={["item", className]} {...htmlAttributes}>
@@ -32,15 +33,9 @@ const textDataAttributes = editable && customDataProp
       <Icon name={iconName} color={iconColor} size="none" class="list-icon" aria-hidden="true" />
     )
   }
-  {
-    text ? (
-      <span {...textDataAttributes} set:html={md.renderInline(text)} />
-    ) : (
-      <span {...textDataAttributes}>
-        <slot />
-      </span>
-    )
-  }
+  <span {...textDataAttributes}>
+    {text ? <Fragment set:html={md.renderInline(text)} /> : <slot />}
+  </span>
 </li>
 
 <style lang="pcss">
