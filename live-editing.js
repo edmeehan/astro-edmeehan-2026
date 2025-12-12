@@ -30,6 +30,7 @@ for (const [path, module] of Object.entries(componentModules)) {
         ? parts.slice(0, -1).join("/")
         : parts.slice(0, -1).concat(kebabFilename).join("/");
 
+    console.log(registrationPath);
     registerAstroComponent(registrationPath, module.default);
   }
 }
