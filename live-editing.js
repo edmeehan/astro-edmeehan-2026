@@ -30,24 +30,11 @@ for (const [path, module] of Object.entries(componentModules)) {
         ? parts.slice(0, -1).join("/")
         : parts.slice(0, -1).concat(kebabFilename).join("/");
 
-    // Validate module.default before registering
-    if (!module) {
-      console.error(`[live-editing] Module is undefined for ${path}`);
-      continue;
-    }
-
-    if (!module.default) {
-      console.error(`[live-editing] module.default is undefined for ${path}`, {
-        moduleKeys: Object.keys(module),
-        registrationPath,
-      });
-      continue;
-    }
-
-    if (typeof module.default !== "function") {
-      console.error(`[live-editing] module.default is not a function for ${path}`, {
-        defaultType: typeof module.default,
-        defaultValue: module.default,
+    // Validate module.default exists before registering
+    if (!module || !module.default) {
+      console.warn(`[live-editing] Skipping ${path}: module.default is missing`, {
+        hasModule: !!module,
+        moduleKeys: module ? Object.keys(module) : [],
         registrationPath,
       });
       continue;
